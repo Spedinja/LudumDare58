@@ -26,7 +26,7 @@ startRoomPos = Vector2i(25, 25)
 startRoom = ExtResource("10_lrltm")
 endRoom = ExtResource("11_h7en0")
 outerBoundRoom = ExtResource("7_24kn6")
-max_rooms = 20
+max_rooms = 35
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(10322, 176)
