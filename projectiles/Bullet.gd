@@ -2,7 +2,7 @@ extends Node
 class_name Bullet
 
 @export var dmg: float = 1
-@export var speed: float = 1
+@export var speed: float = 50
 @export var area: float = 1
 @export var pierce: float = 0
 @export var bounce: float = 0
@@ -21,7 +21,7 @@ func _ready() -> void:
 	velocity = direction * speed
 	
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#self.position += direction * speed * delta
 	pass
 
@@ -30,7 +30,12 @@ func _physics_process(delta):
 
 	# 1. Do a raycast
 	var space_state = $Area2D.get_world_2d().direct_space_state
-	var result = space_state.intersect_ray(self.global_position, next_position, [self])
+	var params = PhysicsRayQueryParameters2D.new()
+	params.from = self.global_position
+	params.to = next_position
+	params.exclude = [self]
+	params.collision_mask = $Area2D.collision_mask
+	var result = space_state.intersect_ray(params)
 
 	if result:
 		 # 2. Reflect velocity around collision normal

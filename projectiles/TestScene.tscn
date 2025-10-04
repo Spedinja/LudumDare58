@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://v7gy28vq63um"]
+
+[ext_resource type="Script" uid="uid://b0si8wkowvvl7" path="res://testScript.gd" id="1_sawa2"]
+[ext_resource type="PackedScene" uid="uid://dys1itfd17ep" path="res://projectiles/bullet.tscn" id="2_5shw6"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_sawa2")
+projectile = ExtResource("2_5shw6")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
