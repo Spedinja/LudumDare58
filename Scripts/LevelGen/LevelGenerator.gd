@@ -298,6 +298,8 @@ func instantiateRooms():
 		if grid_room and grid_room.roomdata and grid_room.roomdata.room:
 			var room_scene = grid_room.roomdata.room.instantiate()
 			room_scene.position = Vector2(pos.x * roomWidth, pos.y * roomHeight)
+			if room_scene is Room_Fragment:
+				room_scene.has_cagedGecko = grid_room.roomdata.isGeckoRoom
 			self.add_child(room_scene)
 	return
 
