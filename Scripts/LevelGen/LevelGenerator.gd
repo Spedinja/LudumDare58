@@ -14,7 +14,8 @@ class_name LevelGenerator
 #additions
 @export var max_rooms: int = 50
 @export var num_geckos: int = 0
-
+@export var turn_chance: float = 0.45 #percentage on how often tot turn while generating in one branch
+@export var start_exitchance: float = 0.75 #percentage of all exits being used in start room
 #vars
 var room: RoomData
 var gridRoom: GridRoom
@@ -102,25 +103,33 @@ func generateDungeon():
 	# start room
 	visited[startRoomPos.x][startRoomPos.y] = true
 	mainPath.append(startRoomPos)
+	
+	var directions = [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]
+	directions.shuffle()
 
 	#branch in all 4 directions
-	for dir in [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]:
-		if randf() < 0.75: #% chance to open this direction
+	for dir in directions:
+		if randf() < start_exitchance: #% chance to go this direction
 			weBeDrunkenWalkin(startRoomPos, dir)	
 
 #drunken walk algorithm
 func weBeDrunkenWalkin(start: Vector2i, dir: Vector2i):
 	var curr = start + dir
+	#var last_dir = dir
+	
 	while isWithinBounds(curr) and not visited[curr.x][curr.y] and mainPath.size() < max_rooms:
 		visited[curr.x][curr.y] = true
 		mainPath.append(curr)
 
 		#rng turn
-		if randf() < 0.5:
-			dir = [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)].pick_random()
-
+		if randf() < turn_chance: #chance to turn
+			var possible_dirs = [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]
+			#possible_dirs.erase(-last_dir)  #avoid instant backtracking
+			dir = possible_dirs.pick_random()
+		
 		curr += dir
-
+		#last_dir = dir
+	return
 
 #generates branches/additional rooms connecting to mainpath
 #should be changes if we want to use it, so only deadends get added
@@ -135,32 +144,31 @@ func weBeDrunkenWalkin(start: Vector2i, dir: Vector2i):
 	#return mainPath
 	
 func addBranchesUntilMax():
-	var room_count = mainPath.size()
-	
-	while room_count < max_rooms:
-		var base_room = mainPath.pick_random()
-		var directions = [Vector2i(0,-1), Vector2i(0,1), Vector2i(1,0), Vector2i(-1,0)]
+	while mainPath.size() < max_rooms:
+		#rng room
+		var base_room = mainPath.pick_random()  # GridRoom
+		var start_pos = Vector2i(base_room.x, base_room.y)
+
+		#shuffle
+		var directions = [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]
 		directions.shuffle()
-		
-		var placed = false
+
+		var branch_created = false
 		for dir in directions:
-			var n = base_room + dir
-			if isWithinBounds(n) and not visited[n.x][n.y] and randf() < 1.0:
-				visited[n.x][n.y] = true
-				mainPath.append(n)
-				room_count += 1
-				placed = true
-				break
-		
-		#cant place a new room at all (surrounded), break to avoid infinite loop
-		if not placed:
+			var next_pos = start_pos + dir
+			if isWithinBounds(next_pos) and not visited[next_pos.x][next_pos.y]:
+				weBeDrunkenWalkin(start_pos, dir)
+				branch_created = true
+				break  #one per it
+
+		#cant place? break so avoid infinites
+		if not branch_created:
 			break
-		return
+	return
 	
 #setup base gridroom in the grid, only need to find and add a roomtemplate later
 func fillGridWithMain():
 	for pos in mainPath:
-		
 		
 		#create gridroom
 		var room = GridRoom.new()
