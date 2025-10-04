@@ -22,11 +22,11 @@ roomPool = ExtResource("2_ws0e6")
 gridlayout = SubResource("Resource_xd1pg")
 roomWidth = 1152
 roomHeight = 648
-startRoomPos = Vector2i(0, 0)
 startRoom = ExtResource("10_lrltm")
 endRoom = ExtResource("11_h7en0")
 outerBoundRoom = ExtResource("7_24kn6")
+max_rooms = 20
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(324, 176)
-zoom = Vector2(0.1, 0.1)
+zoom = Vector2(0.05, 0.05)
