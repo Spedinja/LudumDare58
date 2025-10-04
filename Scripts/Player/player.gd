@@ -3,18 +3,25 @@ extends CharacterBody2D
 @export var movement_speed: float = 300.0
 @export var movement_acceleration = 10.0
 @export var dash_duration: float = 0.3
-@export var dash_speed: float = 1000
+@export var dash_speed: float = 1000.0
 @export var dash_cooldown: float = 2.0
 var dash_direction: Vector2
 @export var attack_cooldown: float = 1.0
 
 var dash_timer: Timer
 var dash_cd_timer: Timer
+@onready var dash_ghost_scene: PackedScene = preload("res://Scenes/Player/dash_ghost.tscn")
+
 var attack_timer: Timer
+
+@export var iframes_duration: float = 1.0
+var iframes_timer: Timer
 
 var is_dashing: bool = false
 
 var input: PlayerInput
+
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 
 func _ready() -> void:
 	_get_input()
@@ -33,6 +40,10 @@ func _initiate_timers():
 	attack_timer = Timer.new()
 	attack_timer.one_shot = true
 	add_child(attack_timer)
+	
+	iframes_timer = Timer.new()
+	iframes_timer.one_shot = true
+	add_child(iframes_timer)
 
 func _process(_delta: float) -> void:
 	_get_input()
@@ -47,6 +58,7 @@ func _physics_process(delta: float) -> void:
 func _move(delta: float):
 	if is_dashing:
 		velocity = dash_direction.normalized() * dash_speed
+		_add_dash_ghost()
 	else:
 		velocity = lerp(velocity, input.move_directions.normalized() * movement_speed, delta * movement_acceleration)
 	move_and_slide()
@@ -57,9 +69,20 @@ func _start_dashing():
 	dash_timer.start(dash_duration)
 	dash_cd_timer.start(dash_cooldown)
 
+func _add_dash_ghost():
+	var ghost: DashGhost = dash_ghost_scene.instantiate()
+	ghost.global_position = global_position
+	get_parent().add_child(ghost)
+
 func _attack():
 	pass
 
+func take_damage(amount: int):
+	if is_dashing and not iframes_timer.is_stopped():
+		return
+	amount -= amount
+	iframes_timer.start(iframes_duration)
+	
 func _get_input():
 	var move_direction: Vector2 = Vector2(Input.get_axis("Move Left", "Move Right"), Input.get_axis("Move Up", "Move Down"))
 	var attack_just_pressed: bool = Input.is_action_just_pressed("Attack")
