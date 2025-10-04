@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://lsglc6tidqg3"]
+[gd_scene load_steps=3 format=3 uid="uid://lsglc6tidqg3"]
+
+[ext_resource type="Texture2D" uid="uid://sphw27jbq5yl" path="res://icon.svg" id="1_36b7n"]
+[ext_resource type="PackedScene" uid="uid://cpd57nlvrhytv" path="res://Scenes/LevelGen/Rooms/demoLevel_UD.tscn" id="1_fgor6"]
 
 [node name="Level" type="Node2D"]
+
+[node name="Level" parent="." instance=ExtResource("1_fgor6")]
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(300, 300)
+texture = ExtResource("1_36b7n")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(78, 173)
+texture = ExtResource("1_36b7n")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(298, 44)
+texture = ExtResource("1_36b7n")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(552, 159)
+texture = ExtResource("1_36b7n")

@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://cb8php6kufu52"]
+[gd_scene load_steps=2 format=3 uid="uid://cb8php6kufu52"]
+
+[ext_resource type="Texture2D" uid="uid://sphw27jbq5yl" path="res://icon.svg" id="1_r8fun"]
 
 [node name="Level" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(78, 173)
+texture = ExtResource("1_r8fun")
+
+[node name="Icon" type="Sprite2D" parent="Icon"]
+position = Vector2(458, 11)
+texture = ExtResource("1_r8fun")
