@@ -10,8 +10,8 @@
 
 [sub_resource type="Resource" id="Resource_xd1pg"]
 script = ExtResource("10_opaxf")
-width = 20
-height = 20
+width = 50
+height = 50
 metadata/_custom_type_script = "uid://cw57wdy0dhja6"
 
 [node name="Level" type="Node2D"]
@@ -22,11 +22,12 @@ roomPool = ExtResource("2_ws0e6")
 gridlayout = SubResource("Resource_xd1pg")
 roomWidth = 1152
 roomHeight = 648
-startRoomPos = Vector2i(0, 0)
+startRoomPos = Vector2i(25, 25)
 startRoom = ExtResource("10_lrltm")
 endRoom = ExtResource("11_h7en0")
 outerBoundRoom = ExtResource("7_24kn6")
+max_rooms = 35
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(324, 176)
-zoom = Vector2(0.1, 0.1)
+position = Vector2(10322, 176)
+zoom = Vector2(0.025, 0.025)

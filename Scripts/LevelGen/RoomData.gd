@@ -9,4 +9,5 @@ class_name RoomData
 @export var isMain: bool = false
 @export var isEnd: bool = false
 @export var isDeadEnd = false
+@export var isGeckoRoom : bool = false
 @export var room: PackedScene
