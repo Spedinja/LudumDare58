@@ -1,0 +1,32 @@
+[gd_scene load_steps=9 format=3 uid="uid://cp8v4tol0gncu"]
+
+[ext_resource type="Script" uid="uid://k7nbmd2p5y1d" path="res://Scripts/LevelGen/LevelGenerator.gd" id="1_7ijpl"]
+[ext_resource type="Resource" uid="uid://ccjrsq5h2ow0g" path="res://ressources/LevelGen/LevelGen/availableRooms.tres" id="2_ws0e6"]
+[ext_resource type="Resource" uid="uid://7asehwp7w7pk" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_outerbounds.tres" id="7_24kn6"]
+[ext_resource type="Script" uid="uid://blvxb2vdaey4e" path="res://Scripts/LevelGen/GridRoom.gd" id="9_firwl"]
+[ext_resource type="Resource" uid="uid://ctu5uk115v14w" path="res://ressources/LevelGen/LevelGen/Rooms/room_Start.tres" id="10_lrltm"]
+[ext_resource type="Script" uid="uid://cw57wdy0dhja6" path="res://Scripts/LevelGen/GridLayout.gd" id="10_opaxf"]
+[ext_resource type="Resource" uid="uid://bnxu76nv36ifb" path="res://ressources/LevelGen/LevelGen/Rooms/room_End.tres" id="11_h7en0"]
+
+[sub_resource type="Resource" id="Resource_xd1pg"]
+script = ExtResource("10_opaxf")
+width = 20
+height = 20
+metadata/_custom_type_script = "uid://cw57wdy0dhja6"
+
+[node name="Level" type="Node2D"]
+
+[node name="LevelGenerator" type="Node" parent="."]
+script = ExtResource("1_7ijpl")
+roomPool = ExtResource("2_ws0e6")
+gridlayout = SubResource("Resource_xd1pg")
+roomWidth = 1152
+roomHeight = 648
+startRoomPos = Vector2i(0, 0)
+startRoom = ExtResource("10_lrltm")
+endRoom = ExtResource("11_h7en0")
+outerBoundRoom = ExtResource("7_24kn6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(324, 176)
+zoom = Vector2(0.1, 0.1)
