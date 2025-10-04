@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 150
 @export var damage: float = 10
+@export var health: float = 50
 
 var player_in_range: bool = false
 var follow_object
@@ -20,6 +21,14 @@ func _move():
 func _attack():
 	if not player_in_range:
 		return
+
+func take_damage(amount: float):
+	health -= amount
+	if health <= 0:
+		die()
+
+func die():
+	queue_free()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Player"):

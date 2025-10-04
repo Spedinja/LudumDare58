@@ -1,0 +1,47 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bfxs2u7huev6o"]
+
+[ext_resource type="FontFile" uid="uid://b0jg87isgloqs" path="res://Fonts/BoldPixels.ttf" id="1_etp87"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnko1"]
+draw_center = false
+border_width_bottom = 4
+border_color = Color(0.9372549, 0.7176471, 0.45882353, 1)
+border_blend = true
+expand_margin_top = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7bel"]
+bg_color = Color(0.94, 0.56102335, 0.38540003, 1)
+border_width_bottom = 4
+border_color = Color(0.37, 0.255115, 0.114700004, 1)
+expand_margin_top = 4.0
+shadow_color = Color(0, 0, 0, 0.2509804)
+shadow_size = 3
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5eoa"]
+bg_color = Color(0.64705884, 0.38431373, 0.2627451, 1)
+border_width_bottom = 4
+border_color = Color(0.16470589, 0.11372549, 0.050980393, 1)
+expand_margin_top = 4.0
+shadow_color = Color(0, 0, 0, 0.2509804)
+shadow_size = 3
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etp87"]
+bg_color = Color(0.46, 0.27454334, 0.18860002, 1)
+border_color = Color(0.04, 0.027579999, 0.012399999, 1)
+shadow_color = Color(0, 0, 0, 0.2509804)
+shadow_size = 3
+shadow_offset = Vector2(2, 2)
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_etp87")
+Button/styles/focus = SubResource("StyleBoxFlat_tnko1")
+Button/styles/hover = SubResource("StyleBoxFlat_n7bel")
+Button/styles/normal = SubResource("StyleBoxFlat_p5eoa")
+Button/styles/pressed = SubResource("StyleBoxFlat_etp87")
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_etp87")
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/normal_font = ExtResource("1_etp87")

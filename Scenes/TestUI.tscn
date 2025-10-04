@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy0v2bj8xrwvl"]
+
+[ext_resource type="Theme" uid="uid://bfxs2u7huev6o" path="res://Themes/MainMenuTheme.tres" id="1_auhpw"]
+
+[node name="TestUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 57.0
+offset_right = 243.0
+offset_bottom = 129.0
+theme = ExtResource("1_auhpw")
+text = "Test"
