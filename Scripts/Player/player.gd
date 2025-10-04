@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var movement_speed: float = 300.0
 @export var movement_acceleration = 10.0
-@export var dash_duration: float = 0.3
+@export var dash_duration: float = 0.1
 @export var dash_speed: float = 1000.0
 @export var dash_cooldown: float = 2.0
 var dash_direction: Vector2
@@ -71,6 +71,8 @@ func _start_dashing():
 
 func _add_dash_ghost():
 	var ghost: DashGhost = dash_ghost_scene.instantiate()
+	ghost.texture = $TempSprite.texture
+	ghost.offset = $TempSprite.offset
 	ghost.global_position = global_position
 	get_parent().add_child(ghost)
 
