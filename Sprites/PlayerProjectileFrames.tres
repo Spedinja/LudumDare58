@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://d23t3dnpmra01"]
+
+[ext_resource type="Texture2D" uid="uid://gdurjy08wo7b" path="res://Sprites/player_projectile.png" id="1_5yk3h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07ftv"]
+atlas = ExtResource("1_5yk3h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h74an"]
+atlas = ExtResource("1_5yk3h")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acptc"]
+atlas = ExtResource("1_5yk3h")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqqq2"]
+atlas = ExtResource("1_5yk3h")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07ftv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h74an")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acptc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqqq2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
