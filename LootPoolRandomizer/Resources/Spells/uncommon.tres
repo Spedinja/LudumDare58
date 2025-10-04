@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="artifacts" load_steps=2 format=3 uid="uid://dyciav85g5a3e"]
+
+[ext_resource type="Script" uid="uid://dhaenbfkgi2bv" path="res://LootPoolRandomizer/Artifacts.gd" id="1_siqja"]
+
+[resource]
+script = ExtResource("1_siqja")
+id = 6
+itemName = "Uncommon"
+rarity = "Uncommon"
+metadata/_custom_type_script = "uid://dhaenbfkgi2bv"

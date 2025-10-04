@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="item" load_steps=2 format=3 uid="uid://clir7iefykcsq"]
+
+[ext_resource type="Script" uid="uid://dnfm3ic2fgnuo" path="res://LootPoolRandomizer/Item.gd" id="1_ga73o"]
+
+[resource]
+script = ExtResource("1_ga73o")
+id = 7
+itemName = "Trash"
+description = "If that appears no item suitable was found"
+metadata/_custom_type_script = "uid://dnfm3ic2fgnuo"

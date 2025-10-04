@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://bnxu76nv36ifb"]
+
+[ext_resource type="PackedScene" uid="uid://djkkfnkvfu6qa" path="res://scenes/LevelGen/Rooms/demoLevel_End.tscn" id="1_5fmk7"]
+[ext_resource type="Script" uid="uid://cr6u5nyeukod6" path="res://scripts/LevelGen/RoomData.gd" id="1_s5ipl"]
+
+[resource]
+script = ExtResource("1_s5ipl")
+hasLeftNbr = true
+hasRightNb = false
+hasTopNb = true
+hasBottomNb = true
+isMain = true
+isEnd = true
+isDeadEnd = false
+room = ExtResource("1_5fmk7")
+metadata/_custom_type_script = "uid://cr6u5nyeukod6"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="artifacts" load_steps=2 format=3 uid="uid://cwjxcii4xnmk4"]
+
+[ext_resource type="Script" uid="uid://dhaenbfkgi2bv" path="res://LootPoolRandomizer/Artifacts.gd" id="1_kbw8a"]
+
+[resource]
+script = ExtResource("1_kbw8a")
+id = 5
+itemName = "epic"
+rarity = "Epic"
+metadata/_custom_type_script = "uid://dhaenbfkgi2bv"

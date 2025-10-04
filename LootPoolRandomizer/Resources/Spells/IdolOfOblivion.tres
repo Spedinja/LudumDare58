@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="artifacts" load_steps=2 format=3 uid="uid://cktnt3neiabpq"]
+
+[ext_resource type="Script" uid="uid://dhaenbfkgi2bv" path="res://LootPoolRandomizer/Artifacts.gd" id="1_abw5i"]
+
+[resource]
+script = ExtResource("1_abw5i")
+id = 4
+itemName = "Idol of Oblivion"
+rarity = "Legendary"
+metadata/_custom_type_script = "uid://dhaenbfkgi2bv"
