@@ -71,6 +71,8 @@ func _start_dashing():
 
 func _add_dash_ghost():
 	var ghost: DashGhost = dash_ghost_scene.instantiate()
+	ghost.texture = $TempSprite.texture
+	ghost.offset = $TempSprite.offset
 	ghost.global_position = global_position
 	get_parent().add_child(ghost)
 

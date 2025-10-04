@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bfaxkwh1r2pkb"]
 
 [ext_resource type="Script" uid="uid://dms32j4b6250c" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
-[ext_resource type="Texture2D" uid="uid://it5qagoxabo" path="res://Sprites/Tile.png" id="2_xpcdj"]
+[ext_resource type="Texture2D" uid="uid://b7gtmlbnfhd75" path="res://Sprites/Main_Geko.png" id="2_a3d8c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f60y1"]
 
@@ -12,7 +12,8 @@ radius = 5.0
 script = ExtResource("1_a3d8c")
 
 [node name="TempSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_xpcdj")
+texture = ExtResource("2_a3d8c")
+offset = Vector2(0, -24)
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 visible = false
