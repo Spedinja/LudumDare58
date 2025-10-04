@@ -6,7 +6,7 @@ class_name LevelGenerator
 @export var gridlayout: GridLayout
 @export var roomWidth = 1024
 @export var roomHeight = 768
-@export var startRoomPos = Vector2i(0,3)
+@export var startRoomPos = Vector2i(10,10)
 @export var startRoom : RoomData
 @export var endRoom : RoomData
 @export var outerBoundRoom: RoomData

@@ -1,30 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbf6wmop5brv2"]
-
-[ext_resource type="Texture2D" uid="uid://da1nmg70n7r3x" path="res://sprites/placeholder/Tile.png" id="1_rgk7s"]
+[gd_scene format=3 uid="uid://bbf6wmop5brv2"]
 
 [node name="Level" type="Node2D"]
-
-[node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(577, 630)
-scale = Vector2(36.16, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Ground"]
-modulate = Color(0.657838, 0.312895, 0, 1)
-texture = ExtResource("1_rgk7s")
-
-[node name="Ground2" type="StaticBody2D" parent="."]
-position = Vector2(577, 20)
-scale = Vector2(36.9253, -1.13534)
-
-[node name="Sprite2D" type="Sprite2D" parent="Ground2"]
-modulate = Color(0.657838, 0.312895, 0, 1)
-texture = ExtResource("1_rgk7s")
-
-[node name="Ground3" type="StaticBody2D" parent="."]
-position = Vector2(23, 318)
-scale = Vector2(1.12413, 20.669)
-
-[node name="Sprite2D" type="Sprite2D" parent="Ground3"]
-modulate = Color(0.657838, 0.312895, 0, 1)
-position = Vector2(990.099, 0)
-texture = ExtResource("1_rgk7s")
