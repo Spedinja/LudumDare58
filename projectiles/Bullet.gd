@@ -2,10 +2,10 @@ extends Node
 class_name Bullet
 
 @export var dmg: float = 1
-@export var speed: float = 50
+@export var speed: float = 150
 @export var area: float = 1
-@export var pierce: float = 0
-@export var bounce: float = 0
+@export var pierce: float = 2
+@export var bounce: float = 3
 @export var fire: float = 0
 @export var ice: float = 0
 @export var electric: float = 0
@@ -37,7 +37,7 @@ func _physics_process(delta):
 	params.collision_mask = $Area2D.collision_mask
 	var result = space_state.intersect_ray(params)
 
-	if result:
+	if result && !(result.collider.is_in_group("Enemy") && pierce != 0):
 		 # 2. Reflect velocity around collision normal
 		var normal = result.normal
 		velocity = velocity.bounce(normal)
@@ -54,11 +54,27 @@ func _on_lifetime_timeout() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if (body is TileMap):
+	#if (body is TileMap):
+		#if(bounce == 0):
+			#call_deferred("queue_free")
+	#else:
+		#if(pierce == 0 && bounce == 0):
+			#call_deferred("queue_free")
+	print("colliding")
+	if !(body is TileMapLayer):
+		#do enemy stuff
+		match [pierce, bounce]:
+			[0, 0]:
+				call_deferred("queue_free")
+			[0, _]:
+				bounce -= 1
+			[_, _]:
+				pierce -= 1
+	else:
 		if(bounce == 0):
 			call_deferred("queue_free")
-	else:
-		if(pierce == 0 && bounce == 0):
-			call_deferred("queue_free")
+		else:
+			print("reduce bounce")
+			bounce -= 1
 			
 		
