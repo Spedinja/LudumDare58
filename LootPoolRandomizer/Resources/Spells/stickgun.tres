@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="artifacts" load_steps=2 format=3 uid="uid://nln1xtjpjlbw"]
+
+[ext_resource type="Script" uid="uid://dhaenbfkgi2bv" path="res://LootPoolRandomizer/Artifacts.gd" id="1_2b5xr"]
+
+[resource]
+script = ExtResource("1_2b5xr")
+dmg = 5.0
+speed = 20.0
+cooldown = 6.0
+lifetime = 1.0
+id = 3
+itemName = "stickgun"
+rarity = "Common"
+metadata/_custom_type_script = "uid://dhaenbfkgi2bv"

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="spells" load_steps=2 format=3 uid="uid://d20lybke101bm"]
+
+[ext_resource type="Script" uid="uid://n6pvrg87rwjd" path="res://LootPoolRandomizer/Spells.gd" id="1_bug7d"]
+
+[resource]
+script = ExtResource("1_bug7d")
+dmg = 10.0
+speed = 100.0
+cooldown = 1.0
+lifetime = 3.0
+type = "ball"
+element = "fire"
+itemName = "fireball"
+hasBudget = true
+budgetStats = Dictionary[String, float]({
+"Cooldown": 1.0,
+"Dmg": 10.0,
+"Lifetime": 3.0,
+"Speed": 100.0
+})
+metadata/_custom_type_script = "uid://n6pvrg87rwjd"

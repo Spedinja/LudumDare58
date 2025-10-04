@@ -1,0 +1,24 @@
+[gd_scene load_steps=11 format=3 uid="uid://bou20ujhbc07d"]
+
+[ext_resource type="Script" uid="uid://cbq1k1yf4hybn" path="res://LootPoolRandomizer/Selector.gd" id="1_67tek"]
+[ext_resource type="Script" uid="uid://dnfm3ic2fgnuo" path="res://LootPoolRandomizer/Item.gd" id="2_lipi1"]
+[ext_resource type="Resource" uid="uid://cwjxcii4xnmk4" path="res://LootPoolRandomizer/Resources/Spells/epic.tres" id="3_6iqvd"]
+[ext_resource type="Resource" uid="uid://d20lybke101bm" path="res://LootPoolRandomizer/Resources/Spells/fireball.tres" id="4_7sx1h"]
+[ext_resource type="Resource" uid="uid://ctbfgyv2ve5up" path="res://LootPoolRandomizer/Resources/Spells/firestorm.tres" id="5_7sa26"]
+[ext_resource type="Resource" uid="uid://cktnt3neiabpq" path="res://LootPoolRandomizer/Resources/Spells/IdolOfOblivion.tres" id="6_vwfba"]
+[ext_resource type="Resource" uid="uid://nln1xtjpjlbw" path="res://LootPoolRandomizer/Resources/Spells/stickgun.tres" id="7_kjtxo"]
+[ext_resource type="Resource" uid="uid://dyciav85g5a3e" path="res://LootPoolRandomizer/Resources/Spells/uncommon.tres" id="8_wofmt"]
+[ext_resource type="Resource" uid="uid://df2wyyoiu7ef4" path="res://LootPoolRandomizer/Resources/Spells/fireGem.tres" id="9_6iqvd"]
+[ext_resource type="Resource" uid="uid://clir7iefykcsq" path="res://LootPoolRandomizer/Resources/Spells/Trash.tres" id="9_hjebu"]
+
+[node name="LootPoolSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_67tek")
+rarities = Array[String](["Common", "Uncommon", "Rare", "Epic", "Legendary"])
+itemlist = Array[ExtResource("2_lipi1")]([ExtResource("3_6iqvd"), ExtResource("4_7sx1h"), ExtResource("5_7sa26"), ExtResource("6_vwfba"), ExtResource("7_kjtxo"), ExtResource("8_wofmt"), ExtResource("9_6iqvd")])
+failsafe = ExtResource("9_hjebu")
