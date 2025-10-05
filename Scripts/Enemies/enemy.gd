@@ -44,7 +44,8 @@ func _move():
 		enemy_sprite.pause()
 	
 	velocity = direction * speed
-	move_and_slide()
+	if global_position.distance_to(follow_object.position) > 3:
+		move_and_slide()
 
 func _attack():
 	if not player_in_range:
