@@ -3,18 +3,23 @@ extends Node
 enum menu_types {MAIN_MENU,IN_GAME}
 var music_state: menu_types = -1
 
+@export_category("Soundtrack")
 @export var main_menu_music: MusicTrack
 @export var in_game_music: Array[MusicTrack]
 var current_sound_tracks: Array[MusicTrack] = []
 var current_track_index: int = 0
 
+@export_category("UI Sounds")
 @export var ui_button_hover_sound: AudioStream
 @export var ui_button_click_sound: AudioStream
 @export var ui_open_sound: AudioStream
 @export var ui_close_sound: AudioStream
 
 @onready var music_player: AudioStreamPlayer = $"Music Player"
-@onready var ui_sfx_player: AudioStreamPlayer = $"UI SFX Player"
+
+@export_category("Audio Pools")
+@export var ui_sfx_pool: Array[AudioStreamPlayer]
+var forced_last_sfx_index: int = 0
 @export var attack_sfx_pool: Array[AudioStreamPlayer]
 var forced_last_attack_sound_index: int = 0
 @export var enemy_sfx_pool: Array[AudioStreamPlayer]
@@ -69,20 +74,32 @@ func _play_song():
 func _on_music_player_finished():
 	_play_song()
 
+## Plays a Sound depending on the type of action/sound you want it to play
 func play_ui_sound(type: ui_sounds):
 	match type:
 		ui_sounds.HOVER:
-			ui_sfx_player.stream = ui_button_hover_sound
+			_play_ui_sound_in_pool(ui_button_hover_sound)
 		ui_sounds.CLICK:
-			ui_sfx_player.stream = ui_button_click_sound
+			_play_ui_sound_in_pool(ui_button_click_sound)
 		ui_sounds.OPEN:
-			ui_sfx_player.stream = ui_open_sound
+			_play_ui_sound_in_pool(ui_open_sound)
 		ui_sounds.CLOSE:
-			ui_sfx_player.stream = ui_close_sound
+			_play_ui_sound_in_pool(ui_close_sound)
 		_:
 			pass
-	ui_sfx_player.play()
 
+## Plays the Sound passed inside the UI SFX "AudioStreamPlayer Pool"
+func _play_ui_sound_in_pool(sound: AudioStream):
+	for ui_sfx_player in ui_sfx_pool:
+		if not ui_sfx_player.is_playing():
+			ui_sfx_player.stream = sound
+			ui_sfx_player.play()
+			return
+	ui_sfx_pool[forced_last_sfx_index].stream = sound
+	ui_sfx_pool[forced_last_sfx_index].play()
+	forced_last_sfx_index = (forced_last_sfx_index + 1) % ui_sfx_pool.size()
+
+## Plays the Sound passed inside the Attack "AudioStreamPlayer Pool"
 func play_attack_sound(sound: AudioStream):
 	for attack_sfx_player in attack_sfx_pool:
 		if not attack_sfx_player.is_playing():
@@ -93,6 +110,7 @@ func play_attack_sound(sound: AudioStream):
 	attack_sfx_pool[forced_last_attack_sound_index].play()
 	forced_last_attack_sound_index = (forced_last_attack_sound_index + 1) % attack_sfx_pool.size()
 
+## Plays the Sound passed inside the Enemy "AudioStreamPlayer Pool"
 func play_enemy_sound(sound: AudioStream):
 	for enemy_sfx_player in enemy_sfx_pool:
 		if not enemy_sfx_player.is_playing():
