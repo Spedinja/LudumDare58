@@ -14,6 +14,8 @@ var follow_object
 
 @onready var detection_area: Area2D = $DetectionArea
 
+@onready var sfx_hurt: AudioStreamPlayer2D = $sfx_hurt
+
 
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
@@ -52,6 +54,7 @@ func _attack():
 
 func take_damage(amount: float):
 	health -= amount
+	sfx_hurt.play()
 	if health <= 0:
 		die()
 

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://picgplj6v5f7"]
 
-[ext_resource type="AudioStream" uid="uid://rinq8ifvct83" path="res://Sounds/silence.mp3" id="1_71a7y"]
+[ext_resource type="AudioStream" uid="uid://bokkbcyssngs5" path="res://Sounds/music/menu.mp3" id="1_71a7y"]
 [ext_resource type="Script" uid="uid://dsp2u6h7fo13l" path="res://Scripts/music_track.gd" id="1_wt6ff"]
 
 [resource]
 script = ExtResource("1_wt6ff")
+loop_length = 0.0
 music = ExtResource("1_71a7y")
-metadata/_custom_type_script = "uid://dsp2u6h7fo13l"

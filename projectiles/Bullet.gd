@@ -18,6 +18,10 @@ var alreadyReduced: bool = false
 
 var hitObjects
 
+@onready var sfx_projectile_hit: AudioStreamPlayer2D = $sfx_projectile_hit
+
+
+
 func _ready() -> void:
 	$lifetime.wait_time = lifetime
 	$lifetime.start()
@@ -66,6 +70,7 @@ func _physics_process(delta):
 					pierce -= 1
 		else:
 			hitObjects = result.collider
+			sfx_projectile_hit.play()
 			if(bounce == 0):
 				call_deferred("queue_free")
 			else:

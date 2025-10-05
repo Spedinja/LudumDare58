@@ -37,6 +37,8 @@ enum player_sound_types {COLLECT,MOVEMENT,COMBAT}
 @onready var movement_sfx_player: AudioStreamPlayer = $"Player Sounds/Movement SFX Player"
 @onready var combat_sfx_player: AudioStreamPlayer = $"Player Sounds/Combat SFX Player"
 
+var intensity: int = 0
+
 func _ready() -> void:
 	var master_idx: int = AudioServer.get_bus_index("Master")
 	var new_volume_db = linear_to_db(50 / 100.0) # Set to 50% on start
@@ -58,7 +60,7 @@ func load_music(menu_type: menu_types):
 		menu_types.MAIN_MENU:
 			current_sound_tracks.append(main_menu_music)
 		menu_types.IN_GAME:
-			current_sound_tracks = in_game_music.duplicate()
+			current_sound_tracks = in_game_music.duplicate().filter(func(x): x.intensity == intensity)
 		_:
 			print("No such Menu Type: ", menu_type, ".")
 	_play_song()

@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://b5lbs3rm5igba"]
+[gd_scene load_steps=10 format=4 uid="uid://b5lbs3rm5igba"]
 
+[ext_resource type="Script" uid="uid://c8b7qjblbfekj" path="res://Scripts/LevelGen/room_Fragment.gd" id="1_6ga1m"]
 [ext_resource type="Texture2D" uid="uid://sphw27jbq5yl" path="res://icon.svg" id="1_7h3eb"]
 [ext_resource type="Texture2D" uid="uid://bcp5cepb21oah" path="res://Sprites/Tilemaps/basemap.png" id="2_vpgnc"]
 [ext_resource type="Texture2D" uid="uid://u4sjonvcfs7f" path="res://Sprites/Tilemaps/propmap.png" id="3_6ga1m"]
@@ -325,6 +326,7 @@ physics_layer_0/collision_mask = 121
 sources/0 = SubResource("TileSetAtlasSource_n437n")
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_6ga1m")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(78, 173)
