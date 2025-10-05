@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://ci3k1oueux1pi"]
+
+[ext_resource type="AudioStream" uid="uid://d2v6qpvctq2us" path="res://Sounds/music/main music intensity2.mp3" id="1_ojf25"]
+[ext_resource type="Script" uid="uid://dsp2u6h7fo13l" path="res://Scripts/music_track.gd" id="2_kbh2u"]
+
+[resource]
+script = ExtResource("2_kbh2u")
+loop_length = 8.0
+music = ExtResource("1_ojf25")
+intensity = 1

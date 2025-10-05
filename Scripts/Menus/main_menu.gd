@@ -15,6 +15,7 @@ func _ready() -> void:
 	play_button.grab_focus()
 
 func _on_play_pressed() -> void:
+	SoundManager.load_music(SoundManager.menu_types.IN_GAME)
 	get_tree().change_scene_to_packed(game_scene)
 
 func _on_settings_pressed() -> void:

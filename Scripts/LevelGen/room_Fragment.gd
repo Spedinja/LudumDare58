@@ -6,7 +6,7 @@ class_name Room_Fragment
 @onready var cagedgecko_scene = preload("res://Scenes/Enemies/enemy.tscn")
 #
 @onready var tilemap: TileMap
-@onready var enemy_scene: PackedScene = preload("res://Scenes/Enemies/enemy.tscn")
+@onready var enemy_scene: PackedScene = preload("res://Scenes/Enemies/shotgun_rat.tscn")
 @export var spawn_count: int = 5
 @export var min_distance: float = 32  #minimum pixels between enemies
 @export var wall_terrain_name: String = "GroundWalls"
@@ -76,5 +76,5 @@ func spawn_enemies(tilemap_layer: TileMapLayer):
 
 		var enemy = enemy_scene.instantiate()
 		add_child(enemy)
-		enemy.global_position = world_pos
+		enemy.position = world_pos #pos not world pos
 		spawned_positions.append(world_pos)

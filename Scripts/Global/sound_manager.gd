@@ -3,23 +3,18 @@ extends Node
 enum menu_types {MAIN_MENU,IN_GAME}
 var music_state: menu_types = -1
 
-@export_category("Soundtrack")
 @export var main_menu_music: MusicTrack
 @export var in_game_music: Array[MusicTrack]
 var current_sound_tracks: Array[MusicTrack] = []
 var current_track_index: int = 0
 
-@export_category("UI Sounds")
 @export var ui_button_hover_sound: AudioStream
 @export var ui_button_click_sound: AudioStream
 @export var ui_open_sound: AudioStream
 @export var ui_close_sound: AudioStream
 
 @onready var music_player: AudioStreamPlayer = $"Music Player"
-
-@export_category("Audio Pools")
-@export var ui_sfx_pool: Array[AudioStreamPlayer]
-var forced_last_sfx_index: int = 0
+@onready var ui_sfx_player: AudioStreamPlayer = $"UI SFX Pool/UI SFX Player 0"
 @export var attack_sfx_pool: Array[AudioStreamPlayer]
 var forced_last_attack_sound_index: int = 0
 @export var enemy_sfx_pool: Array[AudioStreamPlayer]
@@ -36,6 +31,8 @@ enum player_sound_types {COLLECT,MOVEMENT,COMBAT}
 @onready var pickup_sfx_player: AudioStreamPlayer = $"Player Sounds/Pickup SFX Player"
 @onready var movement_sfx_player: AudioStreamPlayer = $"Player Sounds/Movement SFX Player"
 @onready var combat_sfx_player: AudioStreamPlayer = $"Player Sounds/Combat SFX Player"
+
+var intensity: int = 0
 
 func _ready() -> void:
 	var master_idx: int = AudioServer.get_bus_index("Master")
@@ -58,13 +55,21 @@ func load_music(menu_type: menu_types):
 		menu_types.MAIN_MENU:
 			current_sound_tracks.append(main_menu_music)
 		menu_types.IN_GAME:
-			current_sound_tracks = in_game_music.duplicate()
+			_build_playlist()
 		_:
 			print("No such Menu Type: ", menu_type, ".")
 	_play_song()
+	
+func _build_playlist():
+	current_sound_tracks = in_game_music.duplicate().filter(func(x): return x.intensity == intensity)
+	if current_sound_tracks.size() == 0:
+		print_debug("did not find music for intensity")
+		current_sound_tracks = in_game_music.duplicate()
 
 func _play_song():
 	var next_song = current_sound_tracks[current_track_index]
+	if next_song.intensity != intensity:
+		_build_playlist()
 	current_track_index = (current_track_index + 1) % current_sound_tracks.size()
 	if music_player.stream == next_song and music_player.is_playing():
 		return
@@ -74,32 +79,20 @@ func _play_song():
 func _on_music_player_finished():
 	_play_song()
 
-## Plays a Sound depending on the type of action/sound you want it to play
 func play_ui_sound(type: ui_sounds):
 	match type:
 		ui_sounds.HOVER:
-			_play_ui_sound_in_pool(ui_button_hover_sound)
+			ui_sfx_player.stream = ui_button_hover_sound
 		ui_sounds.CLICK:
-			_play_ui_sound_in_pool(ui_button_click_sound)
+			ui_sfx_player.stream = ui_button_click_sound
 		ui_sounds.OPEN:
-			_play_ui_sound_in_pool(ui_open_sound)
+			ui_sfx_player.stream = ui_open_sound
 		ui_sounds.CLOSE:
-			_play_ui_sound_in_pool(ui_close_sound)
+			ui_sfx_player.stream = ui_close_sound
 		_:
 			pass
+	ui_sfx_player.play()
 
-## Plays the Sound passed inside the UI SFX "AudioStreamPlayer Pool"
-func _play_ui_sound_in_pool(sound: AudioStream):
-	for ui_sfx_player in ui_sfx_pool:
-		if not ui_sfx_player.is_playing():
-			ui_sfx_player.stream = sound
-			ui_sfx_player.play()
-			return
-	ui_sfx_pool[forced_last_sfx_index].stream = sound
-	ui_sfx_pool[forced_last_sfx_index].play()
-	forced_last_sfx_index = (forced_last_sfx_index + 1) % ui_sfx_pool.size()
-
-## Plays the Sound passed inside the Attack "AudioStreamPlayer Pool"
 func play_attack_sound(sound: AudioStream):
 	for attack_sfx_player in attack_sfx_pool:
 		if not attack_sfx_player.is_playing():
@@ -110,7 +103,6 @@ func play_attack_sound(sound: AudioStream):
 	attack_sfx_pool[forced_last_attack_sound_index].play()
 	forced_last_attack_sound_index = (forced_last_attack_sound_index + 1) % attack_sfx_pool.size()
 
-## Plays the Sound passed inside the Enemy "AudioStreamPlayer Pool"
 func play_enemy_sound(sound: AudioStream):
 	for enemy_sfx_player in enemy_sfx_pool:
 		if not enemy_sfx_player.is_playing():
