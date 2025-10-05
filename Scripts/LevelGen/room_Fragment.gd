@@ -35,12 +35,17 @@ func spawn_cagedgecko():
 func get_walkable_tiles(tilemap_layer: TileMapLayer) -> Array[Vector2i]:
 	var tiles: Array[Vector2i] = []
 	var tileset = tilemap_layer.tile_set
+	
+	#print_debug(tileset.get_terrain_name(0,0))
+	
 
 	# get all tiles placed in the layer
 	var placed_tiles = tilemap_layer.get_used_cells()
 	for tile_data in placed_tiles:
 		var cell = Vector2i(tile_data.x, tile_data.y)  # Vector2i cell coordinates
-		tiles.append(cell)
+		var test: TileData = tilemap_layer.get_cell_tile_data(cell)
+		if test.terrain_set == -1:
+			tiles.append(cell)
 	return tiles
 
 
@@ -50,7 +55,7 @@ func spawn_enemies(tilemap_layer: TileMapLayer):
 		push_warning("No walkable tiles found for enemy spawning!")
 		return
 
-	var spawned_positions: Array[Vector2i] = []
+	var spawned_positions: Array[Vector2] = []
 	var attempts = 0
 
 	while spawned_positions.size() < spawn_count and attempts < spawn_count:
