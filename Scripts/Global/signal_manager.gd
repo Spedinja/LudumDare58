@@ -2,6 +2,8 @@ extends Node
 
 signal player_hp_changed(new_value: float)
 
+var game_progression: float = 0.0
+
 var lizards_killed: int = 0
 var lizard_names: Array[String] = [
 	"Larry",
