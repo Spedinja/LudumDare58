@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://nlrt1p2j5jda"]
+[gd_scene load_steps=4 format=3 uid="uid://nlrt1p2j5jda"]
 
 [ext_resource type="Script" uid="uid://ceej7cp2mpl5a" path="res://Scripts/Menus/settings.gd" id="1_0dhq4"]
 [ext_resource type="Theme" uid="uid://bfxs2u7huev6o" path="res://Themes/MainMenuTheme.tres" id="2_nkmh8"]
+[ext_resource type="PackedScene" uid="uid://3r28gkrulsft" path="res://Scenes/Menus/game_button.tscn" id="3_nkmh8"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -75,12 +76,8 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="Back" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(100, 50)
+[node name="Back" parent="VBoxContainer" instance=ExtResource("3_nkmh8")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("2_nkmh8")
 text = "Back"
 
 [connection signal="value_changed" from="VBoxContainer/Sound/VolumeSlider" to="." method="_on_volume_slider_value_changed"]

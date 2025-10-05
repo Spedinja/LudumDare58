@@ -49,10 +49,9 @@ custom_minimum_size = Vector2(180, 50)
 layout_mode = 2
 text = "Main Menu"
 
-[node name="Settings" parent="." node_paths=PackedStringArray("connection_button", "connection_menu") instance=ExtResource("3_tf3q2")]
+[node name="Settings" parent="." node_paths=PackedStringArray("connection_menu") instance=ExtResource("3_tf3q2")]
 visible = false
 layout_mode = 1
-connection_button = NodePath("../Pause/Settings")
 connection_menu = NodePath("../Pause")
 
 [connection signal="pressed" from="Pause/Resume" to="." method="_on_resume_pressed"]

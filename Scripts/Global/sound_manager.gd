@@ -3,9 +3,10 @@ extends Node
 enum menu_types {MAIN_MENU,IN_GAME}
 var music_state: menu_types = -1
 
-@export var main_menu_music: AudioStream
-@export var in_game_music: Array[AudioStream]
-var current_sound_tracks: Array[AudioStream] = []
+@export var main_menu_music: MusicTrack
+@export var in_game_music: Array[MusicTrack]
+var current_sound_tracks: Array[MusicTrack] = []
+var current_track_index: int = 0
 
 @export var ui_button_hover_sound: AudioStream
 @export var ui_button_click_sound: AudioStream
@@ -47,6 +48,7 @@ func load_music(menu_type: menu_types):
 	if music_state == menu_type:
 		return
 	current_sound_tracks.clear()
+	current_track_index = 0
 	match menu_type:
 		menu_types.MAIN_MENU:
 			current_sound_tracks.append(main_menu_music)
@@ -57,10 +59,11 @@ func load_music(menu_type: menu_types):
 	_play_song()
 
 func _play_song():
-	var next_song = current_sound_tracks[0]
+	var next_song = current_sound_tracks[current_track_index]
+	current_track_index = (current_track_index + 1) % current_sound_tracks.size()
 	if music_player.stream == next_song and music_player.is_playing():
 		return
-	music_player.stream = current_sound_tracks[0]
+	music_player.stream = current_sound_tracks[0].music
 	music_player.play()
 
 func _on_music_player_finished():

@@ -1,7 +1,8 @@
 extends Control
 class_name PauseMenu
 
-@export var main_menu_scene: PackedScene = preload("res://Scenes/main_menu.tscn")
+@export var main_menu_scene: PackedScene = preload("res://Scenes/Menus/main_menu.tscn")
+
 
 @onready var pause: VBoxContainer = $Pause
 @onready var settings: Control = $Settings
