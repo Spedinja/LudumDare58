@@ -56,15 +56,19 @@ func _physics_process(delta):
 			break
 	if result:
 		if !(result.collider is TileMapLayer):
-			if(result is Enemy):
-				result.take_damage(dmg)
-				for hit in onhits:
-					hit.onHit(self)
 			#do enemy stuff
 			if(hitObjects == result.collider):
 				self.global_position = next_position
 				return
 			hitObjects = result.collider
+			print("NotTile")
+			print(result)
+			if(result.collider.is_in_group("Enemy")):
+				result.collider.take_damage(dmg)
+				print("EnemyDetected")
+				for hit in onhits:
+					print("ONHIT")
+					hit.onHit(self, result.collider)
 			match [int(pierce), int(bounce)]:
 				[0, 0]:
 					call_deferred("queue_free")

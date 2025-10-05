@@ -5,9 +5,11 @@ extends Node2D
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack"):
 		for i in 1:
-			var newBullet = projectile.instantiate()
+			LootPoolSelector.select_items(1,Lizard, 0)
+			var newBullet:Bullet = projectile.instantiate()
 			for buff in upgradeLizards:
 				buff.applyUpgrade(newBullet)
+				newBullet.onhits.append(buff)
 			newBullet.global_position = self.global_position + Vector2(300,300) #+ Vector2(randi_range(0,150),randi_range(0,150))
 			var direction = (get_global_mouse_position() - newBullet.global_position).normalized()
 			newBullet.direction = direction

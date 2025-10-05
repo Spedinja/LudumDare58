@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bou20ujhbc07d"]
+[gd_scene load_steps=10 format=3 uid="uid://bou20ujhbc07d"]
 
 [ext_resource type="Script" uid="uid://cbq1k1yf4hybn" path="res://LootPoolRandomizer/Selector.gd" id="1_67tek"]
 [ext_resource type="Script" uid="uid://dnfm3ic2fgnuo" path="res://LootPoolRandomizer/Item.gd" id="2_lipi1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cnd8hvgl7oevh" path="res://LootPoolRandomizer/Resources/Lizards/dmgLizard.tres" id="5_7sx1h"]
 [ext_resource type="Resource" uid="uid://djlp6i8kq0a6k" path="res://LootPoolRandomizer/Resources/Lizards/pierceLizard.tres" id="6_7sa26"]
 [ext_resource type="Resource" uid="uid://bctf58sarb06m" path="res://LootPoolRandomizer/Resources/Lizards/speedLizard.tres" id="7_vwfba"]
+[ext_resource type="Resource" uid="uid://bpjgt14uhji61" path="res://LootPoolRandomizer/Resources/Lizards/SplitLizard.tres" id="8_lipi1"]
 [ext_resource type="Resource" uid="uid://clir7iefykcsq" path="res://LootPoolRandomizer/Resources/Spells/Trash.tres" id="9_hjebu"]
 
 [node name="LootPoolSelector" type="Control"]
@@ -18,5 +19,5 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_67tek")
 rarities = Array[String](["Common", "Rare", "Legendary"])
-itemlist = Array[ExtResource("2_lipi1")]([ExtResource("3_lipi1"), ExtResource("4_6iqvd"), ExtResource("5_7sx1h"), ExtResource("6_7sa26"), ExtResource("7_vwfba")])
+itemlist = Array[ExtResource("2_lipi1")]([ExtResource("3_lipi1"), ExtResource("4_6iqvd"), ExtResource("5_7sx1h"), ExtResource("6_7sa26"), ExtResource("7_vwfba"), ExtResource("8_lipi1")])
 failsafe = ExtResource("9_hjebu")

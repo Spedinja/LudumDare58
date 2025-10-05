@@ -6,7 +6,7 @@ class_name Room_Fragment
 @onready var cagedgecko_scene = preload("res://Scenes/Enemies/enemy.tscn")
 #
 @onready var tilemap: TileMap
-@onready var enemy_scene: PackedScene = preload("res://Scenes/Enemies/enemy.tscn")
+@onready var enemy_scene: PackedScene = preload("res://Scenes/Enemies/shotgun_rat.tscn")
 @export var spawn_count: int = 5
 @export var min_distance: float = 32  #minimum pixels between enemies
 @export var wall_terrain_name: String = "GroundWalls"
