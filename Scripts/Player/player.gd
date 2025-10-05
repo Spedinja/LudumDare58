@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var movement_speed: float = 300.0
-@export var movement_acceleration = 10.0
+@export var movement_acceleration = 20.0
 @export var dash_duration: float = 0.1
 @export var dash_speed: float = 1000.0
 @export var dash_cooldown: float = 2.0
@@ -47,6 +47,8 @@ func _initiate_timers():
 
 func _process(_delta: float) -> void:
 	_get_input()
+	if Input.is_action_just_pressed("ui_cancel"):
+		$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible
 
 func _physics_process(delta: float) -> void:
 	_move(delta)

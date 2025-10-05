@@ -1,7 +1,7 @@
 extends Sprite2D
 class_name DashGhost
 
-@export var duration: float = 0.5
+@export var duration: float = 2
 
 var tween: Tween
 
