@@ -55,17 +55,21 @@ func load_music(menu_type: menu_types):
 		menu_types.MAIN_MENU:
 			current_sound_tracks.append(main_menu_music)
 		menu_types.IN_GAME:
-			current_sound_tracks = in_game_music.duplicate().filter(func(x): return x.intensity == intensity)
-			if current_sound_tracks.size() == 0:
-				print_debug("did not find music for intensity")
-				current_sound_tracks = in_game_music.duplicate()
+			_build_playlist()
 		_:
 			print("No such Menu Type: ", menu_type, ".")
 	_play_song()
+	
+func _build_playlist():
+	current_sound_tracks = in_game_music.duplicate().filter(func(x): return x.intensity == intensity)
+	if current_sound_tracks.size() == 0:
+		print_debug("did not find music for intensity")
+		current_sound_tracks = in_game_music.duplicate()
 
 func _play_song():
-	
 	var next_song = current_sound_tracks[current_track_index]
+	if next_song.intensity != intensity:
+		_build_playlist()
 	current_track_index = (current_track_index + 1) % current_sound_tracks.size()
 	if music_player.stream == next_song and music_player.is_playing():
 		return
