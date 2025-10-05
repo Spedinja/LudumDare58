@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3jg0aqx5qykd"]
+
+[ext_resource type="Texture2D" uid="uid://c5dqemhfh4bv7" path="res://Sprites/biglightblob.png" id="1_t1627"]
+[ext_resource type="Texture2D" uid="uid://nku0eqy3lp70" path="res://Sprites/lightblob.png" id="2_4s5em"]
+
+[node name="gullilicht" type="PointLight2D"]
+energy = 0.54
+shadow_enabled = true
+texture = ExtResource("1_t1627")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.37
+texture = ExtResource("2_4s5em")
