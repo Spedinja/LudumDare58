@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://455qmjx62oqp"]
+
+[ext_resource type="Script" uid="uid://bdcofcd8w7f1q" path="res://Scripts/Global/sound_manager.gd" id="1_pru53"]
+[ext_resource type="AudioStream" uid="uid://hmsj4uty8mnf" path="res://Sounds/spit1.mp3" id="2_bgmsx"]
+
+[node name="SoundManager" type="Node" node_paths=PackedStringArray("attack_sfx_pool", "enemy_sfx_pool")]
+script = ExtResource("1_pru53")
+ui_button_hover_sound = ExtResource("2_bgmsx")
+attack_sfx_pool = [NodePath("Attack SFX Pool/Spell SFX Player 0"), NodePath("Attack SFX Pool/Spell SFX Player 1"), NodePath("Attack SFX Pool/Spell SFX Player 2"), NodePath("Attack SFX Pool/Spell SFX Player 3"), NodePath("Attack SFX Pool/Spell SFX Player 4"), NodePath("Attack SFX Pool/Spell SFX Player 5"), NodePath("Attack SFX Pool/Spell SFX Player 6"), NodePath("Attack SFX Pool/Spell SFX Player 7"), NodePath("Attack SFX Pool/Spell SFX Player 8"), NodePath("Attack SFX Pool/Spell SFX Player 9")]
+enemy_sfx_pool = [NodePath("Enemy SFX Pool/Enemy SFX Player 0"), NodePath("Enemy SFX Pool/Enemy SFX Player 1"), NodePath("Enemy SFX Pool/Enemy SFX Player 2"), NodePath("Enemy SFX Pool/Enemy SFX Player 3"), NodePath("Enemy SFX Pool/Enemy SFX Player 4"), NodePath("Enemy SFX Pool/Enemy SFX Player 5"), NodePath("Enemy SFX Pool/Enemy SFX Player 6"), NodePath("Enemy SFX Pool/Enemy SFX Player 7"), NodePath("Enemy SFX Pool/Enemy SFX Player 8"), NodePath("Enemy SFX Pool/Enemy SFX Player 9")]
+
+[node name="Music Player" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[node name="UI SFX Player" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[node name="Player Sounds" type="Node" parent="."]
+
+[node name="Pickup SFX Player" type="AudioStreamPlayer" parent="Player Sounds"]
+process_mode = 3
+
+[node name="Movement SFX Player" type="AudioStreamPlayer" parent="Player Sounds"]
+volume_db = -6.9
+
+[node name="Combat SFX Player" type="AudioStreamPlayer" parent="Player Sounds"]
+process_mode = 3
+
+[node name="Attack SFX Pool" type="Node" parent="."]
+
+[node name="Spell SFX Player 0" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 1" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 2" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 3" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 4" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 5" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 6" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 7" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 8" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Spell SFX Player 9" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+
+[node name="Enemy SFX Pool" type="Node" parent="."]
+
+[node name="Enemy SFX Player 0" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 1" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 2" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 3" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 4" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 5" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 6" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 7" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 8" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+
+[node name="Enemy SFX Player 9" type="AudioStreamPlayer" parent="Enemy SFX Pool"]

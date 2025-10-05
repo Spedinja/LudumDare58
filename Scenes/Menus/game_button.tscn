@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3r28gkrulsft"]
+
+[ext_resource type="Theme" uid="uid://bfxs2u7huev6o" path="res://Themes/MainMenuTheme.tres" id="1_dvj5b"]
+[ext_resource type="Script" uid="uid://dqnuivse2q4j" path="res://Scripts/Menus/game_button.gd" id="2_rgghf"]
+
+[node name="GameButton" type="Button"]
+custom_minimum_size = Vector2(100, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_dvj5b")
+script = ExtResource("2_rgghf")
