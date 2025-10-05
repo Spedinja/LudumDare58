@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2v6qpvctq2us"
+path="res://.godot/imported/main music intensity2.mp3-a795439a34bf11dedd16b3470cab4b98.mp3str"
+
+[deps]
+
+source_file="res://Sounds/music/main music intensity2.mp3"
+dest_files=["res://.godot/imported/main music intensity2.mp3-a795439a34bf11dedd16b3470cab4b98.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

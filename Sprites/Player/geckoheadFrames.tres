@@ -1,0 +1,51 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dnhu5tth57a41"]
+
+[ext_resource type="Texture2D" uid="uid://bk7tpsme8cg4q" path="res://Sprites/Player/Main_Face_front_Shooting.png" id="1_u7x0d"]
+[ext_resource type="Texture2D" uid="uid://bsioe26fbw4yj" path="res://Sprites/Player/Main_face_left_shooting.png" id="2_o3276"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63sg5"]
+atlas = ExtResource("1_u7x0d")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkx4k"]
+atlas = ExtResource("2_o3276")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63sg5")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"attack_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkx4k")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"attack_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
