@@ -16,6 +16,7 @@ class_name LevelGenerator
 @export var num_geckos: int = 0
 @export var turn_chance: float = 0.45 #percentage on how often tot turn while generating in one branch
 @export var start_exitchance: float = 0.75 #percentage of all exits being used in start room
+var endRoomPos: Vector2i
 #vars
 var room: RoomData
 var gridRoom: GridRoom
@@ -46,6 +47,7 @@ func genLevel():
 	placeStartRoom()
 	placeEndRoom()
 	placeGeckoRooms()
+	placeDeadEndsAtStartAndEnd()
 	instantiateRooms()
 	fixOuterBounds()	
 	return
@@ -226,6 +228,7 @@ func placeEndRoom():
 	var room = grid[furthest.x][furthest.y]
 	room.roomdata = null
 	room.roomdata = endRoom
+	endRoomPos = furthest
 
 #use bfs to find furthest away point as end room
 func bfsFurthestRoom(start: Vector2i) -> Vector2i:
@@ -378,3 +381,54 @@ func instantiateOuterBounds(boundsPos:Vector2):
 	var room_scene = outerBoundRoom.room.instantiate()
 	room_scene.position = boundsPos
 	self.add_child(room_scene)
+
+func placeDeadEndsAtStartAndEnd():
+	var special_rooms = [startRoomPos, endRoomPos]
+
+	for room_pos in special_rooms:
+		var parent_room = grid[room_pos.x][room_pos.y]
+		if parent_room == null:
+			continue
+		
+		var directions = {
+			"left": Vector2i(-1, 0),
+			"right": Vector2i(1, 0),
+			"top": Vector2i(0, -1),
+			"bottom": Vector2i(0, 1)
+		}
+		
+		for dir_name in directions.keys():
+			var neighbor_pos = room_pos + directions[dir_name]
+
+			# skip if outside grid or already visited
+			if not isWithinBounds(neighbor_pos) or visited[neighbor_pos.x][neighbor_pos.y]:
+				continue
+			
+			# mark as visited and append to main path
+			visited[neighbor_pos.x][neighbor_pos.y] = true
+			mainPath.append(neighbor_pos)
+			
+			# create a new GridRoom for the dead-end
+			var dead_room = GridRoom.new()
+			dead_room.x = neighbor_pos.x
+			dead_room.y = neighbor_pos.y
+			
+			var rd = RoomData.new()
+			rd.isDeadEnd = true
+			rd.hasLeftNbr = isValidRoom(dead_room.x - 1, dead_room.y)
+			rd.hasRightNb = isValidRoom(dead_room.x + 1, dead_room.y)
+			rd.hasTopNb = isValidRoom(dead_room.x, dead_room.y - 1)
+			rd.hasBottomNb = isValidRoom(dead_room.x, dead_room.y + 1)
+			dead_room.roomdata = rd
+			
+			# use your existing helper to get proper connections
+			var connections = getRequiredConnections(dead_room.x, dead_room.y)
+			
+			# try to find a matching template from the pool
+			var match = findTemplate(connections)
+			
+			if match:
+				dead_room.roomdata = match
+			
+			# put it into the grid
+			grid[dead_room.x][dead_room.y] = dead_room
