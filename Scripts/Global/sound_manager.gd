@@ -14,7 +14,7 @@ var current_track_index: int = 0
 @export var ui_close_sound: AudioStream
 
 @onready var music_player: AudioStreamPlayer = $"Music Player"
-@onready var ui_sfx_player: AudioStreamPlayer = $"UI SFX Player"
+@onready var ui_sfx_player: AudioStreamPlayer = $"UI SFX Pool/UI SFX Player 0"
 @export var attack_sfx_pool: Array[AudioStreamPlayer]
 var forced_last_attack_sound_index: int = 0
 @export var enemy_sfx_pool: Array[AudioStreamPlayer]
