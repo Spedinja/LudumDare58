@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://c74nl523nttaf"]
+
+[ext_resource type="SpriteFrames" uid="uid://cysdf1f1isi1u" path="res://Sprites/littlegecko/blue_littlegeckoFrames.tres" id="1_d0jnx"]
+[ext_resource type="SpriteFrames" uid="uid://c10nofp4s2p84" path="res://Sprites/littlegecko/slamander_littlegeckoFrames.tres" id="1_v48wm"]
+[ext_resource type="PackedScene" uid="uid://chgj4j4veyuq1" path="res://Scenes/OtherGameObjects/rarity_glitter_particles.tscn" id="2_m1uok"]
+[ext_resource type="PackedScene" uid="uid://b18vdabgwxn5o" path="res://Scenes/health_ui.tscn" id="3_m1uok"]
+[ext_resource type="Material" uid="uid://dm6vggvf1kfdg" path="res://Sprites/ppms/glitterppm.tres" id="3_q767d"]
+[ext_resource type="SpriteFrames" uid="uid://c60x38x4anu63" path="res://Sprites/littlegecko/dark_littlegeckoFrames.tres" id="5_q1asr"]
+[ext_resource type="SpriteFrames" uid="uid://deb23hjdwqnpx" path="res://Sprites/littlegecko/elvis_littlegeckoFrames.tres" id="6_6rdmv"]
+[ext_resource type="SpriteFrames" uid="uid://dim5xhkpvhtv2" path="res://Sprites/littlegecko/littlegeckobaseFrames.tres" id="7_anccj"]
+[ext_resource type="SpriteFrames" uid="uid://burt7c5xj1vrb" path="res://Sprites/littlegecko/pink_littlegeckoFrames.tres" id="8_pwwqa"]
+[ext_resource type="SpriteFrames" uid="uid://b0k5aqp3jtiq7" path="res://Sprites/littlegecko/red_tophat_littlegeckoFrames.tres" id="9_6rdmv"]
+[ext_resource type="SpriteFrames" uid="uid://djyru0bttw2in" path="res://Sprites/ratwithoutgunframes.tres" id="10_6rdmv"]
+[ext_resource type="PackedScene" uid="uid://c5j5cpnmpt8no" path="res://Scenes/OtherGameObjects/iceparticle.tscn" id="12_5i26i"]
+[ext_resource type="PackedScene" uid="uid://cbvrf1dyfwwgn" path="res://Scenes/OtherGameObjects/fire_particles.tscn" id="13_ajmtm"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(45, 24)
+sprite_frames = ExtResource("1_v48wm")
+animation = &"walk_side"
+frame_progress = 0.37078497
+
+[node name="RarityGlitterParticles" parent="." instance=ExtResource("2_m1uok")]
+position = Vector2(19, 35)
+process_material = ExtResource("3_q767d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("3_m1uok")]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 96)
+sprite_frames = ExtResource("1_d0jnx")
+animation = &"walk_side"
+frame_progress = 0.7191862
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(52, 96)
+sprite_frames = ExtResource("5_q1asr")
+animation = &"walk_side"
+frame_progress = 0.57791376
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(20, 98)
+sprite_frames = ExtResource("6_6rdmv")
+animation = &"walk_side"
+frame_progress = 0.94157964
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+position = Vector2(51, 58)
+sprite_frames = ExtResource("7_anccj")
+animation = &"walk_side"
+frame_progress = 0.46767142
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="."]
+position = Vector2(23, 59)
+sprite_frames = ExtResource("8_pwwqa")
+animation = &"walk_side"
+frame_progress = 0.7883742
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="."]
+position = Vector2(82, 63)
+sprite_frames = ExtResource("9_6rdmv")
+animation = &"walk_side"
+frame_progress = 0.7803711
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 24)
+sprite_frames = ExtResource("10_6rdmv")
+animation = &"attack_up"
+frame_progress = 0.52767587
+
+[node name="Iceparticle" parent="." instance=ExtResource("12_5i26i")]
+position = Vector2(63, 22)
+
+[node name="FireParticles" parent="." instance=ExtResource("13_ajmtm")]
+position = Vector2(63, 24)
