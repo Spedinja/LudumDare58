@@ -22,7 +22,19 @@ var lizard_names: Array[String] = [
 	"Terry",
 	"Cherry",
 	"Jerry",
-	
+	"B. Lizard",
+	"Lizzy Lizbourne",
+	"Von Wegen Lizbeth",
+	"Liz Pine",
+	"Liztopher Waltz",
+	"Liztian Bale",
+	"Lizen to your Heart",
+	"Liz Khalifa",
+	"Lizzl Wayne",
+	"Franz Lizzt",
+	"I'm a Lizbian",
+	"Liza Kudrow",
+	"Liztina Anguilera",
 ]
 
 func lizard_killed():
