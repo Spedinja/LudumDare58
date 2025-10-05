@@ -24,16 +24,3 @@ shape = SubResource("CircleShape2D_f60y1")
 shape = SubResource("CircleShape2D_v0iea")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="sfx_dash" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_mtuoh")
-
-[node name="sfx_hurt" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_htcer")
-volume_db = -5.0
-
-[node name="sfx_step1" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_dd0ac")
-
-[node name="sfx_step2" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_0u5uq")

@@ -1,18 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqjoyoashahyo"]
+[gd_scene load_steps=6 format=3 uid="uid://bqjoyoashahyo"]
 
 [ext_resource type="Texture2D" uid="uid://it5qagoxabo" path="res://Sprites/Tile.png" id="1_613su"]
 [ext_resource type="Script" uid="uid://sv68sysn3ud8" path="res://Scripts/Enemies/enemy.gd" id="1_jcvw6"]
-[ext_resource type="AudioStream" uid="uid://b2f6ngartmd8r" path="res://Sounds/enemy hit.mp3" id="3_ubio8"]
-[ext_resource type="AudioStream" uid="uid://cavyqj80hp4t0" path="res://Sounds/step1.mp3" id="4_ubio8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pdns"]
 radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_613su"]
-radius = 35.0143
+radius = 35.014282
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jcvw6"]
-radius = 206.061
+radius = 206.06067
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 10
@@ -37,12 +35,5 @@ shape = SubResource("CircleShape2D_613su")
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_jcvw6")
-
-[node name="sfx_hurt" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_ubio8")
-
-[node name="stf_step" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_ubio8")
-pitch_scale = 1.27
 
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
