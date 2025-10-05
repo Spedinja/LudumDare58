@@ -8,3 +8,4 @@ class_name item
 @export var hasBudget: bool
 @export var budgetStats: Dictionary[String, float]
 @export var description: String
+var basestats: Dictionary[String, float]

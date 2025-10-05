@@ -2,6 +2,10 @@ extends Node2D
 @export var projectile: PackedScene
 @export var upgradeLizards: Array[Lizard]
 
+func _ready() -> void:
+	for i in 10:
+		for l in LootPoolSelector.select_items(1,Lizard, randi_range(0,100)):
+			upgradeLizards.append(l)
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack"):
 		for i in 1:
@@ -13,7 +17,7 @@ func _process(delta: float) -> void:
 			newBullet.global_position = self.global_position + Vector2(300,300) #+ Vector2(randi_range(0,150),randi_range(0,150))
 			var direction = (get_global_mouse_position() - newBullet.global_position).normalized()
 			newBullet.direction = direction
-			newBullet.printStats()
+			#newBullet.printStats()
 			self.add_child(newBullet)
 		
 		
