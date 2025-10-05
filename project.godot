@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+LootPoolSelector="*res://LootPoolRandomizer/LootPoolSelector.tscn"
 SignalManager="*res://Scripts/Global/signal_manager.gd"
 SoundManager="*res://Scenes/Global/sound_manager.tscn"
 

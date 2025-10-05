@@ -1,26 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://dys1itfd17ep"]
+[gd_scene load_steps=9 format=3 uid="uid://dys1itfd17ep"]
 
 [ext_resource type="Script" uid="uid://d00vmbeao08g7" path="res://projectiles/Bullet.gd" id="1_a3dlt"]
-[ext_resource type="Texture2D" uid="uid://dpf0vducq8vsa" path="res://projectiles/fireball.png" id="2_4ambd"]
+[ext_resource type="Texture2D" uid="uid://gdurjy08wo7b" path="res://Sprites/player_projectile.png" id="2_4ambd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqswp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oovtv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqswp"]
 atlas = ExtResource("2_4ambd")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vhvv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oovtv"]
 atlas = ExtResource("2_4ambd")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vhvv"]
+atlas = ExtResource("2_4ambd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68p7c"]
+atlas = ExtResource("2_4ambd")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_68p7c"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_cqswp")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_oovtv")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5vhvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68p7c")
 }],
 "loop": true,
 "name": &"default",
@@ -40,10 +54,12 @@ shape = SubResource("CircleShape2D_cqswp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_68p7c")
+autoplay = "default"
 
 [node name="lifetime" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]
