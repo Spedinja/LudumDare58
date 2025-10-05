@@ -44,7 +44,7 @@ func get_walkable_tiles(tilemap_layer: TileMapLayer) -> Array[Vector2i]:
 	for tile_data in placed_tiles:
 		var cell = Vector2i(tile_data.x, tile_data.y)  # Vector2i cell coordinates
 		var test: TileData = tilemap_layer.get_cell_tile_data(cell)
-		if test.terrain_set == -1:
+		if test.terrain_set == 0:
 			tiles.append(cell)
 	return tiles
 
