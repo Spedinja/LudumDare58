@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cou1njafwnpv6"]
 
-[ext_resource type="Script" uid="uid://bbdudu40k3cbg" path="res://Scripts/Enemies/shotgun_rat.gd" id="1_rvk2k"]
+[ext_resource type="Script" path="res://Scripts/Enemies/shotgun_rat.gd" id="1_rvk2k"]
 [ext_resource type="SpriteFrames" uid="uid://crleowwfeodhq" path="res://Sprites/RatSpriteFrames.tres" id="2_xqqto"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xqqto"]
@@ -14,6 +14,8 @@ radius = 206.06067
 
 [node name="ShotgunRat" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 10
+collision_layer = 16
+collision_mask = 54
 script = ExtResource("1_rvk2k")
 metadata/_custom_type_script = "uid://sv68sysn3ud8"
 

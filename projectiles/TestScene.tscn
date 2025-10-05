@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://v7gy28vq63um"]
+[gd_scene load_steps=9 format=4 uid="uid://v7gy28vq63um"]
 
 [ext_resource type="Script" uid="uid://b0si8wkowvvl7" path="res://testScript.gd" id="1_sawa2"]
 [ext_resource type="PackedScene" uid="uid://dys1itfd17ep" path="res://projectiles/bullet.tscn" id="2_5shw6"]
 [ext_resource type="TileSet" uid="uid://3p8llk3kptbx" path="res://TileSets/basetileset.tres" id="3_otwqo"]
 [ext_resource type="Texture2D" uid="uid://it5qagoxabo" path="res://Sprites/Tile.png" id="3_xktjd"]
+[ext_resource type="PackedScene" uid="uid://5d5pp3upu1dv" path="res://Pickups/cagedBabyLizard.tscn" id="6_vammb"]
+[ext_resource type="PackedScene" uid="uid://bfaxkwh1r2pkb" path="res://Scenes/Player/player.tscn" id="7_lqf50"]
 [ext_resource type="PackedScene" uid="uid://cou1njafwnpv6" path="res://Scenes/Enemies/shotgun_rat.tscn" id="12_kro7t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xktjd"]
@@ -29,7 +31,37 @@ shape = SubResource("RectangleShape2D_xktjd")
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayer/Wall"]
 texture = ExtResource("3_xktjd")
 
-[node name="ShotgunRat" parent="." instance=ExtResource("12_kro7t")]
-position = Vector2(231, 275)
-collision_layer = 16
+[node name="CagedBabyLizard" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(457, 296)
+
+[node name="Player" parent="." instance=ExtResource("7_lqf50")]
+position = Vector2(350, 327)
+collision_layer = 9
+
+[node name="CagedBabyLizard2" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(513, 417)
+
+[node name="CagedBabyLizard3" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(631, 380)
+
+[node name="CagedBabyLizard4" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(749, 473)
+
+[node name="CagedBabyLizard5" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(605, 466)
+
+[node name="CagedBabyLizard6" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(325, 472)
+
+[node name="CagedBabyLizard7" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(738, 328)
+
+[node name="CagedBabyLizard8" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(749, 399)
+
+[node name="CagedBabyLizard9" parent="." instance=ExtResource("6_vammb")]
+position = Vector2(695, 261)
 collision_mask = 46
+
+[node name="ShotgunRat" parent="." instance=ExtResource("12_kro7t")]
+position = Vector2(210, 268)
