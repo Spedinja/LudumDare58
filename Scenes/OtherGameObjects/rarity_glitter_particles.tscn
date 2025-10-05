@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://chgj4j4veyuq1"]
+
+[ext_resource type="Texture2D" uid="uid://c7axvll7l0hnh" path="res://Sprites/particle1.png" id="1_5ffq4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m1uok"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_yr7sg"]
+_data = [Vector2(0.008510638, 0.042433977), 0.0, 0.0, 0, 0, Vector2(0.50212765, 0.25060058), 0.0, 0.0, 0, 0, Vector2(0.98297864, 0.026821494), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_adoy0"]
+curve = SubResource("Curve_yr7sg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xhhet"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(11.48, 14.8, 1)
+direction = Vector3(0, 0, 0)
+spread = 32.04
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 0.85999775
+linear_accel_max = 1.7199978
+color = Color(1, 1, 0.93333334, 1)
+alpha_curve = SubResource("CurveTexture_adoy0")
+
+[node name="RarityGlitterParticles" type="GPUParticles2D"]
+self_modulate = Color(1, 0.972549, 1, 1)
+material = SubResource("CanvasItemMaterial_m1uok")
+amount = 6
+texture = ExtResource("1_5ffq4")
+process_material = SubResource("ParticleProcessMaterial_xhhet")
