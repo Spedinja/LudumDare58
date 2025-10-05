@@ -10,5 +10,5 @@ func applyUpgrade(bullet:Bullet):
 			var newValue = bullet.get(key) + budgetStats[key]
 			bullet.set(key, newValue)
 
-func onHit(bullet: Bullet):
+func onHit(bullet: Bullet, hitObject):
 	pass
