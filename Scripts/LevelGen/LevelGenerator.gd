@@ -293,6 +293,14 @@ func findTemplate(connections: Dictionary):
 #spawn/instantiate all rooms via roomdata in the grid
 func instantiateRooms():
 	var roomParent = self
+	
+	var maxEnemyCount: int
+	var minEnemyCount: int
+	var currEnemyCount: int
+	
+	maxEnemyCount = (mainPath.size() -2) * 5
+	minEnemyCount = (mainPath.size() -2) * 2
+	
 	for pos in mainPath:
 		var grid_room = grid[pos.x][pos.y]
 		if grid_room and grid_room.roomdata and grid_room.roomdata.room:
@@ -300,6 +308,12 @@ func instantiateRooms():
 			room_scene.position = Vector2(pos.x * roomWidth, pos.y * roomHeight)
 			if room_scene is Room_Fragment:
 				room_scene.has_cagedGecko = grid_room.roomdata.isGeckoRoom
+				
+				#enemy setting
+				if currEnemyCount <= maxEnemyCount && room_scene.spawn_count > 0:
+					var enemySetting = randi_range(minEnemyCount, min(maxEnemyCount, room_scene.spawn_count))
+					room_scene.spawn_count = enemySetting
+					currEnemyCount = currEnemyCount + enemySetting
 			self.add_child(room_scene)
 	return
 
