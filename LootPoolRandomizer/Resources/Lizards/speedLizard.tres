@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Lizard" load_steps=2 format=3 uid="uid://bctf58sarb06m"]
+
+[ext_resource type="Script" uid="uid://dcfsbrbh0n4gf" path="res://LootPoolRandomizer/Lizards.gd" id="1_jguju"]
+
+[resource]
+script = ExtResource("1_jguju")
+id = 4
+itemName = "Fast Boi"
+hasBudget = true
+budgetStats = Dictionary[String, float]({
+"speed": 10.0
+})
+metadata/_custom_type_script = "uid://dcfsbrbh0n4gf"

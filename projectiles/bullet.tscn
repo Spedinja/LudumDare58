@@ -44,6 +44,16 @@ animations = [{
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_a3dlt")
+dmg = null
+speed = null
+area = null
+pierce = null
+bounce = null
+fire = null
+ice = null
+electric = null
+exploding = null
+lifetime = null
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32
