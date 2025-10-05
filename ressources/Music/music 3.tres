@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://dwbc07rt36h14"]
 
-[ext_resource type="AudioStream" uid="uid://bloynr2d123c0" path="res://Sounds/music/main music intensity1.mp3" id="1_okv6k"]
+[ext_resource type="AudioStream" uid="uid://n4peujshv4en" path="res://Sounds/music/main music intensity3.mp3" id="1_okv6k"]
 [ext_resource type="Script" uid="uid://dsp2u6h7fo13l" path="res://Scripts/music_track.gd" id="2_bv1yr"]
 
 [resource]
