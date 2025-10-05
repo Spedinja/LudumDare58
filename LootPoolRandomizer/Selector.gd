@@ -4,13 +4,13 @@ extends Control
 # function that defines the weight for each rarity dependent on player progress from 0-100
 @export var weightFunction: String = "exp(-pow(rarity - (x/100)*(rarity_count-1), 2)/(2*spread*spread))"
 # function that defines the budget for each rarity 
-@export var budgetFunction: String = "parameterCount + (rarity * (rarity + 3) * parameterCount) / 8"
+@export var budgetFunction: String = "parameterCount + (rarity * (rarity + 3) * parameterCount * growth) / 8"
 #@export var parameterCount: float
 # controls how quickly flat the weight curves are: the higher the smoother and more overlap, the lower the sharper the peaks
 @export var spread: float = 1
 @export var itemlist: Array[item]
 @export var failsafe: item
-
+@export var budgetGrowth = 1
 
 
 func _ready() -> void:
@@ -44,10 +44,11 @@ func debugInput():
 func calcBudget(itemtype:item):
 	var budgets: Array[int]
 	var expr = Expression.new()
-	expr.parse(budgetFunction, ["rarity", "parameterCount"])
+	expr.parse(budgetFunction, ["rarity", "parameterCount", "growth"])
 	# calculate budget for each rarity
 	for rarity in rarities.size():
-		budgets.append(expr.execute([rarity, itemtype.budgetStats.size()]))
+		budgets.append(expr.execute([rarity, itemtype.budgetStats.size(), budgetGrowth]))
+	#print(budgets)
 	return budgets
 
 
@@ -68,13 +69,18 @@ func calcRarityWeights(playerProgress:float):
 	return rarityPercentages	
 		
 func rollItem(rarityPercentages, type):
-	var diceRoll = randf_range(0,1)
+	print("NEWROLLLLLLLLLLLLL")
+	var maxRoll = 0
+	for i in rarityPercentages:
+		maxRoll += i
+	var diceRoll = randf_range(0,maxRoll)
 	var targetRarity
 	var checkValue = 0
 	for weight in rarityPercentages.size():
 		checkValue += rarityPercentages[weight]
-		if diceRoll < checkValue:
-			targetRarity = rarities[weight]
+		if diceRoll <= checkValue:
+			targetRarity = rarities[rarityPercentages.find(weight)]
+			print("rarity index" + str(weight))
 			break
 	#print(type.get_class())
 	#print(targetRarity)
@@ -83,14 +89,21 @@ func rollItem(rarityPercentages, type):
 		print("FAILED TO FIND ITEM, RARITY: " + targetRarity)
 		return failsafe.duplicate(true)
 	var selectedItem = filteredList[randi_range(0, filteredList.size() -1)]
-	if selectedItem.rarity == null:
+	if selectedItem.rarity == "" || selectedItem.rarity == null:
+		#print("shouldSetRarity")
 		selectedItem.rarity = targetRarity
+	print("targetRarity")
+	print(targetRarity)
+	print("selected")
+	print(selectedItem.rarity)
 	return selectedItem.duplicate(true)
 		
 func assignBudget(newItem:item):
 	var total = 0
 	var budgets: Array[float] = []
 	var budget = calcBudget(newItem)[rarities.find(newItem.rarity)]
+	for key in newItem.budgetStats:
+		newItem.basestats[key] = newItem.budgetStats[key]
 	for i in newItem.budgetStats.size():
 		budgets.append(-log(randf_range(0,1)))
 		total += budgets[i]

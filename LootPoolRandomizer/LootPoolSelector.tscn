@@ -21,3 +21,4 @@ script = ExtResource("1_67tek")
 rarities = Array[String](["Common", "Rare", "Legendary"])
 itemlist = Array[ExtResource("2_lipi1")]([ExtResource("3_lipi1"), ExtResource("4_6iqvd"), ExtResource("5_7sx1h"), ExtResource("6_7sa26"), ExtResource("7_vwfba"), ExtResource("8_lipi1")])
 failsafe = ExtResource("9_hjebu")
+budgetGrowth = 3

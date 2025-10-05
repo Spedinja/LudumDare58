@@ -61,13 +61,13 @@ func _physics_process(delta):
 				self.global_position = next_position
 				return
 			hitObjects = result.collider
-			print("NotTile")
-			print(result)
+			#print("NotTile")
+			#print(result)
 			if(result.collider.is_in_group("Enemy")):
 				result.collider.take_damage(dmg)
-				print("EnemyDetected")
+				#print("EnemyDetected")
 				for hit in onhits:
-					print("ONHIT")
+					#print("ONHIT")
 					hit.onHit(self, result.collider)
 			match [int(pierce), int(bounce)]:
 				[0, 0]:
@@ -77,7 +77,7 @@ func _physics_process(delta):
 					bounce -= 1
 				[_, _]:
 					alreadyReduced = true
-					print("-pierce")
+					#print("-pierce")
 					pierce -= 1
 		else:
 			hitObjects = result.collider
