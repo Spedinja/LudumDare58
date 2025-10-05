@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbf6wmop5brv2"]
+[gd_scene load_steps=2 format=3 uid="uid://bbf6wmop5brv2"]
 
 [ext_resource type="Texture2D" uid="uid://sphw27jbq5yl" path="res://icon.svg" id="1_nl4ow"]
-[ext_resource type="Script" uid="uid://c8b7qjblbfekj" path="res://Scripts/LevelGen/room_Fragment.gd" id="1_tx2k5"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_tx2k5")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(532, 182)

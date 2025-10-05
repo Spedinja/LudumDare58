@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Lizard" load_steps=2 format=3 uid="uid://cnd8hvgl7oevh"]
+
+[ext_resource type="Script" uid="uid://dcfsbrbh0n4gf" path="res://LootPoolRandomizer/Lizards.gd" id="1_vhkwh"]
+
+[resource]
+script = ExtResource("1_vhkwh")
+id = 2
+itemName = "Angry Lizard"
+hasBudget = true
+budgetStats = Dictionary[String, float]({
+"dmg": 1.0
+})
+metadata/_custom_type_script = "uid://dcfsbrbh0n4gf"

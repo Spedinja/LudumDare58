@@ -1,17 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://455qmjx62oqp"]
+[gd_scene load_steps=10 format=3 uid="uid://455qmjx62oqp"]
 
 [ext_resource type="Script" uid="uid://bdcofcd8w7f1q" path="res://Scripts/Global/sound_manager.gd" id="1_pru53"]
 [ext_resource type="AudioStream" uid="uid://hmsj4uty8mnf" path="res://Sounds/spit1.mp3" id="2_bgmsx"]
-[ext_resource type="Resource" uid="uid://picgplj6v5f7" path="res://ressources/Music/silence.tres" id="2_ir3ns"]
+[ext_resource type="Resource" uid="uid://dyikgpuu0qw8x" path="res://ressources/Music/menu_music.tres" id="2_vwyi6"]
 [ext_resource type="Script" uid="uid://dsp2u6h7fo13l" path="res://Scripts/music_track.gd" id="3_vwyi6"]
+[ext_resource type="Resource" uid="uid://q6cbsfw3v52f" path="res://ressources/Music/music 1.tres" id="4_qxedu"]
+[ext_resource type="AudioStream" uid="uid://bg3aw3tbllfkv" path="res://Sounds/projectile hit.mp3" id="4_vwyi6"]
 [ext_resource type="AudioStream" uid="uid://rinq8ifvct83" path="res://Sounds/silence.mp3" id="5_id070"]
+[ext_resource type="Resource" uid="uid://ci3k1oueux1pi" path="res://ressources/Music/music 2.tres" id="5_xspfd"]
+[ext_resource type="Resource" uid="uid://dwbc07rt36h14" path="res://ressources/Music/music 3.tres" id="6_4f4vu"]
 
 [node name="SoundManager" type="Node" node_paths=PackedStringArray("attack_sfx_pool", "enemy_sfx_pool")]
 script = ExtResource("1_pru53")
-main_menu_music = ExtResource("2_ir3ns")
-in_game_music = Array[ExtResource("3_vwyi6")]([ExtResource("2_ir3ns")])
-ui_button_hover_sound = ExtResource("2_bgmsx")
-ui_button_click_sound = ExtResource("5_id070")
+main_menu_music = ExtResource("2_vwyi6")
+in_game_music = Array[ExtResource("3_vwyi6")]([ExtResource("4_qxedu"), ExtResource("5_xspfd"), ExtResource("6_4f4vu")])
+ui_button_hover_sound = ExtResource("4_vwyi6")
+ui_button_click_sound = ExtResource("2_bgmsx")
 ui_open_sound = ExtResource("5_id070")
 ui_close_sound = ExtResource("5_id070")
 attack_sfx_pool = [NodePath("Attack SFX Pool/Spell SFX Player 0"), NodePath("Attack SFX Pool/Spell SFX Player 1"), NodePath("Attack SFX Pool/Spell SFX Player 2"), NodePath("Attack SFX Pool/Spell SFX Player 3"), NodePath("Attack SFX Pool/Spell SFX Player 4"), NodePath("Attack SFX Pool/Spell SFX Player 5"), NodePath("Attack SFX Pool/Spell SFX Player 6"), NodePath("Attack SFX Pool/Spell SFX Player 7"), NodePath("Attack SFX Pool/Spell SFX Player 8"), NodePath("Attack SFX Pool/Spell SFX Player 9")]
@@ -20,7 +24,21 @@ enemy_sfx_pool = [NodePath("Enemy SFX Pool/Enemy SFX Player 0"), NodePath("Enemy
 [node name="Music Player" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 
-[node name="UI SFX Player" type="AudioStreamPlayer" parent="."]
+[node name="UI SFX Pool" type="Node" parent="."]
+
+[node name="UI SFX Player 0" type="AudioStreamPlayer" parent="UI SFX Pool"]
+process_mode = 3
+
+[node name="UI SFX Player 1" type="AudioStreamPlayer" parent="UI SFX Pool"]
+process_mode = 3
+
+[node name="UI SFX Player 2" type="AudioStreamPlayer" parent="UI SFX Pool"]
+process_mode = 3
+
+[node name="UI SFX Player 3" type="AudioStreamPlayer" parent="UI SFX Pool"]
+process_mode = 3
+
+[node name="UI SFX Player 4" type="AudioStreamPlayer" parent="UI SFX Pool"]
 process_mode = 3
 
 [node name="Player Sounds" type="Node" parent="."]

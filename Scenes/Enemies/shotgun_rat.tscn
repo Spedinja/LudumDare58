@@ -13,6 +13,7 @@ radius = 35.014282
 radius = 206.06067
 
 [node name="ShotgunRat" type="CharacterBody2D" groups=["Enemy"]]
+z_index = 10
 script = ExtResource("1_rvk2k")
 metadata/_custom_type_script = "uid://sv68sysn3ud8"
 

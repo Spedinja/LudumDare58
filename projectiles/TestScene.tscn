@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=4 uid="uid://v7gy28vq63um"]
+[gd_scene load_steps=12 format=4 uid="uid://v7gy28vq63um"]
 
 [ext_resource type="Script" uid="uid://b0si8wkowvvl7" path="res://testScript.gd" id="1_sawa2"]
 [ext_resource type="PackedScene" uid="uid://dys1itfd17ep" path="res://projectiles/bullet.tscn" id="2_5shw6"]
+[ext_resource type="Script" uid="uid://dcfsbrbh0n4gf" path="res://LootPoolRandomizer/Lizards.gd" id="3_j7wdo"]
 [ext_resource type="TileSet" uid="uid://3p8llk3kptbx" path="res://TileSets/basetileset.tres" id="3_otwqo"]
 [ext_resource type="Texture2D" uid="uid://it5qagoxabo" path="res://Sprites/Tile.png" id="3_xktjd"]
+[ext_resource type="Resource" uid="uid://dtl5rfpy4l7yi" path="res://LootPoolRandomizer/Resources/Lizards/areaLizard.tres" id="4_b171j"]
+[ext_resource type="Resource" uid="uid://blxmstwe88e3y" path="res://LootPoolRandomizer/Resources/Lizards/bounceLizard.tres" id="5_kro7t"]
+[ext_resource type="Resource" uid="uid://cnd8hvgl7oevh" path="res://LootPoolRandomizer/Resources/Lizards/dmgLizard.tres" id="6_80gle"]
+[ext_resource type="Resource" uid="uid://djlp6i8kq0a6k" path="res://LootPoolRandomizer/Resources/Lizards/pierceLizard.tres" id="7_7enns"]
+[ext_resource type="Resource" uid="uid://bctf58sarb06m" path="res://LootPoolRandomizer/Resources/Lizards/speedLizard.tres" id="8_cabtp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xktjd"]
 size = Vector2(32, 32)
@@ -11,6 +17,7 @@ size = Vector2(32, 32)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_sawa2")
 projectile = ExtResource("2_5shw6")
+upgradeLizards = Array[ExtResource("3_j7wdo")]([ExtResource("4_b171j"), ExtResource("5_kro7t"), ExtResource("6_80gle"), ExtResource("7_7enns"), ExtResource("8_cabtp"), ExtResource("6_80gle"), ExtResource("6_80gle"), ExtResource("6_80gle"), ExtResource("5_kro7t"), ExtResource("5_kro7t"), ExtResource("5_kro7t")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAARAAUAAAABAAEAAAASAAUAAAAIAAIAAAASAAYAAAAIAAIAAAARAAYAAAACAAEAAAAQAAYAAAAAAAMAAAAQAAUAAAAAAAEAAAAQAAQAAAAEAAgAAAARAAQAAAAGAAAAAAASAAQAAAAIAAAAAAASAAcAAAAIAAIAAAARAAcAAAABAAEAAAAQAAcAAAAAAAMAAAASAAgAAAAIAAIAAAARAAgAAAACAAEAAAAQAAgAAAAAAAEAAAASAAkAAAAFAAQAAAARAAkAAAABAAEAAAAQAAkAAAAAAAEAAAASAAoAAAAIAAMAAAARAAoAAAAHAAMAAAAQAAoAAAAAAAgAAAARAAMAAAACAAEAAAASAAMAAAAFAAQAAAAQAAMAAAABAAIAAAAQAAIAAAADAAAAAAARAAIAAAABAAAAAAASAAIAAAAIAAAAAAAPAAQAAAAHAAMAAAAPAAMAAAABAAEAAAAPAAIAAAAHAAAAAAAOAAQAAAABAAgAAAAOAAMAAAABAAIAAAAOAAIAAAABAAAAAAANAAQAAAAFAAcAAAANAAMAAAABAAEAAAANAAIAAAADAAAAAAAMAAQAAAABAAEAAAAMAAMAAAACAAEAAAAMAAIAAAAGAAAAAAALAAQAAAACAAAAAAALAAMAAAAAAAUAAAALAAIAAAAAAAAAAAANAAUAAAAFAAQAAAAMAAUAAAABAAIAAAALAAUAAAABAAEAAAANAAYAAAAFAAgAAAAMAAYAAAAGAAMAAAALAAYAAAAFAAMAAAAKAAYAAAABAAEAAAAKAAUAAAABAAEAAAAKAAQAAAADAAAAAAAJAAYAAAAAAAIAAAAJAAUAAAAAAAMAAAAJAAQAAAAAAAAAAAALAAcAAAAFAAgAAAAKAAcAAAAGAAMAAAAJAAcAAAAAAAgAAAAFAAsAAAABAAEAAAAGAAsAAAAFAAQAAAAGAAwAAAAFAAgAAAAFAAwAAAADAAgAAAAEAAwAAAAAAAgAAAAEAAsAAAAAAAQAAAAEAAoAAAAAAAAAAAAFAAoAAAAGAAAAAAAGAAoAAAAIAAAAAAA=")

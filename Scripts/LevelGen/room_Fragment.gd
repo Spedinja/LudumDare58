@@ -6,7 +6,7 @@ class_name Room_Fragment
 @onready var cagedgecko_scene = preload("res://Scenes/Enemies/enemy.tscn")
 #
 @onready var tilemap: TileMap
-@onready var enemy_scene: PackedScene = preload("res://Scenes/Enemies/shotgun_rat.tscn")
+@onready var enemy_scene: PackedScene = preload("res://Scenes/Enemies/enemy.tscn")
 @export var spawn_count: int = 5
 @export var min_distance: float = 32  #minimum pixels between enemies
 @export var wall_terrain_name: String = "GroundWalls"
@@ -15,11 +15,11 @@ func _ready():
 	if has_cagedGecko:
 		spawn_cagedgecko()
 		
-	var tilemap_layer = self.get_node_or_null("Tilemap/BaseMapLayer") as TileMapLayer
+	var tilemap_layer = get_node_or_null("Tilemap/BaseMapLayer") as TileMapLayer
 	if not tilemap_layer:
 		push_warning("TileMapLayer not found!")
 		return
-	self.spawn_enemies(tilemap_layer)
+	spawn_enemies(tilemap_layer)
 
 func spawn_cagedgecko():
 	var spawn_point = find_child("CagedGecko_Spawner", true, false)

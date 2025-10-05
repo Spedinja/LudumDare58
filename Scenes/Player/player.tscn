@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfaxkwh1r2pkb"]
+[gd_scene load_steps=6 format=3 uid="uid://bfaxkwh1r2pkb"]
 
 [ext_resource type="Script" uid="uid://dms32j4b6250c" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
-[ext_resource type="Texture2D" uid="uid://b7gtmlbnfhd75" path="res://Sprites/Main_Geko.png" id="2_a3d8c"]
+[ext_resource type="AudioStream" uid="uid://bvvydl66qdlk" path="res://Sounds/dash.mp3" id="2_xpcdj"]
+[ext_resource type="PackedScene" uid="uid://dyaok0kfxc5u" path="res://Sprites/Player/gecko_animated_sprite_2d.tscn" id="3_xpcdj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f60y1"]
 
@@ -11,13 +12,10 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 10
 script = ExtResource("1_a3d8c")
+dash_sfx = ExtResource("2_xpcdj")
 
-[node name="TempSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_a3d8c")
+[node name="PlayerSprite" parent="." instance=ExtResource("3_xpcdj")]
 offset = Vector2(0, -24)
-
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
-visible = false
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_f60y1")
