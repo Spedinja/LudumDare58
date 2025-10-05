@@ -254,43 +254,18 @@ func isWithinBounds(pos: Vector2i) -> bool:
 	
 #finds and assigns possible neighbours of all rooms inside the grid
 func assignRoomTemplatesBasedOnNeighbors():
-	#for pos in mainPath:
-			#if !grid[pos.x][pos.y] == null:
-				#var connections = getRequiredConnections(pos.x,pos.y)
-				#var match = findTemplate(connections)
-				#if match:
-					#var room = grid[pos.x][pos.y]
-					#room.roomdata = match 
-	#return
-	
 	for pos in mainPath:
-		var grid_room = grid[pos.x][pos.y]
-		if grid_room == null:
-			continue
-		
-		var connections = getRequiredConnections(pos.x, pos.y)
-		
-		# gecko check
-		if grid_room.roomdata.isGeckoRoom:
-			var shop_match = findTemplate(connections, true)
-			if shop_match:
-				grid_room.roomdata = shop_match
-			continue
-		
-		# normal room
-		var match = findTemplate(connections, false)
-		if match:
-			grid_room.roomdata = match
-		
+			if !grid[pos.x][pos.y] == null:
+				var connections = getRequiredConnections(pos.x,pos.y)
+				var match = findTemplate(connections)
+				if match:
+					var room = grid[pos.x][pos.y]
+					room.roomdata = match 
 	return
 
 #gets the connetion the room at gridPos x,y needs to be setup
 func getRequiredConnections(x: int, y: int) -> Dictionary:
 	return {
-		#"left": grid[x - 1][y].roomdata.hasRightNb if isValidRoom(x - 1, y) else false,
-		#"right": grid[x + 1][y].roomdata.hasLeftNbr if isValidRoom(x + 1, y) else false,
-		#"top": grid[x][y - 1].roomdata.hasBottomNb if isValidRoom(x, y - 1) else false,
-		#"bottom": grid[x][y + 1].roomdata.hasTopNb if isValidRoom(x, y + 1) else false
 		"left": isValidRoom(x - 1, y),
 		"right":  isValidRoom(x + 1, y),
 		"top":  isValidRoom(x, y - 1) ,
@@ -302,26 +277,15 @@ func isValidRoom(posX:int,posY:int) -> bool:
 	return posX >= 0 and posX < WIDTH and posY >= 0 and posY < HEIGHT and visited[posX][posY] == true
 
 #find a valid room template for placement
-func findTemplate(connections: Dictionary, requires_Gecko):
-	#var options = []
-	#for room in roomPool.rooms:
-		#if room.hasLeftNbr == connections["left"] and \
-			#room.hasRightNb == connections["right"] and \
-			#room.hasTopNb == connections["top"] and \
-			#room.hasBottomNb == connections["bottom"]:
-			#options.append(room)
-	#return options.pick_random()
+func findTemplate(connections: Dictionary):
 	var options = []
 	for room in roomPool.rooms:
-		if room.isGeckoRoom != requires_Gecko:
-			continue
-		
 		if room.hasLeftNbr == connections["left"] and \
 			room.hasRightNb == connections["right"] and \
 			room.hasTopNb == connections["top"] and \
 			room.hasBottomNb == connections["bottom"]:
 			options.append(room)
-	
+	#return options.pick_random()
 	if options.is_empty():
 		return null
 	return options.pick_random()
@@ -329,11 +293,27 @@ func findTemplate(connections: Dictionary, requires_Gecko):
 #spawn/instantiate all rooms via roomdata in the grid
 func instantiateRooms():
 	var roomParent = self
+	
+	var maxEnemyCount: int
+	var minEnemyCount: int
+	var currEnemyCount: int
+	
+	maxEnemyCount = (mainPath.size() -2) * 5
+	minEnemyCount = (mainPath.size() -2) * 2
+	
 	for pos in mainPath:
 		var grid_room = grid[pos.x][pos.y]
 		if grid_room and grid_room.roomdata and grid_room.roomdata.room:
 			var room_scene = grid_room.roomdata.room.instantiate()
 			room_scene.position = Vector2(pos.x * roomWidth, pos.y * roomHeight)
+			if room_scene is Room_Fragment:
+				room_scene.has_cagedGecko = grid_room.roomdata.isGeckoRoom
+				
+				#enemy setting
+				if currEnemyCount <= maxEnemyCount && room_scene.spawn_count > 0:
+					var enemySetting = randi_range(minEnemyCount, min(maxEnemyCount, room_scene.spawn_count))
+					room_scene.spawn_count = enemySetting
+					currEnemyCount = currEnemyCount + enemySetting
 			self.add_child(room_scene)
 	return
 
