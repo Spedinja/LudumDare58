@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://dq5yc24cafnhc"]
+[gd_scene load_steps=6 format=4 uid="uid://dq5yc24cafnhc"]
 
 [ext_resource type="Texture2D" uid="uid://sphw27jbq5yl" path="res://icon.svg" id="1_j3scm"]
 [ext_resource type="TileSet" uid="uid://3p8llk3kptbx" path="res://TileSets/basetileset.tres" id="1_o72p8"]
+[ext_resource type="Script" uid="uid://c8b7qjblbfekj" path="res://Scripts/LevelGen/room_Fragment.gd" id="1_w86ox"]
 [ext_resource type="TileSet" uid="uid://c56kn3ibt12jx" path="res://TileSets/proptileset.tres" id="2_w86ox"]
 [ext_resource type="Texture2D" uid="uid://b7gtmlbnfhd75" path="res://Sprites/Main_Geko.png" id="3_1i4km"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_w86ox")
 
 [node name="Tilemap" type="Node2D" parent="."]
 
