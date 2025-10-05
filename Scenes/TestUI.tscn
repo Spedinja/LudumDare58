@@ -1,16 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://cy0v2bj8xrwvl"]
 
-[ext_resource type="Theme" uid="uid://bfxs2u7huev6o" path="res://Themes/MainMenuTheme.tres" id="1_auhpw"]
+[ext_resource type="PackedScene" uid="uid://3r28gkrulsft" path="res://Scenes/Menus/game_button.tscn" id="1_auhpw"]
 
 [node name="TestUI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Button" type="Button" parent="."]
+[node name="GameButton" parent="." instance=ExtResource("1_auhpw")]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 57.0
-offset_right = 243.0
-offset_bottom = 129.0
-theme = ExtResource("1_auhpw")
+offset_left = 72.0
+offset_top = 72.0
+offset_right = 234.0
+offset_bottom = 151.0
 text = "Test"

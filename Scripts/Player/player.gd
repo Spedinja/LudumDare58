@@ -21,25 +21,15 @@ var is_dashing: bool = false
 
 var input: PlayerInput
 
-@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
+@onready var player_sprite: PlayerAnimatedSprite = $PlayerSprite
 
-@onready var sfx_hurt: AudioStreamPlayer2D = $sfx_hurt
-@onready var sfx_dash: AudioStreamPlayer2D = $sfx_dash
-@onready var sfx_step_1: AudioStreamPlayer2D = $sfx_step1
-@onready var sfx_step_2: AudioStreamPlayer2D = $sfx_step2
-var next_step: int = 1;
-
-func play_next_step(): 
-	if next_step == 1:
-		sfx_step_1.play()
-		next_step += 1
-	else:
-		sfx_step_2.play()
-		next_step = 1
-
-
+@export_category("Sounds")
+@export var dash_sfx: AudioStream
+@export var walk_sfx: AudioStream
+@export var attack_sfx: AudioStream
 
 func _ready() -> void:
+	player_sprite.player_head_sprite.offset = player_sprite.offset
 	_get_input()
 	_initiate_timers()
 
@@ -79,20 +69,40 @@ func _move(delta: float):
 		_add_dash_ghost()
 	else:
 		velocity = lerp(velocity, input.move_directions.normalized() * movement_speed, delta * movement_acceleration)
+	_set_animation()
 	move_and_slide()
+
+func _set_animation():
+	var angle = velocity.angle()
+	if velocity.length() < 0.3:
+		player_sprite.pause()
+	elif angle > -PI/4 and angle <= PI/4:
+		player_sprite.play("walk_side")
+		player_sprite.flip_h = true
+	elif angle > PI/4 and angle <= 3*PI/4:
+		player_sprite.play("walk_down")
+	elif angle > -3*PI/4 and angle <= -PI/4:
+		player_sprite.play("walk_up")
+	elif angle <= -3*PI/4 or angle > 3*PI/4:
+		player_sprite.play("walk_side")
+		player_sprite.flip_h = false
+	
+	if input.attack_just_pressed:
+		player_sprite.player_head_sprite.play("attack_down")
 
 func _start_dashing():
 	is_dashing = true
 	dash_direction = input.move_directions
 	dash_timer.start(dash_duration)
 	dash_cd_timer.start(dash_cooldown)
-	sfx_dash.play()
+	SoundManager.play_player_sound(dash_sfx,SoundManager.player_sound_types.MOVEMENT)
 
 func _add_dash_ghost():
 	var ghost: DashGhost = dash_ghost_scene.instantiate()
-	ghost.texture = $TempSprite.texture
-	ghost.offset = $TempSprite.offset
+	ghost.texture = player_sprite.sprite_frames.get_frame_texture(player_sprite.animation, player_sprite.frame)
+	ghost.offset = player_sprite.offset
 	ghost.global_position = global_position
+	ghost.flip_h = player_sprite.flip_h
 	get_parent().add_child(ghost)
 
 func _attack():
@@ -103,8 +113,6 @@ func take_damage(amount: int):
 		return
 	amount -= amount
 	iframes_timer.start(iframes_duration)
-	sfx_hurt.pitch_scale = 0.8 + randf()*0.5;
-	sfx_hurt.play()
 	
 func _get_input():
 	var move_direction: Vector2 = Vector2(Input.get_axis("Move Left", "Move Right"), Input.get_axis("Move Up", "Move Down"))
