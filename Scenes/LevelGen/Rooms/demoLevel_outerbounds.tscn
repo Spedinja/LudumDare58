@@ -1,15 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://b2rsibekg6kp8"]
+[gd_scene load_steps=3 format=4 uid="uid://b2rsibekg6kp8"]
 
-[ext_resource type="Texture2D" uid="uid://sphw27jbq5yl" path="res://icon.svg" id="1_8whd8"]
 [ext_resource type="TileSet" uid="uid://3p8llk3kptbx" path="res://TileSets/basetileset.tres" id="2_cf1ui"]
 [ext_resource type="TileSet" uid="uid://c56kn3ibt12jx" path="res://TileSets/proptileset.tres" id="3_leqyc"]
 
 [node name="Level" type="Node2D"]
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(320, 177)
-scale = Vector2(5, 2.90625)
-texture = ExtResource("1_8whd8")
 
 [node name="Tilemap" type="Node2D" parent="."]
 
