@@ -1,5 +1,7 @@
 extends Control
 
+@onready var lizard_text: Label = $LizardText
+
 @onready var game_scene: PackedScene # = preload()
 @onready var credits: ColorRect = $Credits
 @onready var settings: Control = $Settings
@@ -12,6 +14,7 @@ extends Control
 
 func _ready() -> void:
 	SoundManager.load_music(SoundManager.menu_types.MAIN_MENU)
+	lizard_text.text = SignalManager.get_current_lizard()
 	play_button.grab_focus()
 
 func _on_play_pressed() -> void:

@@ -29,6 +29,7 @@ func lizard_killed():
 func get_current_lizard() -> String:
 	var current_lizard: String
 	current_lizard = lizard_names[lizards_killed % lizard_names.size()]
+	var special: bool = false
 # +1 because the number of the current lizard is always the number of killed lizards +1
 	match lizards_killed+1:
 		20:
@@ -37,6 +38,11 @@ func get_current_lizard() -> String:
 			current_lizard = "Mary Jane"
 		69:
 			current_lizard = "Nice"
+			special = true
 		100:
 			current_lizard = "Why are you killing all dem cute Lizards :("
+			special = true
+	if not special:
+		current_lizard += "\nthe Lizard Wizard"
+	
 	return current_lizard

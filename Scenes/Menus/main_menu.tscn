@@ -14,6 +14,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_penys")
 
+[node name="LizardText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_top = 10.0
+offset_right = 324.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme = ExtResource("2_aur2u")
+text = "Why are you killing all dem cute Lizards :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MainMenuButtons" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_top = 100.0
@@ -89,21 +104,6 @@ visible = false
 layout_mode = 1
 connection_button = NodePath("../MainMenuButtons/Settings")
 connection_menu = NodePath("../MainMenuButtons")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -324.0
-offset_top = 10.0
-offset_right = 324.0
-offset_bottom = 50.0
-grow_horizontal = 2
-theme = ExtResource("2_aur2u")
-text = "Why are you killing all dem cute Lizards :("
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="MainMenuButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenuButtons/Settings" to="." method="_on_settings_pressed"]
