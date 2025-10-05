@@ -29,5 +29,5 @@ outerBoundRoom = ExtResource("7_24kn6")
 max_rooms = 35
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1613, 912)
+position = Vector2(1613, 892)
 zoom = Vector2(0.1, 0.1)
