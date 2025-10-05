@@ -11,6 +11,7 @@ shader_parameter/whiten = true
 shader_parameter/mix_weight = 0.5
 
 [node name="DashGhost" type="Sprite2D"]
+z_index = 1
 material = SubResource("ShaderMaterial_7fomq")
 texture = ExtResource("1_407wb")
 script = ExtResource("2_7fomq")

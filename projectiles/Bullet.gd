@@ -4,8 +4,8 @@ class_name Bullet
 @export var dmg: float = 1
 @export var speed: float = 150
 @export var area: float = 16
-@export var pierce: float = 1
-@export var bounce: float = 3
+@export var pierce: float = 0
+@export var bounce: float = 0
 @export var fire: float = 0
 @export var ice: float = 0
 @export var electric: float = 0
@@ -16,11 +16,9 @@ var direction: Vector2 = Vector2(0,0)
 var velocity: Vector2 = direction * speed
 var alreadyReduced: bool = false
 
+var onhits: Array[Lizard]
+
 var hitObjects
-
-@onready var sfx_projectile_hit: AudioStreamPlayer2D = $sfx_projectile_hit
-
-
 
 func _ready() -> void:
 	$lifetime.wait_time = lifetime
@@ -31,7 +29,12 @@ func _process(_delta: float) -> void:
 	#self.position += direction * speed * delta
 	pass
 
-
+func printStats():
+	print("Dmg: " + str(dmg))
+	print("speed: " + str(speed))
+	print("area: " + str(area))
+	print("pierce: " + str(pierce))
+	print("bounce: " + str(bounce))
 		
 func _physics_process(delta):
 	var next_position = self.global_position + velocity * delta
@@ -53,6 +56,10 @@ func _physics_process(delta):
 			break
 	if result:
 		if !(result.collider is TileMapLayer):
+			if(result is Enemy):
+				result.take_damage(dmg)
+				for hit in onhits:
+					hit.onHit(self)
 			#do enemy stuff
 			if(hitObjects == result.collider):
 				self.global_position = next_position
@@ -62,7 +69,7 @@ func _physics_process(delta):
 				[0, 0]:
 					call_deferred("queue_free")
 				[0, _]:
-					print("-bounce")
+					#print("-bounce")
 					bounce -= 1
 				[_, _]:
 					alreadyReduced = true
@@ -70,11 +77,10 @@ func _physics_process(delta):
 					pierce -= 1
 		else:
 			hitObjects = result.collider
-			sfx_projectile_hit.play()
 			if(bounce == 0):
 				call_deferred("queue_free")
 			else:
-				print("-bounce")
+				#print("-bounce")
 				bounce -= 1
 	if result and !alreadyReduced and !(result.collider.is_in_group("Enemy") and pierce != 0):
 		 # 2. Reflect velocity around collision normal

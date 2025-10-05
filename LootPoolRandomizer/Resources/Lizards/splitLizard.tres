@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Lizard" load_steps=2 format=3 uid="uid://bg5txw1a3b124"]
+
+[ext_resource type="Script" uid="uid://dcfsbrbh0n4gf" path="res://LootPoolRandomizer/Lizards.gd" id="1_mh621"]
+
+[resource]
+script = ExtResource("1_mh621")
+metadata/_custom_type_script = "uid://dcfsbrbh0n4gf"
