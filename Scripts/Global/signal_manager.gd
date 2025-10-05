@@ -1,6 +1,7 @@
 extends Node
 
 signal player_hp_changed(new_value: float)
+signal go_to_next_layer
 
 var game_progression: float = 0.0
 
@@ -36,6 +37,19 @@ var lizard_names: Array[String] = [
 	"Liza Kudrow",
 	"Liztina Anguilera",
 ]
+
+func _ready():
+	connect("go_to_next_layer", Callable(self, "generate_new_dungeon"))
+	return
+	
+func generate_new_dungeon():
+	var level_gen = get_tree().root.find_child("Level", true, false)
+	if level_gen:
+		var level_scene = level_gen.scene_file_path  # get the original scene file path
+		get_tree().change_scene_to_file(level_scene)
+	else:
+		push_error("LevelGenerator not found in scene tree!")
+	return
 
 func lizard_killed():
 	lizards_killed += 1

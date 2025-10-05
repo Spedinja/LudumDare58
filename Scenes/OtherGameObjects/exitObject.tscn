@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfsi3k6yjll70"]
+
+[ext_resource type="Texture2D" uid="uid://wmblljusexgl" path="res://Sprites/climbedown.png" id="1_lu1kj"]
+[ext_resource type="Script" uid="uid://dmxnvuf3f7jlt" path="res://Scripts/OtherGameObjects/exit_object.gd" id="1_rgan4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgan4"]
+
+[node name="Exit" type="Node2D"]
+script = ExtResource("1_rgan4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(118, -71)
+texture = ExtResource("1_lu1kj")
+offset = Vector2(-118, 71)
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(-118, 77)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+scale = Vector2(2.2799983, 1)
+shape = SubResource("CircleShape2D_rgan4")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
