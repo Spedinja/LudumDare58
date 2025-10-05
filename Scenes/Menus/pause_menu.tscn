@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt73yx40stqa2"]
+
+[ext_resource type="Script" uid="uid://ckxywjnk2eypt" path="res://Scripts/Menus/pause_menu.gd" id="1_1j166"]
+[ext_resource type="Theme" uid="uid://bfxs2u7huev6o" path="res://Themes/MainMenuTheme.tres" id="1_as6yf"]
+[ext_resource type="PackedScene" uid="uid://nlrt1p2j5jda" path="res://Scenes/Menus/settings.tscn" id="3_tf3q2"]
+
+[node name="Pause Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1j166")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 0.2509804)
+
+[node name="Pause" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="Pause"]
+layout_mode = 2
+theme = ExtResource("1_as6yf")
+theme_override_font_sizes/font_size = 48
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Pause"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_as6yf")
+text = "Resume"
+
+[node name="Settings" type="Button" parent="Pause"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_as6yf")
+text = "Settings"
+
+[node name="BackToMenu" type="Button" parent="Pause"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_as6yf")
+text = "Main Menu"
+
+[node name="Settings" parent="." node_paths=PackedStringArray("connection_button", "connection_menu") instance=ExtResource("3_tf3q2")]
+visible = false
+layout_mode = 1
+connection_button = NodePath("../Pause/Settings")
+connection_menu = NodePath("../Pause")
+
+[connection signal="pressed" from="Pause/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Pause/BackToMenu" to="." method="_on_back_to_menu_pressed"]

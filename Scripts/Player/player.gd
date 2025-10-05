@@ -47,6 +47,8 @@ func _initiate_timers():
 
 func _process(_delta: float) -> void:
 	_get_input()
+	if Input.is_action_just_pressed("ui_cancel"):
+		$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible
 
 func _physics_process(delta: float) -> void:
 	_move(delta)

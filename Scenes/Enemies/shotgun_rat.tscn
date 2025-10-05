@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cou1njafwnpv6"]
+
+[ext_resource type="Script" uid="uid://bbdudu40k3cbg" path="res://Scripts/Enemies/shotgun_rat.gd" id="1_rvk2k"]
+[ext_resource type="SpriteFrames" uid="uid://crleowwfeodhq" path="res://Sprites/RatSpriteFrames.tres" id="2_xqqto"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xqqto"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bwry"]
+radius = 35.014282
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6vio"]
+radius = 206.06067
+
+[node name="ShotgunRat" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_rvk2k")
+metadata/_custom_type_script = "uid://sv68sysn3ud8"
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_xqqto")
+animation = &"attack_side"
+autoplay = "walk_down"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xqqto")
+
+[node name="HurtArea" type="Area2D" parent="."]
+
+[node name="Hurtbox" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("CircleShape2D_4bwry")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="DetectionRadius" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_l6vio")

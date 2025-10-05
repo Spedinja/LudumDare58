@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://77dyybbl2koo"]
+[gd_scene load_steps=4 format=3 uid="uid://77dyybbl2koo"]
 
 [ext_resource type="Theme" uid="uid://bfxs2u7huev6o" path="res://Themes/MainMenuTheme.tres" id="1_28flt"]
 [ext_resource type="Script" uid="uid://bvy3ljiu3cxvq" path="res://Scripts/main_menu.gd" id="1_48xlc"]
+[ext_resource type="PackedScene" uid="uid://nlrt1p2j5jda" path="res://Scenes/Menus/settings.tscn" id="3_1ehe0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,9 +15,9 @@ script = ExtResource("1_48xlc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_top = 160.0
+offset_top = 100.0
 offset_right = 640.0
-offset_bottom = 360.0
+offset_bottom = 350.0
 theme_override_constants/separation = 16
 
 [node name="Play" type="Button" parent="VBoxContainer"]
@@ -26,6 +27,15 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_28flt")
 text = "Play"
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_28flt")
+text = "Settings
+"
 
 [node name="Credits" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(140, 50)
@@ -91,6 +101,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_28flt")
 text = "Back"
+
+[node name="Settings" parent="." instance=ExtResource("3_1ehe0")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
