@@ -1,7 +1,7 @@
 extends Node
 class_name Bullet
 
-@export var dmg: float = 1
+@export var dmg: float = 10
 @export var speed: float = 150
 @export var area: float = 16
 @export var pierce: float = 0

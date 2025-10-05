@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://cpd57nlvrhytv"]
+[gd_scene load_steps=6 format=4 uid="uid://cpd57nlvrhytv"]
 
 [ext_resource type="Script" uid="uid://c8b7qjblbfekj" path="res://Scripts/LevelGen/room_Fragment.gd" id="1_bnsin"]
 [ext_resource type="TileSet" uid="uid://3p8llk3kptbx" path="res://TileSets/basetileset.tres" id="1_c32ah"]
 [ext_resource type="TileSet" uid="uid://c56kn3ibt12jx" path="res://TileSets/proptileset.tres" id="2_bnsin"]
 [ext_resource type="PackedScene" uid="uid://c3jg0aqx5qykd" path="res://Scenes/OtherGameObjects/gullilicht.tscn" id="5_e86ys"]
+[ext_resource type="PackedScene" uid="uid://bosvx4lqdwu7d" path="res://Scenes/OtherGameObjects/caged_gecko_spawner.tscn" id="5_psxb5"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_bnsin")
@@ -20,3 +21,6 @@ tile_set = ExtResource("2_bnsin")
 
 [node name="gullilicht" parent="." instance=ExtResource("5_e86ys")]
 position = Vector2(629, 542)
+
+[node name="CagedGecko_Spawner" parent="." instance=ExtResource("5_psxb5")]
+position = Vector2(286, 551)

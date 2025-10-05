@@ -27,3 +27,4 @@ startRoom = ExtResource("10_lrltm")
 endRoom = ExtResource("11_h7en0")
 outerBoundRoom = ExtResource("7_24kn6")
 max_rooms = 35
+num_geckos = 10

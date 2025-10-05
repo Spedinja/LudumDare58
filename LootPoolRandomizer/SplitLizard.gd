@@ -15,7 +15,8 @@ func onHit(bullet: Bullet, hitObject):
 		if(budgetStats.get("split")):
 			multRemover = budgetStats["split"]
 		newBullet.dmg = floor(bullet.dmg/(4- multRemover))
-		newBullet.lifetime = 1
+		newBullet.lifetime = 0.3
+		newBullet.speed = floor(bullet.speed / 2)
 		newBullet.hitObjects = hitObject
 		bullet.get_parent().add_child(newBullet)
 	

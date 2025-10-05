@@ -56,7 +56,7 @@ func take_damage(amount: float):
 		die()
 
 func die():
-	queue_free()
+	call_deferred("queue_free")
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Player"):
