@@ -4,6 +4,7 @@ signal player_hp_changed(new_value: float)
 signal go_to_next_layer
 
 var game_progression: float = 0.0
+var cleared_layers: int = 0
 
 var lizards_killed: int = 0
 var lizard_names: Array[String] = [
@@ -43,6 +44,9 @@ func _ready():
 	return
 	
 func generate_new_dungeon():
+	game_progression += 5.0
+	game_progression= clamp(game_progression, 0.0, 100.0)
+	cleared_layers += 1
 	var level_gen = get_tree().root.find_child("Level", true, false)
 	if level_gen:
 		var level_scene = level_gen.scene_file_path  # get the original scene file path

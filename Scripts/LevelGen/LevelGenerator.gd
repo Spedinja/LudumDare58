@@ -35,6 +35,7 @@ func _ready():
 
 #algorithm to generate a level
 func genLevel():
+	setParamDependingOnGameProgression()
 	init_grid()
 	#generateMainPath()
 	generateDungeon()
@@ -48,6 +49,15 @@ func genLevel():
 	instantiateRooms()
 	fixOuterBounds()	
 	return
+	
+#calculation of shops etc
+func setParamDependingOnGameProgression():
+	var base_rooms = 5
+	var max_rooms_target = 35
+	
+	max_rooms = int(round(base_rooms + (max_rooms_target - base_rooms) * (SignalManager.game_progression / 100.0)))
+	num_geckos=  int(clamp(round(max_rooms / (max_rooms_target / 3.0)), 1, 3))
+	return	
 	
 #setup grids
 func init_grid():
