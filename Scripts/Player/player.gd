@@ -23,6 +23,22 @@ var input: PlayerInput
 
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 
+@onready var sfx_hurt: AudioStreamPlayer2D = $sfx_hurt
+@onready var sfx_dash: AudioStreamPlayer2D = $sfx_dash
+@onready var sfx_step_1: AudioStreamPlayer2D = $sfx_step1
+@onready var sfx_step_2: AudioStreamPlayer2D = $sfx_step2
+var next_step: int = 1;
+
+func play_next_step(): 
+	if next_step == 1:
+		sfx_step_1.play()
+		next_step += 1
+	else:
+		sfx_step_2.play()
+		next_step = 1
+
+
+
 func _ready() -> void:
 	_get_input()
 	_initiate_timers()
@@ -70,6 +86,7 @@ func _start_dashing():
 	dash_direction = input.move_directions
 	dash_timer.start(dash_duration)
 	dash_cd_timer.start(dash_cooldown)
+	sfx_dash.play()
 
 func _add_dash_ghost():
 	var ghost: DashGhost = dash_ghost_scene.instantiate()
@@ -86,6 +103,8 @@ func take_damage(amount: int):
 		return
 	amount -= amount
 	iframes_timer.start(iframes_duration)
+	sfx_hurt.pitch_scale = 0.8 + randf()*0.5;
+	sfx_hurt.play()
 	
 func _get_input():
 	var move_direction: Vector2 = Vector2(Input.get_axis("Move Left", "Move Right"), Input.get_axis("Move Up", "Move Down"))

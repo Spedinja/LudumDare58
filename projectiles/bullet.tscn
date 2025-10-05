@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dys1itfd17ep"]
+[gd_scene load_steps=10 format=3 uid="uid://dys1itfd17ep"]
 
 [ext_resource type="Script" uid="uid://d00vmbeao08g7" path="res://projectiles/Bullet.gd" id="1_a3dlt"]
 [ext_resource type="Texture2D" uid="uid://gdurjy08wo7b" path="res://Sprites/player_projectile.png" id="2_4ambd"]
+[ext_resource type="AudioStream" uid="uid://bg3aw3tbllfkv" path="res://Sounds/projectile hit.mp3" id="3_cqswp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqswp"]
 
@@ -59,6 +60,9 @@ autoplay = "default"
 [node name="lifetime" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="sfx_projectile_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cqswp")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

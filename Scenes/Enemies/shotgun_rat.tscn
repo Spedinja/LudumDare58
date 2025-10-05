@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cou1njafwnpv6"]
+[gd_scene load_steps=7 format=3 uid="uid://cou1njafwnpv6"]
 
 [ext_resource type="Script" uid="uid://bbdudu40k3cbg" path="res://Scripts/Enemies/shotgun_rat.gd" id="1_rvk2k"]
 [ext_resource type="SpriteFrames" uid="uid://crleowwfeodhq" path="res://Sprites/RatSpriteFrames.tres" id="2_xqqto"]
+[ext_resource type="AudioStream" uid="uid://cyjpflsiip7xq" path="res://Sounds/gun shot.mp3" id="3_4bwry"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xqqto"]
 radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bwry"]
-radius = 35.014282
+radius = 35.0143
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l6vio"]
-radius = 206.06067
+radius = 206.061
 
 [node name="ShotgunRat" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_rvk2k")
@@ -33,3 +34,8 @@ shape = SubResource("CircleShape2D_4bwry")
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_l6vio")
+
+[node name="fsx_shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4bwry")
+volume_db = -5.0
+panning_strength = 0.0
