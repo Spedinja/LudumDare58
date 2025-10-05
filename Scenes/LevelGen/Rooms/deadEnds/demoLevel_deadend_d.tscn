@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0x2q7gjrxf7j"]
+[gd_scene load_steps=4 format=3 uid="uid://d0x2q7gjrxf7j"]
 
 [ext_resource type="Script" uid="uid://c8b7qjblbfekj" path="res://Scripts/LevelGen/room_Fragment.gd" id="1_kw6qr"]
 [ext_resource type="Texture2D" uid="uid://sphw27jbq5yl" path="res://icon.svg" id="1_ux7ik"]
+[ext_resource type="PackedScene" uid="uid://bosvx4lqdwu7d" path="res://Scenes/OtherGameObjects/caged_gecko_spawner.tscn" id="3_eajy7"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_kw6qr")
@@ -9,3 +10,6 @@ script = ExtResource("1_kw6qr")
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(336, 282)
 texture = ExtResource("1_ux7ik")
+
+[node name="CagedGecko_Spawner" parent="." instance=ExtResource("3_eajy7")]
+position = Vector2(304, 157)

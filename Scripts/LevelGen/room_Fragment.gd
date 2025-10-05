@@ -4,7 +4,7 @@ class_name Room_Fragment
 
 @export var has_cagedGecko: bool = false
 @onready var cagedgecko_scene = preload("res://Pickups/cagedBabyLizard.tscn")
-#
+
 @onready var tilemap: TileMap
 @onready var enemy_scene: PackedScene = preload("res://Scenes/Enemies/shotgun_rat.tscn")
 @export var spawn_count: int = 5
@@ -17,6 +17,7 @@ func _ready():
 		
 	var tilemap_layer = get_node_or_null("Tilemap/BaseMapLayer") as TileMapLayer
 	if not tilemap_layer:
+		push_warning(get_tree().get_current_scene())
 		push_warning("TileMapLayer not found!")
 		return
 	spawn_enemies(tilemap_layer)
