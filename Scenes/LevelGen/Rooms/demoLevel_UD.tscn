@@ -20,5 +20,6 @@ position = Vector2(334, 79)
 texture = ExtResource("1_xiwlo")
 
 [node name="Icon" type="Sprite2D" parent="Icon"]
-position = Vector2(-6, 225)
+position = Vector2(11, 232)
+scale = Vector2(1.265625, 1.109375)
 texture = ExtResource("1_xiwlo")

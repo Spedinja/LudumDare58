@@ -76,5 +76,5 @@ func spawn_enemies(tilemap_layer: TileMapLayer):
 
 		var enemy = enemy_scene.instantiate()
 		add_child(enemy)
-		enemy.global_position = world_pos
+		enemy.position = world_pos #pos not world pos
 		spawned_positions.append(world_pos)
