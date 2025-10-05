@@ -3,7 +3,7 @@ extends Node2D
 class_name Room_Fragment
 
 @export var has_cagedGecko: bool = false
-@onready var cagedgecko_scene = preload("res://Scenes/Enemies/enemy.tscn")
+@onready var cagedgecko_scene = preload("res://Pickups/cagedBabyLizard.tscn")
 #
 @onready var tilemap: TileMap
 @onready var enemy_scene: PackedScene = preload("res://Scenes/Enemies/shotgun_rat.tscn")

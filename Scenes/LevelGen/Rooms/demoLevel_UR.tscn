@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://cwdlixbq2dg6k"]
+[gd_scene load_steps=6 format=4 uid="uid://cwdlixbq2dg6k"]
 
 [ext_resource type="TileSet" uid="uid://3p8llk3kptbx" path="res://TileSets/basetileset.tres" id="1_85jsg"]
 [ext_resource type="Script" uid="uid://c8b7qjblbfekj" path="res://Scripts/LevelGen/room_Fragment.gd" id="1_wmqkb"]
 [ext_resource type="PackedScene" uid="uid://c3jg0aqx5qykd" path="res://Scenes/OtherGameObjects/gullilicht.tscn" id="2_85jsg"]
 [ext_resource type="TileSet" uid="uid://c56kn3ibt12jx" path="res://TileSets/proptileset.tres" id="2_wmqkb"]
+[ext_resource type="PackedScene" uid="uid://bosvx4lqdwu7d" path="res://Scenes/OtherGameObjects/caged_gecko_spawner.tscn" id="5_wmqkb"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_wmqkb")
@@ -20,3 +21,6 @@ tile_set = ExtResource("1_85jsg")
 [node name="PropsMapLayer" type="TileMapLayer" parent="Tilemap"]
 tile_map_data = PackedByteArray("AAAdAAkAAAAFAAEAAAAjAAMAAAAFAAEAAAATABQAAAAFAAEAAAAVAAMAAAAFAAEAAAAZAA0AAAAFAAEAAAAcABEAAAAFAAEAAAAXAAsAAAAFAAAAAQAXAAIAAAAFAAAAAAAgAAUAAAAFAAAAAAAZABMAAAAHAAIAAAAZABEAAAAHAAEAAQAiAAsAAAAHAAIAAQAZAAkAAAAHAAIAAQAWAAMAAAAHAAIAAAATAA4AAAAHAAEAAAA=")
 tile_set = ExtResource("2_wmqkb")
+
+[node name="CagedGecko_Spawner" parent="." instance=ExtResource("5_wmqkb")]
+position = Vector2(886, 389)
