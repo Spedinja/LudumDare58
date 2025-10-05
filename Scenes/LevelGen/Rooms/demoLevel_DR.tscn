@@ -333,7 +333,8 @@ position = Vector2(282, 297)
 texture = ExtResource("1_d0ifi")
 
 [node name="Icon" type="Sprite2D" parent="Icon"]
-position = Vector2(236, -87)
+position = Vector2(282, -52)
+scale = Vector2(1.71875, 1.546875)
 texture = ExtResource("1_d0ifi")
 
 [node name="Tilemap" type="Node2D" parent="."]

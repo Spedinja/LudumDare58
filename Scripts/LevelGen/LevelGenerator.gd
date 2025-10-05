@@ -310,19 +310,19 @@ func instantiateRooms():
 				room_scene.has_cagedGecko = grid_room.roomdata.isGeckoRoom
 				
 				var enemySetting:int
-				#enemy setting
-				if currEnemyCount < maxEnemyCount && room_scene.spawn_count > 0:
-					if currEnemyCount < minEnemyCount:
-						enemySetting = randi_range(0, room_scene.spawn_count)
-						room_scene.spawn_count = enemySetting
-						currEnemyCount = currEnemyCount + enemySetting
-					#otherwise random chance to add more (up to cap)
-					elif randf() < 0.5:
-						enemySetting = randi_range(0, room_scene.spawn_count)
-						room_scene.spawn_count = enemySetting
-						currEnemyCount += enemySetting
-			self.add_child(room_scene)
-	return
+				#enemy setting new
+				if currEnemyCount < maxEnemyCount && room_scene.spawn_count > 0: #
+					if currEnemyCount < minEnemyCount:#
+						enemySetting = randi_range(0, room_scene.spawn_count)#
+						room_scene.spawn_count = enemySetting#
+						currEnemyCount = currEnemyCount + enemySetting#
+					#otherwise random chance to add more (up to cap).
+					elif randf() < 0.5:#
+						enemySetting = randi_range(0, room_scene.spawn_count)#
+						room_scene.spawn_count = enemySetting#
+						currEnemyCount += enemySetting#
+			self.add_child(room_scene)#
+	return#
 
 func fixOuterBounds():
 	var boundsPos
