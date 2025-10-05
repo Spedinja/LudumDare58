@@ -28,6 +28,9 @@ var input: PlayerInput
 @export var walk_sfx: AudioStream
 @export var attack_sfx: AudioStream
 
+@export var projectile: PackedScene
+@export var upgradeLizards: Array[Lizard]
+
 func _ready() -> void:
 	player_sprite.player_head_sprite.offset = player_sprite.offset
 	_get_input()
@@ -55,13 +58,13 @@ func _process(_delta: float) -> void:
 	_get_input()
 	if Input.is_action_just_pressed("ui_cancel"):
 		$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible
-
-func _physics_process(delta: float) -> void:
-	_move(delta)
 	if input.attack_just_pressed:
 		_attack()
 	if input.dash_just_pressed and input.move_directions != Vector2.ZERO and dash_cd_timer.is_stopped():
 		_start_dashing()
+
+func _physics_process(delta: float) -> void:
+	_move(delta)
 
 func _move(delta: float):
 	if is_dashing:
@@ -106,7 +109,16 @@ func _add_dash_ghost():
 	get_parent().add_child(ghost)
 
 func _attack():
-	pass
+	print("attack")
+	var newBullet:Bullet = projectile.instantiate()
+	for buff in upgradeLizards:
+		buff.applyUpgrade(newBullet)
+		newBullet.onhits.append(buff)
+	newBullet.position = $Marker2D.global_position #+ Vector2(randi_range(0,150),randi_range(0,150))
+	var direction = (get_global_mouse_position() - newBullet.global_position).normalized()
+	newBullet.direction = direction
+	#newBullet.printStats()
+	self.get_parent().add_child(newBullet)
 
 func take_damage(amount: int):
 	if is_dashing and not iframes_timer.is_stopped():

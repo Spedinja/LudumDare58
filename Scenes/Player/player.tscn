@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfaxkwh1r2pkb"]
+[gd_scene load_steps=7 format=3 uid="uid://bfaxkwh1r2pkb"]
 
 [ext_resource type="Script" uid="uid://dms32j4b6250c" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="AudioStream" uid="uid://bvvydl66qdlk" path="res://Sounds/dash.mp3" id="2_xpcdj"]
+[ext_resource type="PackedScene" uid="uid://dys1itfd17ep" path="res://projectiles/bullet.tscn" id="3_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://dyaok0kfxc5u" path="res://Sprites/Player/gecko_animated_sprite_2d.tscn" id="3_xpcdj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f60y1"]
@@ -13,6 +14,7 @@ radius = 5.0
 z_index = 10
 script = ExtResource("1_a3d8c")
 dash_sfx = ExtResource("2_xpcdj")
+projectile = ExtResource("3_mtuoh")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("3_xpcdj")]
 offset = Vector2(0, -24)
@@ -24,3 +26,6 @@ shape = SubResource("CircleShape2D_f60y1")
 shape = SubResource("CircleShape2D_v0iea")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -39)
