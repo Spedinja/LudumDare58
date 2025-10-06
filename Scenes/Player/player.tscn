@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dys1itfd17ep" path="res://projectiles/bullet.tscn" id="3_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://dyaok0kfxc5u" path="res://Sprites/Player/gecko_animated_sprite_2d.tscn" id="3_xpcdj"]
 [ext_resource type="AudioStream" uid="uid://dn335o4gx8l1q" path="res://Sounds/hurt.mp3" id="5_gk6dx"]
+[ext_resource type="AudioStream" uid="uid://ccrcsy2hyslcy" path="res://Sounds/schleck.mp3" id="5_jhyir"]
 [ext_resource type="AudioStream" uid="uid://cavyqj80hp4t0" path="res://Sounds/step1.mp3" id="6_jhyir"]
 [ext_resource type="AudioStream" uid="uid://ci0ahppftsspx" path="res://Sounds/step2.mp3" id="7_74mp2"]
 [ext_resource type="AudioStream" uid="uid://dkd1rjocnxc8p" path="res://Sounds/game over.mp3" id="8_jhyir"]
-[ext_resource type="AudioStream" uid="uid://hmsj4uty8mnf" path="res://Sounds/spit1.mp3" id="8_oikmp"]
 [ext_resource type="AudioStream" uid="uid://cvrbbxfkg7h1w" path="res://Sounds/spit2.mp3" id="9_06tpx"]
 [ext_resource type="Shader" uid="uid://wtl81ky475ia" path="res://Shader/hitflash.gdshader" id="11_74mp2"]
 
@@ -67,7 +67,7 @@ collision_mask = 198
 script = ExtResource("1_a3d8c")
 dash_sfx = ExtResource("2_xpcdj")
 walk_sfx = Array[AudioStream]([ExtResource("6_jhyir"), ExtResource("7_74mp2")])
-attack_sfx = Array[AudioStream]([ExtResource("8_oikmp"), ExtResource("9_06tpx")])
+attack_sfx = Array[AudioStream]([ExtResource("5_jhyir"), ExtResource("9_06tpx")])
 hurt_sfx = ExtResource("5_gk6dx")
 death_sfx = ExtResource("8_jhyir")
 projectile = ExtResource("3_mtuoh")

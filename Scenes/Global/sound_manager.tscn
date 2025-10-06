@@ -26,75 +26,104 @@ enemy_for_intensity2 = 5
 
 [node name="Music Player" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+bus = &"Music"
 
 [node name="UI SFX Pool" type="Node" parent="."]
 
 [node name="UI SFX Player 0" type="AudioStreamPlayer" parent="UI SFX Pool"]
 process_mode = 3
+bus = &"Sound"
 
 [node name="UI SFX Player 1" type="AudioStreamPlayer" parent="UI SFX Pool"]
 process_mode = 3
+bus = &"Sound"
 
 [node name="UI SFX Player 2" type="AudioStreamPlayer" parent="UI SFX Pool"]
 process_mode = 3
+bus = &"Sound"
 
 [node name="UI SFX Player 3" type="AudioStreamPlayer" parent="UI SFX Pool"]
 process_mode = 3
+bus = &"Sound"
 
 [node name="UI SFX Player 4" type="AudioStreamPlayer" parent="UI SFX Pool"]
 process_mode = 3
+bus = &"Sound"
 
 [node name="Player Sounds" type="Node" parent="."]
 
 [node name="Pickup SFX Player" type="AudioStreamPlayer" parent="Player Sounds"]
 process_mode = 3
+bus = &"Sound"
 
 [node name="Movement SFX Player" type="AudioStreamPlayer" parent="Player Sounds"]
 volume_db = -6.9
+bus = &"Sound"
 
 [node name="Combat SFX Player" type="AudioStreamPlayer" parent="Player Sounds"]
 process_mode = 3
+bus = &"Sound"
 
 [node name="Attack SFX Pool" type="Node" parent="."]
 
 [node name="Spell SFX Player 0" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 1" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 2" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 3" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 4" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 5" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 6" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 7" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 8" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Spell SFX Player 9" type="AudioStreamPlayer" parent="Attack SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Pool" type="Node" parent="."]
 
 [node name="Enemy SFX Player 0" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 1" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 2" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 3" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 4" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 5" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 6" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 7" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 8" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"
 
 [node name="Enemy SFX Player 9" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+bus = &"Sound"

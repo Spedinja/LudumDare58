@@ -21,6 +21,8 @@ var follow_object
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
+	enemy_sprite.frame_changed.connect(on_animation_changed)
+
 
 func _physics_process(_delta: float) -> void:
 	_move()
@@ -75,3 +77,8 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		return
 	player_in_range = false
 	SoundManager.remove_enemy()
+	
+func on_animation_changed():
+	if enemy_sprite.animation.contains("walk"):
+		if enemy_sprite.frame == 0 || enemy_sprite.frame == 2:
+			SoundManager.play_enemy_sound(move_sfx)

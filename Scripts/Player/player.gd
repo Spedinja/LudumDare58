@@ -47,6 +47,7 @@ func _ready() -> void:
 	_initiate_timers()
 	hit_flash_animation_player.play("RESET")
 	SignalManager.player_hp_changed.emit(current_health)
+	player_sprite.frame_changed.connect(on_animation_changed)
 
 func _initiate_timers():
 	dash_timer = Timer.new()
@@ -174,6 +175,14 @@ func die():
 	# Change Player Sprite to Dead??
 	# Switch Scene or bring up Game Over Screen
 
+	
+func on_animation_changed():
+	if player_sprite.frame == 1:
+		SoundManager.play_player_sound(walk_sfx[0], SoundManager.player_sound_types.MOVEMENT)
+	elif player_sprite.frame == 3:
+		SoundManager.play_player_sound(walk_sfx[1], SoundManager.player_sound_types.MOVEMENT)
+	
+	
 func _get_input():
 	var move_direction: Vector2 = Vector2(Input.get_axis("Move Left", "Move Right"), Input.get_axis("Move Up", "Move Down"))
 	var attack_just_pressed: bool = Input.is_action_just_pressed("Attack")
