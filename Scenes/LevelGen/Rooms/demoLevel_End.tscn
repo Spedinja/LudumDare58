@@ -40,4 +40,4 @@ texture = ExtResource("4_l0t5f")
 height = 1.0
 
 [node name="Exit" parent="." instance=ExtResource("6_4wq1j")]
-position = Vector2(657, 547)
+position = Vector2(651, 545)
