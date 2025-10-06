@@ -2,7 +2,7 @@ extends Control
 
 @export var rarities: Array[String]
 # function that defines the weight for each rarity dependent on player progress from 0-100
-@export var weightFunction: String = "exp(-pow(rarity - (x/100)*(rarity_count-1), 2)/(2*spread*spread))"
+@export var weightFunction: String = "exp(-pow((rarity+1) - ((x/100) * rarityGrowth)*(rarity_count-1), 2)/(2*spread*spread))"
 # function that defines the budget for each rarity 
 @export var budgetFunction: String = "parameterCount + (rarity * (rarity + 3) * parameterCount * growth) / 8"
 #@export var parameterCount: float
@@ -11,7 +11,7 @@ extends Control
 @export var itemlist: Array[item]
 @export var failsafe: item
 @export var budgetGrowth = 1
-
+@export var rarityGrowth = 1.3
 
 func _ready() -> void:
 	pass
@@ -53,33 +53,37 @@ func calcBudget(itemtype:item):
 
 
 func calcRarityWeights(playerProgress:float):
+	print("PLAYERPROGRESS: " + str(playerProgress))
 	var rarityPercentages: Array[float]
 	var rarityCount = rarities.size()
 	var total = 0
 	# calculate rarity weights
 	for rarity in rarityCount:
 		var expr = Expression.new()
-		expr.parse(weightFunction, ["rarity", "x", "rarity_count", "spread"])
-		var rawWeight = expr.execute([float(rarity) ,playerProgress, rarityCount, spread])
+		expr.parse(weightFunction, ["rarity", "x", "rarityGrowth", "rarity_count", "spread"])
+		var rawWeight = expr.execute([float(rarity) ,playerProgress, rarityGrowth, rarityCount, spread])
 		total += rawWeight
 		rarityPercentages.append(rawWeight)
 	# normalize weights to make the total become 1
 	for i in rarityPercentages:
 		rarityPercentages[i] = rarityPercentages[i]/total * 1
+	print(rarityPercentages)
 	return rarityPercentages	
 		
 func rollItem(rarityPercentages, type):
-	print("NEWROLLLLLLLLLLLLL")
+	#print("NEWROLLLLLLLLLLLLL")
 	var maxRoll = 0
 	for i in rarityPercentages:
 		maxRoll += i
 	var diceRoll = randf_range(0,maxRoll)
 	var targetRarity
-	var checkValue = 0
+	var checkValue = 0.0
 	for weight in rarityPercentages.size():
 		checkValue += rarityPercentages[weight]
+		print("dice roll: " + str(diceRoll))
+		print("check Value: " + str(checkValue))
 		if diceRoll <= checkValue:
-			targetRarity = rarities[rarityPercentages.find(weight)]
+			targetRarity = rarities[weight]
 			print("rarity index" + str(weight))
 			break
 	#print(type.get_class())
@@ -89,14 +93,16 @@ func rollItem(rarityPercentages, type):
 		print("FAILED TO FIND ITEM, RARITY: " + targetRarity)
 		return failsafe.duplicate(true)
 	var selectedItem = filteredList[randi_range(0, filteredList.size() -1)]
+	var copy = selectedItem.duplicate(true)
 	if selectedItem.rarity == "" || selectedItem.rarity == null:
-		#print("shouldSetRarity")
-		selectedItem.rarity = targetRarity
-	print("targetRarity")
+		print("shouldSetRarity")
+		copy.rarity = targetRarity
+		
+	#print("targetRarity")
 	print(targetRarity)
-	print("selected")
-	print(selectedItem.rarity)
-	return selectedItem.duplicate(true)
+	#print("selected")
+	print(copy.rarity)
+	return copy
 		
 func assignBudget(newItem:item):
 	var total = 0

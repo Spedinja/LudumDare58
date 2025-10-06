@@ -9,7 +9,7 @@ func onHit(bullet: Bullet, hitObject):
 	var vectors = generate_circle_vectors(8, 1, Vector2(randf_range(-1,1),randf_range(-1,1)).normalized())
 	for direction in vectors:
 		var newBullet = projectile.instantiate()
-		newBullet.global_position = hitObject.global_position
+		#newBullet.global_position = hitObject.global_position
 		newBullet.direction = direction
 		var multRemover = 0
 		if(budgetStats.get("split")):
@@ -19,6 +19,7 @@ func onHit(bullet: Bullet, hitObject):
 		newBullet.speed = floor(bullet.speed / 2)
 		newBullet.hitObjects = hitObject
 		bullet.get_parent().add_child(newBullet)
+		newBullet.global_position = hitObject.global_position
 	
 	
 func generate_circle_vectors(n: int, radius: float, start_dir: Vector2) -> Array:

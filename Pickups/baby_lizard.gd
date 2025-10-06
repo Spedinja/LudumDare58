@@ -10,11 +10,27 @@ var direction = Vector2(0,0)
 @export var cage: Enemy
 var counter = 0
 var random = Vector2(0,0)
+@onready var rarity_glitter_particles: GPUParticles2D = $RarityGlitterParticles
 
 func _ready() -> void:
 	dataLizard = LootPoolSelector.select_items(1,Lizard,SignalManager.game_progression)[0]
 	gecko_sprite.sprite_frames = geckoFrames[dataLizard.id]
-
+	matchRarity()
+	
+func matchRarity():
+	match[dataLizard.rarity]:
+		["Common"]:
+			pass
+		["Rare"]:
+			rarity_glitter_particles.emitting = true
+			rarity_glitter_particles.modulate = (Color(0.897, 0.001, 0.9))
+		["Legendary"]:
+			rarity_glitter_particles.emitting = true
+			rarity_glitter_particles.modulate = (Color(0.957, 0.471, 0.027, 1.0))
+		[_]:
+			print("rarityNotFound")
+			print("DATALIZARD RARITY   " + dataLizard.rarity)
+			
 func _process(delta: float) -> void:
 	if(collected):
 		if(counter == 60):
@@ -52,7 +68,16 @@ func _set_animation():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and !collected and !caged:
 		collected = true
+		#var newLiz = dataLizard.duplicate(true)
+		#newLiz.basestats = dataLizard.basestats
+		#newLiz.budgetStats = dataLizard.budgetStats
 		body.upgradeLizards.append(dataLizard)
-		self.reparent(body,true)
-		$Area2D/CollisionShape2D.disabled = true
-		cage.die()
+		call_deferred("deferredActions", body)
+		#call_deferred("reparent", body, true)
+		#$Area2D/CollisionShape2D.disabled = true
+		#cage.call_deferred("die")
+
+func deferredActions(body: Node2D):
+	self.reparent(body, true)
+	$Area2D/CollisionShape2D.disabled = true
+	cage.die()

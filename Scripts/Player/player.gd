@@ -31,6 +31,8 @@ var input: PlayerInput
 @export var projectile: PackedScene
 @export var upgradeLizards: Array[Lizard]
 
+#var firstProcess = true
+
 func _ready() -> void:
 	player_sprite.player_head_sprite.offset = player_sprite.offset
 	_get_input()
@@ -55,6 +57,11 @@ func _initiate_timers():
 	add_child(iframes_timer)
 
 func _process(_delta: float) -> void:
+	#if(firstProcess):
+		#if(SignalManager.stored_player != null):
+			#SignalManager.on_node_added_once(self)
+			#pass
+		#firstProcess = false
 	_get_input()
 	#if Input.is_action_just_pressed("ui_cancel"):
 		#$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible

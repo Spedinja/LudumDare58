@@ -16,6 +16,7 @@ offset = Vector2(-118, 71)
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
 visible = false
 position = Vector2(-118, 77)
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
 scale = Vector2(2.2799983, 1)
