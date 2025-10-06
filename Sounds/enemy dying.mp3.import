@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b5twfo7i52k3r"
+path="res://.godot/imported/enemy dying.mp3-52548405c9ebb9e91e7a2f5e4aa9c787.mp3str"
+
+[deps]
+
+source_file="res://Sounds/enemy dying.mp3"
+dest_files=["res://.godot/imported/enemy dying.mp3-52548405c9ebb9e91e7a2f5e4aa9c787.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
