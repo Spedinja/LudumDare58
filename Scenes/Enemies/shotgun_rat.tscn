@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cou1njafwnpv6"]
+[gd_scene load_steps=9 format=3 uid="uid://cou1njafwnpv6"]
 
 [ext_resource type="Script" uid="uid://bbdudu40k3cbg" path="res://Scripts/Enemies/shotgun_rat.gd" id="1_rvk2k"]
 [ext_resource type="SpriteFrames" uid="uid://crleowwfeodhq" path="res://Sprites/RatSpriteFrames.tres" id="2_xqqto"]
 [ext_resource type="AudioStream" uid="uid://cavyqj80hp4t0" path="res://Sounds/step1.mp3" id="3_ipuxb"]
 [ext_resource type="AudioStream" uid="uid://b2f6ngartmd8r" path="res://Sounds/enemy hit.mp3" id="4_ffbss"]
+[ext_resource type="AudioStream" uid="uid://b5twfo7i52k3r" path="res://Sounds/enemy dying.mp3" id="5_ipuxb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xqqto"]
 radius = 14.0
@@ -49,3 +50,9 @@ stream = ExtResource("4_ffbss")
 [node name="sfx_step" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ipuxb")
 volume_db = -10.0
+
+[node name="sfx_dying" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ipuxb")
+volume_db = -10.0
+pitch_scale = 0.8
+panning_strength = 1.5
