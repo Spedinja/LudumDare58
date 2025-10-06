@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://baf3xp70n1piy"]
+
+[ext_resource type="PackedScene" uid="uid://d0x2q7gjrxf7j" path="res://Scenes/LevelGen/Rooms/deadEnds/demoLevel_deadend_d.tscn" id="1_kn6ev"]
+[ext_resource type="Script" uid="uid://cr6u5nyeukod6" path="res://Scripts/LevelGen/RoomData.gd" id="2_ytjl4"]
+
+[resource]
+script = ExtResource("2_ytjl4")
+hasBottomNb = true
+isDeadEnd = true
+room = ExtResource("1_kn6ev")
+metadata/_custom_type_script = "uid://cr6u5nyeukod6"

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k7nbmd2p5y1d" path="res://Scripts/LevelGen/LevelGenerator.gd" id="1_7ijpl"]
 [ext_resource type="Script" uid="uid://c617f7gig3vp3" path="res://Scripts/level.gd" id="1_sel7r"]
-[ext_resource type="Resource" uid="uid://ccjrsq5h2ow0g" path="res://ressources/LevelGen/LevelGen/availableRooms.tres" id="2_ws0e6"]
+[ext_resource type="Resource" uid="uid://6ud4rciihygp" path="res://ressources/LevelGen/LevelGen/TestRooms.tres" id="3_ca08h"]
 [ext_resource type="Resource" uid="uid://7asehwp7w7pk" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_outerbounds.tres" id="7_24kn6"]
 [ext_resource type="PackedScene" uid="uid://bt73yx40stqa2" path="res://Scenes/Menus/pause_menu.tscn" id="8_ku73c"]
 [ext_resource type="PackedScene" uid="uid://5v44di1bjjuy" path="res://Scenes/healthbar.tscn" id="9_ca08h"]
@@ -24,7 +24,7 @@ script = ExtResource("1_sel7r")
 
 [node name="LevelGenerator" type="Node" parent="."]
 script = ExtResource("1_7ijpl")
-roomPool = ExtResource("2_ws0e6")
+roomPool = ExtResource("3_ca08h")
 gridlayout = SubResource("Resource_xd1pg")
 roomWidth = 1278
 roomHeight = 1278
