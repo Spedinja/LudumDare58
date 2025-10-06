@@ -15,6 +15,7 @@ func _ready() -> void:
 	add_child(catch_up_timer)
 	catch_up_timer.timeout.connect(_catch_up_on_health_bar)
 	SignalManager.player_hp_changed.connect(_on_player_hp_changed)
+	init_health(SignalManager.player_current_health,SignalManager.player_max_health)
 
 func init_health(_health,_max_health):
 	health = _health

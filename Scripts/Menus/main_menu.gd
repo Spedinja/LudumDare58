@@ -19,6 +19,7 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	SoundManager.load_music(SoundManager.menu_types.IN_GAME)
+	SignalManager.reset_player_hp()
 	get_tree().change_scene_to_packed(SignalManager.game_scene)
 
 func _on_settings_pressed() -> void:
