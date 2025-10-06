@@ -48,18 +48,18 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="Sound" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Sound Volume" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="VolumeText" type="Label" parent="VBoxContainer/Sound"]
+[node name="SoundVolumeText" type="Label" parent="VBoxContainer/Sound Volume"]
 layout_mode = 2
 theme = ExtResource("2_nkmh8")
-text = "Volume:"
+text = "Sound:"
 vertical_alignment = 1
 
-[node name="VolumePerCent" type="Label" parent="VBoxContainer/Sound"]
+[node name="SoundVolumePerCent" type="Label" parent="VBoxContainer/Sound Volume"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme = ExtResource("2_nkmh8")
@@ -67,7 +67,31 @@ text = "100%"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="VolumeSlider" type="HSlider" parent="VBoxContainer/Sound"]
+[node name="SoundVolumeSlider" type="HSlider" parent="VBoxContainer/Sound Volume"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Music Volume" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="MusicVolumeText" type="Label" parent="VBoxContainer/Music Volume"]
+layout_mode = 2
+theme = ExtResource("2_nkmh8")
+text = "Music:"
+vertical_alignment = 1
+
+[node name="MusicVolumePerCent" type="Label" parent="VBoxContainer/Music Volume"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme = ExtResource("2_nkmh8")
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="VBoxContainer/Music Volume"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -80,5 +104,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Back"
 
-[connection signal="value_changed" from="VBoxContainer/Sound/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Sound Volume/SoundVolumeSlider" to="." method="_on_sound_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Music Volume/MusicVolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]

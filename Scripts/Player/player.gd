@@ -41,6 +41,7 @@ func _ready() -> void:
 	player_sprite.player_head_sprite.offset = player_sprite.offset
 	_get_input()
 	_initiate_timers()
+	player_sprite.frame_changed.connect(on_animation_changed)
 
 func _initiate_timers():
 	dash_timer = Timer.new()
@@ -155,6 +156,13 @@ func take_damage(amount: int):
 	SoundManager.play_player_sound(hurt_sfx,SoundManager.player_sound_types.COMBAT)
 	amount -= amount
 	iframes_timer.start(iframes_duration)
+	
+func on_animation_changed():
+	if player_sprite.frame == 1:
+		SoundManager.play_player_sound(walk_sfx[0], SoundManager.player_sound_types.MOVEMENT)
+	elif player_sprite.frame == 3:
+		SoundManager.play_player_sound(walk_sfx[1], SoundManager.player_sound_types.MOVEMENT)
+	
 	
 func _get_input():
 	var move_direction: Vector2 = Vector2(Input.get_axis("Move Left", "Move Right"), Input.get_axis("Move Up", "Move Down"))

@@ -3,15 +3,24 @@ extends Control
 @export var connection_button: Button
 @export var connection_menu: Control
 
-@onready var volume_per_cent: Label = $VBoxContainer/Sound/VolumePerCent
-@onready var volume_slider: HSlider = $VBoxContainer/Sound/VolumeSlider
-var master_idx: int
+@onready var volume_per_cent: Label = $"VBoxContainer/Music Volume/MusicVolumePerCent"
+@onready var volume_slider: HSlider = $"VBoxContainer/Music Volume/MusicVolumeSlider"
+var music_idx: int
+var sound_idx: int
+
+@onready var sound_volume_slider: HSlider = $"VBoxContainer/Sound Volume/SoundVolumeSlider"
+@onready var sound_volume_per_cent: Label = $"VBoxContainer/Sound Volume/SoundVolumePerCent"
+
 
 @onready var back_button: Button = $VBoxContainer/Back
 
 func _ready():
-	master_idx = AudioServer.get_bus_index("Master")
-	volume_slider.value = db_to_linear(AudioServer.get_bus_volume_db(master_idx)) * 100
+	music_idx = AudioServer.get_bus_index("Music")
+	volume_slider.value = db_to_linear(AudioServer.get_bus_volume_db(music_idx)) * 100
+	
+	sound_idx= AudioServer.get_bus_index("Sound")
+	sound_volume_slider.value = db_to_linear(AudioServer.get_bus_volume_db(sound_idx)) * 100
+	
 	visibility_changed.connect(_on_toggle_settings)
 
 func _on_toggle_settings():
@@ -26,7 +35,14 @@ func _on_volume_slider_value_changed(value: float) -> void:
 	volume_per_cent.text = str(int(value)) + "%"
 	# Change master volume
 	var new_volume_db = linear_to_db(value / 100.0)
-	AudioServer.set_bus_volume_db(master_idx, new_volume_db)
+	AudioServer.set_bus_volume_db(music_idx, new_volume_db)
+	
+func _on_sound_volume_slider_value_changed(value: float) -> void:
+	# Update volume label
+	sound_volume_per_cent.text = str(int(value)) + "%"
+	# Change master volume
+	var new_volume_db = linear_to_db(value / 100.0)
+	AudioServer.set_bus_volume_db(sound_idx, new_volume_db)
 
 func _on_back_pressed() -> void:
 	visible = false

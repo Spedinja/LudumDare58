@@ -162,7 +162,8 @@ func play_player_sound(sound: AudioStream, type: player_sound_types, looping: bo
 			if looping:
 				movement_sfx_player.finished.connect(play_player_sound.bind(sound,type,looping))
 			else:
-				movement_sfx_player.finished.disconnect(play_player_sound)
+				if movement_sfx_player.finished.is_connected(play_player_sound):
+					movement_sfx_player.finished.disconnect(play_player_sound)
 			movement_sfx_player.stream = sound
 			movement_sfx_player.pitch_scale = 1 + alter_offset + alter_range * randf()
 			movement_sfx_player.play()
