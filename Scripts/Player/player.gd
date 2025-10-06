@@ -195,11 +195,12 @@ func take_damage(amount: float):
 	SignalManager.player_hp_changed.emit(SignalManager.player_current_health)
 	hit_flash_animation_player.play("hitflash")
 	iframes_timer.start(iframes_duration)
-	if SignalManager.player_current_health < 0:
+	if SignalManager.player_current_health <= 0:
 		die()
 
 func die():
 	SignalManager.lizard_killed()
+	
 	# Pause Game if not switching to Main Menu
 	# Change Player Sprite to Dead??
 	# Switch Scene or bring up Game Over Screen
