@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfaxkwh1r2pkb"]
+[gd_scene load_steps=18 format=3 uid="uid://bfaxkwh1r2pkb"]
 
 [ext_resource type="Script" uid="uid://dms32j4b6250c" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="AudioStream" uid="uid://bvvydl66qdlk" path="res://Sounds/dash.mp3" id="2_xpcdj"]
@@ -10,11 +10,55 @@
 [ext_resource type="AudioStream" uid="uid://dkd1rjocnxc8p" path="res://Sounds/game over.mp3" id="8_jhyir"]
 [ext_resource type="AudioStream" uid="uid://hmsj4uty8mnf" path="res://Sounds/spit1.mp3" id="8_oikmp"]
 [ext_resource type="AudioStream" uid="uid://cvrbbxfkg7h1w" path="res://Sounds/spit2.mp3" id="9_06tpx"]
+[ext_resource type="Shader" uid="uid://wtl81ky475ia" path="res://Shader/hitflash.gdshader" id="11_74mp2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oikmp"]
+resource_local_to_scene = true
+shader = ExtResource("11_74mp2")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f60y1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v0iea"]
 radius = 5.0
+
+[sub_resource type="Animation" id="Animation_06tpx"]
+resource_name = "hitflash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:material:shader_parameter/flash_value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7g0yx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dey5f"]
+_data = {
+&"RESET": SubResource("Animation_7g0yx"),
+&"hitflash": SubResource("Animation_06tpx")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 10
@@ -29,7 +73,7 @@ death_sfx = ExtResource("8_jhyir")
 projectile = ExtResource("3_mtuoh")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("3_xpcdj")]
-animation = &"walk_side"
+material = SubResource("ShaderMaterial_oikmp")
 offset = Vector2(0, -24)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
@@ -42,3 +86,8 @@ shape = SubResource("CircleShape2D_v0iea")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -39)
+
+[node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dey5f")
+}

@@ -1,21 +1,25 @@
 extends CharacterBody2D
 
+@export_category("Movement")
 @export var movement_speed: float = 300.0
 @export var movement_acceleration = 20.0
 @export var dash_duration: float = 0.1
 @export var dash_speed: float = 1000.0
 @export var dash_cooldown: float = 2.0
 var dash_direction: Vector2
+
+@export_category("Combat")
+@export var max_health: float = 100
+var current_health = max_health
 @export var attack_cooldown: float = 1.0
+@export var iframes_duration: float = 1.0
+var iframes_timer: Timer
 
 var dash_timer: Timer
 var dash_cd_timer: Timer
 @onready var dash_ghost_scene: PackedScene = preload("res://Scenes/Player/dash_ghost.tscn")
 
 var attack_timer: Timer
-
-@export var iframes_duration: float = 1.0
-var iframes_timer: Timer
 
 var is_dashing: bool = false
 
@@ -34,13 +38,15 @@ var walk_sound_index: int = 0
 @export var projectile: PackedScene
 @export var upgradeLizards: Array[Lizard]
 
-
+@onready var hit_flash_animation_player: AnimationPlayer = $HitFlashAnimationPlayer
 #var firstProcess = true
 
 func _ready() -> void:
 	player_sprite.player_head_sprite.offset = player_sprite.offset
 	_get_input()
 	_initiate_timers()
+	hit_flash_animation_player.play("RESET")
+	SignalManager.player_hp_changed.emit(current_health)
 
 func _initiate_timers():
 	dash_timer = Timer.new()
@@ -67,7 +73,8 @@ func _process(_delta: float) -> void:
 			#pass
 		#firstProcess = false
 	_get_input()
-	#if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_accept"):
+		take_damage(10)
 		#$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible
 	if input.attack_just_pressed:
 		_attack()
@@ -113,9 +120,10 @@ func _add_dash_ghost():
 	var ghost: DashGhost = dash_ghost_scene.instantiate()
 	ghost.texture = player_sprite.sprite_frames.get_frame_texture(player_sprite.animation, player_sprite.frame)
 	ghost.offset = player_sprite.offset
-	ghost.global_position = global_position
+	#ghost.global_position = global_position
 	ghost.flip_h = player_sprite.flip_h
 	get_parent().add_child(ghost)
+	ghost.global_position = global_position
 
 func _attack():
 	#print("attack")
@@ -149,13 +157,23 @@ func _attack():
 		player_sprite.player_head_sprite.play("attack_side")
 		player_sprite.player_head_sprite.flip_h = false
 
-func take_damage(amount: int):
-	if is_dashing and not iframes_timer.is_stopped():
+func take_damage(amount: float):
+	if is_dashing or not iframes_timer.is_stopped():
 		return
 	SoundManager.play_player_sound(hurt_sfx,SoundManager.player_sound_types.COMBAT)
-	amount -= amount
+	current_health -= amount
+	SignalManager.player_hp_changed.emit(current_health)
+	hit_flash_animation_player.play("hitflash")
 	iframes_timer.start(iframes_duration)
-	
+	if current_health < 0:
+		die()
+
+func die():
+	SignalManager.lizard_killed()
+	# Pause Game if not switching to Main Menu
+	# Change Player Sprite to Dead??
+	# Switch Scene or bring up Game Over Screen
+
 func _get_input():
 	var move_direction: Vector2 = Vector2(Input.get_axis("Move Left", "Move Right"), Input.get_axis("Move Up", "Move Down"))
 	var attack_just_pressed: bool = Input.is_action_just_pressed("Attack")
