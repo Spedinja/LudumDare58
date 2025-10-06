@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnbpan4533fkv"]
+
+[ext_resource type="Theme" uid="uid://blmhpsohrghdx" path="res://Themes/healthbar.tres" id="1_tmk30"]
+[ext_resource type="Script" uid="uid://ccoaweneifxnu" path="res://Scripts/enemy_health_bar.gd" id="2_8mcmy"]
+[ext_resource type="Theme" uid="uid://b4n5womqughgl" path="res://Themes/damagebar.tres" id="3_fmcfg"]
+
+[node name="EnemyHealthBar" type="ProgressBar"]
+offset_right = 32.0
+offset_bottom = 4.0
+theme = ExtResource("1_tmk30")
+value = 60.0
+show_percentage = false
+script = ExtResource("2_8mcmy")
+
+[node name="DamageBar" type="ProgressBar" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_fmcfg")
+value = 80.0
+show_percentage = false

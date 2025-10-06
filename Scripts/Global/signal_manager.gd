@@ -1,5 +1,12 @@
 extends Node
 
+@export var player_max_health: float = 100
+var player_current_health = player_max_health
+
+func reset_player_hp():
+	player_current_health = player_max_health
+	player_hp_changed.emit(player_current_health)
+
 signal player_hp_changed(new_value: float)
 signal go_to_next_layer
 

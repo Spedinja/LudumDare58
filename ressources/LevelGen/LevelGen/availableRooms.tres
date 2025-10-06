@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cr6u5nyeukod6" path="res://Scripts/LevelGen/RoomData.gd" id="1_l5bjr"]
 [ext_resource type="Script" uid="uid://cyerxkt5jvdvu" path="res://Scripts/LevelGen/RoomPool.gd" id="2_3aqvi"]
-[ext_resource type="Resource" uid="uid://cg7v6pylpvqak" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_U.tres" id="4_ut43u"]
-[ext_resource type="Resource" uid="uid://cg7v6pylpvqak" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_D.tres" id="5_hgki4"]
+[ext_resource type="Resource" uid="uid://cg7v6pylpvqak" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_U.tres" id="5_hgki4"]
 [ext_resource type="Resource" uid="uid://crbcjiy2a5ppp" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_L.tres" id="5_phhi5"]
+[ext_resource type="Resource" uid="uid://cg7v6pylpvqak" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_D.tres" id="5_x8ljf"]
 [ext_resource type="Resource" uid="uid://c2ctsqh1oc1im" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_R.tres" id="6_ofcbw"]
 [ext_resource type="Resource" uid="uid://r27nckoaxrtj" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_all.tres" id="8_7c56p"]
 [ext_resource type="Resource" uid="uid://dah73yf382s6h" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_LB.tres" id="8_qm6iv"]
@@ -20,5 +20,5 @@
 
 [resource]
 script = ExtResource("2_3aqvi")
-rooms = Array[ExtResource("1_l5bjr")]([ExtResource("5_phhi5"), ExtResource("6_ofcbw"), ExtResource("4_ut43u"), ExtResource("5_hgki4"), ExtResource("8_7c56p"), ExtResource("9_ynylg"), ExtResource("8_qm6iv"), ExtResource("9_wbn0w"), ExtResource("10_gv46r"), ExtResource("11_t2181"), ExtResource("14_todqe"), ExtResource("15_466f2"), ExtResource("16_holyc"), ExtResource("17_0mgj5"), ExtResource("18_dwn5m")])
+rooms = Array[ExtResource("1_l5bjr")]([ExtResource("5_phhi5"), ExtResource("6_ofcbw"), ExtResource("5_hgki4"), ExtResource("5_x8ljf"), ExtResource("8_7c56p"), ExtResource("9_ynylg"), ExtResource("8_qm6iv"), ExtResource("9_wbn0w"), ExtResource("10_gv46r"), ExtResource("11_t2181"), ExtResource("14_todqe"), ExtResource("15_466f2"), ExtResource("16_holyc"), ExtResource("17_0mgj5"), ExtResource("18_dwn5m")])
 metadata/_custom_type_script = "uid://cyerxkt5jvdvu"

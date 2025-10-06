@@ -16,9 +16,9 @@ var follow_object
 
 @onready var detection_area: Area2D = $DetectionArea
 
-@onready var sfx_damage: AudioStreamPlayer2D = $sfx_damage
-@onready var sfx_step: AudioStreamPlayer2D = $sfx_step
-@onready var sfx_dying: AudioStreamPlayer2D = $sfx_dying
+@onready var sfx_damage: AudioStreamPlayer2D = get_node_or_null("sfx_damage")
+@onready var sfx_step: AudioStreamPlayer2D = get_node_or_null("sfx_step")
+@onready var sfx_dying: AudioStreamPlayer2D = get_node_or_null("sfx_dying")
 
 var vfx_fireScene:PackedScene  = preload("res://Scenes/OtherGameObjects/fire_particles.tscn")
 var vfx_coldScene:PackedScene  = preload("res://Scenes/OtherGameObjects/iceparticle.tscn")

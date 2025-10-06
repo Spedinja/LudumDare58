@@ -1,12 +1,12 @@
-extends TextureProgressBar
-class_name HealthBar
+extends ProgressBar
+class_name EnemyHealthBar
 
 var catch_up_timer: Timer
 @export var catch_up_delay: float = 0.4
 
 @onready var damage_bar: TextureProgressBar = $DamageBar
 
-var health = 0
+var health = 0: set = _set_health
 
 func _ready() -> void:
 	catch_up_timer = Timer.new()
@@ -14,7 +14,6 @@ func _ready() -> void:
 	catch_up_timer.wait_time = catch_up_delay
 	add_child(catch_up_timer)
 	catch_up_timer.timeout.connect(_catch_up_on_health_bar)
-	SignalManager.player_hp_changed.connect(_on_player_hp_changed)
 	init_health(SignalManager.player_current_health,SignalManager.player_max_health)
 
 func init_health(_health,_max_health):
@@ -24,15 +23,18 @@ func init_health(_health,_max_health):
 	damage_bar.max_value = _max_health
 	damage_bar.value = _health
 
-func _on_player_hp_changed(new_value: float):
+func _set_health(new_value: float):
 	var prev_health = health
 	health = min(max_value, new_value)
 	value = health
 	
+	if health <= 0:
+		queue_free()
+	
 	if health < prev_health:
 		catch_up_timer.start()
 	else:
-		damage_bar.value = health
+		_catch_up_on_health_bar()
 
 func _catch_up_on_health_bar():
 	damage_bar.value = health
