@@ -9,9 +9,7 @@ extends CharacterBody2D
 var dash_direction: Vector2
 
 @export_category("Combat")
-@export var max_health: float = 100
-var current_health = max_health
-@export var attack_cooldown: float = 1.0
+@export var attack_cooldown: float = 0.5
 @export var iframes_duration: float = 1.0
 var iframes_timer: Timer
 
@@ -22,6 +20,7 @@ var dash_cd_timer: Timer
 var attack_timer: Timer
 
 var is_dashing: bool = false
+var is_attacking: bool = false
 
 var input: PlayerInput
 
@@ -46,7 +45,7 @@ func _ready() -> void:
 	_get_input()
 	_initiate_timers()
 	hit_flash_animation_player.play("RESET")
-	SignalManager.player_hp_changed.emit(current_health)
+	SignalManager.player_hp_changed.emit(SignalManager.player_current_health)
 	player_sprite.frame_changed.connect(on_animation_changed)
 
 func _initiate_timers():
@@ -78,6 +77,10 @@ func _process(_delta: float) -> void:
 		take_damage(10)
 		#$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible
 	if input.attack_just_pressed:
+		is_attacking = true
+	if input.attack_just_released:
+		is_attacking = false
+	if is_attacking:
 		_attack()
 	if input.dash_just_pressed and input.move_directions != Vector2.ZERO and dash_cd_timer.is_stopped():
 		_start_dashing()
@@ -128,6 +131,9 @@ func _add_dash_ghost():
 
 func _attack():
 	#print("attack")
+	if not attack_timer.is_stopped():
+		return
+	attack_timer.start(attack_cooldown)
 	if upgradeLizards.size() > 5:
 		SoundManager.play_player_sound(attack_sfx[1],SoundManager.player_sound_types.COMBAT, false, -0.2, 0.4)
 	else:
@@ -162,11 +168,11 @@ func take_damage(amount: float):
 	if is_dashing or not iframes_timer.is_stopped():
 		return
 	SoundManager.play_player_sound(hurt_sfx,SoundManager.player_sound_types.COMBAT)
-	current_health -= amount
-	SignalManager.player_hp_changed.emit(current_health)
+	SignalManager.player_current_health -= amount
+	SignalManager.player_hp_changed.emit(SignalManager.player_current_health)
 	hit_flash_animation_player.play("hitflash")
 	iframes_timer.start(iframes_duration)
-	if current_health < 0:
+	if SignalManager.player_current_health < 0:
 		die()
 
 func die():
@@ -186,21 +192,25 @@ func on_animation_changed():
 func _get_input():
 	var move_direction: Vector2 = Vector2(Input.get_axis("Move Left", "Move Right"), Input.get_axis("Move Up", "Move Down"))
 	var attack_just_pressed: bool = Input.is_action_just_pressed("Attack")
+	var attack_just_released: bool = Input.is_action_just_released("Attack")
 	var dash_just_pressed: bool = Input.is_action_just_pressed("Dash")
-	input = PlayerInput.new(move_direction, attack_just_pressed, dash_just_pressed)
+	input = PlayerInput.new(move_direction, attack_just_pressed, attack_just_released, dash_just_pressed)
 
 class PlayerInput:
 	var move_directions: Vector2 = Vector2.ZERO
 	var attack_just_pressed: bool = false
+	var attack_just_released: bool = false
 	var dash_just_pressed: bool = false
 
-	func _init(_move_directions, _attack_just_pressed, _dash_just_pressed) -> void:
+	func _init(_move_directions, _attack_just_pressed, _attack_just_released, _dash_just_pressed) -> void:
 		move_directions = _move_directions
 		attack_just_pressed = _attack_just_pressed
+		attack_just_released = _attack_just_released
 		dash_just_pressed = _dash_just_pressed
 
 	func _to_string() -> String:
 		var tmp_str = "Movement Directions: " + str(move_directions) + ",\n"
 		tmp_str += "Attack just pressed: " + str(attack_just_pressed) + ",\n"
+		tmp_str += "Attack just released: " + str(attack_just_released) + ",\n"
 		tmp_str += "Dash just pressed: " + str(dash_just_pressed) + ",\n"
 		return tmp_str
