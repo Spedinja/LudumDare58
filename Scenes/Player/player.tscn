@@ -74,6 +74,7 @@ projectile = ExtResource("3_mtuoh")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("3_xpcdj")]
 material = SubResource("ShaderMaterial_74mp2")
+animation = &"walk_down"
 offset = Vector2(0, -24)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

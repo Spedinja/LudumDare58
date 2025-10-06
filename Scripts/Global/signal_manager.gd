@@ -8,6 +8,7 @@ func reset_player_hp():
 	player_hp_changed.emit(player_current_health)
 
 signal player_hp_changed(new_value: float)
+signal player_died
 signal go_to_next_layer
 
 var main_menu_scene: PackedScene = preload("res://Scenes/Menus/main_menu.tscn")
@@ -17,6 +18,8 @@ var game_progression: float = 0.0
 var cleared_layers: int = 0
 var stored_player: Node = null
 var roomGenCd = false
+
+var current_lizard: String = ""
 
 var lizards_killed: int = 0
 var lizard_names: Array[String] = [
@@ -53,6 +56,7 @@ var lizard_names: Array[String] = [
 
 func _ready():
 	connect("go_to_next_layer", Callable(self, "generate_new_dungeon"))
+	get_new_lizard()
 	return
 	
 
@@ -109,9 +113,14 @@ func on_node_added_once(node: Node) -> void:
 
 func lizard_killed():
 	lizards_killed += 1
+	player_died.emit()
+	get_new_lizard()
 
 func get_current_lizard() -> String:
-	var current_lizard: String
+	return current_lizard
+
+func get_new_lizard():
+	current_lizard = ""
 	# lizards_killed % lizard_names.size()
 	var lizard_index = randi_range(0, lizard_names.size() - 1)
 	current_lizard = lizard_names[lizard_index]
@@ -130,7 +139,10 @@ func get_current_lizard() -> String:
 		100:
 			current_lizard = "Why are you killing all dem cute Lizards :("
 			special = true
+		666:
+			current_lizard = "You are truely cruel"
+			special = true
 	if not special:
 		current_lizard += "\nthe Lizard Wizard"
 	
-	return current_lizard
+	# return current_lizard

@@ -73,7 +73,9 @@ func _process(_delta: float) -> void:
 			#pass
 		#firstProcess = false
 	_get_input()
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("DEBUG_Kill_Player"):
+		take_damage(999999999)
+	if Input.is_action_just_pressed("DEBUG_Damage_Player"):
 		take_damage(10)
 		#$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible
 	if input.attack_just_pressed:

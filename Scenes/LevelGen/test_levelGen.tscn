@@ -1,12 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cp8v4tol0gncu"]
+[gd_scene load_steps=14 format=3 uid="uid://cp8v4tol0gncu"]
 
 [ext_resource type="Script" uid="uid://k7nbmd2p5y1d" path="res://Scripts/LevelGen/LevelGenerator.gd" id="1_7ijpl"]
+[ext_resource type="Script" uid="uid://c617f7gig3vp3" path="res://Scripts/level.gd" id="1_sel7r"]
 [ext_resource type="Resource" uid="uid://ccjrsq5h2ow0g" path="res://ressources/LevelGen/LevelGen/availableRooms.tres" id="2_ws0e6"]
 [ext_resource type="Resource" uid="uid://7asehwp7w7pk" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_outerbounds.tres" id="7_24kn6"]
 [ext_resource type="PackedScene" uid="uid://bt73yx40stqa2" path="res://Scenes/Menus/pause_menu.tscn" id="8_ku73c"]
+[ext_resource type="PackedScene" uid="uid://5v44di1bjjuy" path="res://Scenes/healthbar.tscn" id="9_ca08h"]
 [ext_resource type="Script" uid="uid://blvxb2vdaey4e" path="res://Scripts/LevelGen/GridRoom.gd" id="9_firwl"]
+[ext_resource type="Theme" uid="uid://bfxs2u7huev6o" path="res://Themes/MainMenuTheme.tres" id="10_8dcgx"]
 [ext_resource type="Resource" uid="uid://ctu5uk115v14w" path="res://ressources/LevelGen/LevelGen/Rooms/room_Start.tres" id="10_lrltm"]
 [ext_resource type="Script" uid="uid://cw57wdy0dhja6" path="res://Scripts/LevelGen/GridLayout.gd" id="10_opaxf"]
+[ext_resource type="PackedScene" uid="uid://3r28gkrulsft" path="res://Scenes/Menus/game_button.tscn" id="11_ca08h"]
 [ext_resource type="Resource" uid="uid://bnxu76nv36ifb" path="res://ressources/LevelGen/LevelGen/Rooms/room_End.tres" id="11_h7en0"]
 
 [sub_resource type="Resource" id="Resource_xd1pg"]
@@ -16,6 +20,7 @@ height = 50
 metadata/_custom_type_script = "uid://cw57wdy0dhja6"
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_sel7r")
 
 [node name="LevelGenerator" type="Node" parent="."]
 script = ExtResource("1_7ijpl")
@@ -34,6 +39,75 @@ start_exitchance = 1.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5
 
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("9_ca08h")]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 58.0
+offset_bottom = 58.0
+
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("8_ku73c")]
 process_mode = 3
 visible = false
+
+[node name="Game Over Screen" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Game Over Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -170.0
+offset_right = 310.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_8dcgx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Game Over Screen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Depth" type="Label" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Depth: XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LizardNameDied" type="Label" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Why are you killing all dem cute Lizards :("
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+
+[node name="BackToMenu" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer" instance=ExtResource("11_ca08h")]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Back to Menu"
+
+[connection signal="pressed" from="CanvasLayer/Game Over Screen/Panel/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
