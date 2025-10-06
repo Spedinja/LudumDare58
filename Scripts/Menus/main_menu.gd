@@ -2,7 +2,7 @@ extends Control
 
 @onready var lizard_text: Label = $LizardText
 
-@onready var game_scene: PackedScene # = preload()
+@export var game_scene: PackedScene = preload("res://Scenes/LevelGen/test_levelGen.tscn")
 @onready var credits: ColorRect = $Credits
 @onready var settings: Control = $Settings
 

@@ -10,6 +10,9 @@ class_name PauseMenu
 @onready var resume_button: Button = $Pause/Resume
 @onready var settings_button: Button = $Pause/Settings
 
+func _process(delta: float) -> void:
+	if(Input.is_action_just_pressed("ui_cancel")):
+		self.visible = !self.visible
 func _ready() -> void:
 	visibility_changed.connect(_on_toggle_pause_menu)
 

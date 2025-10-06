@@ -12,4 +12,6 @@ script = ExtResource("2_jhwlr")
 [node name="GeckoHead_AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15)
 sprite_frames = ExtResource("2_dcxxv")
-animation = &"attack_down"
+autoplay = "default"
+
+[connection signal="animation_finished" from="GeckoHead_AnimatedSprite2D" to="." method="_on_gecko_head_animated_sprite_2d_animation_finished"]

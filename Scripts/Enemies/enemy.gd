@@ -27,7 +27,7 @@ func _move():
 	if not player_in_range:
 		enemy_sprite.pause()
 		return
-	var direction = (follow_object.position - global_position).normalized()
+	var direction = (follow_object.global_position - global_position).normalized()
 	
 	var angle = direction.angle()
 	if angle > -PI/4 and angle <= PI/4:

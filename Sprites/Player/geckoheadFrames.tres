@@ -15,13 +15,7 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_63sg5")
-}, {
-"duration": 1.0,
-"texture": null
 }],
 "loop": false,
 "name": &"attack_down",
@@ -29,13 +23,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_hkx4k")
-}, {
-"duration": 1.0,
-"texture": null
 }],
 "loop": false,
 "name": &"attack_side",
