@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyaok0kfxc5u"]
 
-[ext_resource type="SpriteFrames" uid="uid://dors3qmcx0agf" path="res://Sprites/Player/geckobodyFrames.tres" id="1_ckbps"]
+[ext_resource type="SpriteFrames" uid="uid://cufdsvm0pfu4b" path="res://Sprites/Player/geckobodyFramesheadless.tres" id="1_dcxxv"]
 [ext_resource type="SpriteFrames" uid="uid://dnhu5tth57a41" path="res://Sprites/Player/geckoheadFrames.tres" id="2_dcxxv"]
 [ext_resource type="Script" uid="uid://c7cny861e7ml0" path="res://Scripts/Player/player_animated_sprite.gd" id="2_jhwlr"]
 
 [node name="Gecko_AnimatedSprite2D" type="AnimatedSprite2D"]
-sprite_frames = ExtResource("1_ckbps")
+sprite_frames = ExtResource("1_dcxxv")
 animation = &"walk_up"
 script = ExtResource("2_jhwlr")
 
 [node name="GeckoHead_AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15)
 sprite_frames = ExtResource("2_dcxxv")
+animation = &"attack_up"
 autoplay = "default"
 
 [connection signal="animation_finished" from="GeckoHead_AnimatedSprite2D" to="." method="_on_gecko_head_animated_sprite_2d_animation_finished"]

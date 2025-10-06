@@ -101,6 +101,7 @@ Dash={
 2d_physics/layer_6="friendly Projectiles"
 2d_physics/layer_7="enemy Projectiles"
 2d_physics/layer_8="collectibles"
+2d_physics/layer_9="non projectileblock walls"
 
 [rendering]
 

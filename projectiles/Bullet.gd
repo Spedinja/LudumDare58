@@ -21,6 +21,7 @@ var onhits: Array[Lizard]
 var hitObjects
 
 @export var hit_sfx: AudioStream
+@export var hit_vfx: PackedScene
 
 func _ready() -> void:
 	$lifetime.wait_time = lifetime
@@ -73,6 +74,7 @@ func _physics_process(delta):
 					hit.onHit(self, result.collider)
 			match [int(pierce), int(bounce)]:
 				[0, 0]:
+					spawn_hit_vfx()
 					call_deferred("queue_free")
 				[0, _]:
 					#print("-bounce")
@@ -84,6 +86,7 @@ func _physics_process(delta):
 		else:
 			hitObjects = result.collider
 			if(bounce == 0):
+				spawn_hit_vfx()
 				call_deferred("queue_free")
 			else:
 				#print("-bounce")
@@ -189,3 +192,8 @@ func _on_lifetime_timeout() -> void:
 #func _on_area_2d_body_exited(_body: Node2D) -> void:
 	#print("revert")
 	#alreadyReduced = false
+	
+func spawn_hit_vfx():
+	var hit_vfx_instance : GPUParticles2D = hit_vfx.instantiate()
+	get_tree().root.add_child(hit_vfx_instance)
+	hit_vfx_instance.position = self.global_position

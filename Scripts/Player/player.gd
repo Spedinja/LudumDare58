@@ -104,14 +104,36 @@ func _set_animation():
 	elif angle > -PI/4 and angle <= PI/4:
 		player_sprite.play("walk_side")
 		player_sprite.flip_h = true
+		
+		player_sprite.current_default = "default_side"
+		if !player_sprite.player_head_sprite.animation.contains("attack"):
+			player_sprite.player_head_sprite.play("default_side")
+			player_sprite.player_head_sprite.flip_h = true
 	elif angle > PI/4 and angle <= 3*PI/4:
 		player_sprite.play("walk_down")
+		
+		player_sprite.current_default = "default_down"
+		if !player_sprite.player_head_sprite.animation.contains("attack"):
+			player_sprite.player_head_sprite.play("default_down")
+
 	elif angle > -3*PI/4 and angle <= -PI/4:
 		player_sprite.play("walk_up")
+		
+		player_sprite.current_default = "default_up"
+		if !player_sprite.player_head_sprite.animation.contains("attack"):
+			player_sprite.player_head_sprite.play("default_up")
+
 	elif angle <= -3*PI/4 or angle > 3*PI/4:
 		player_sprite.play("walk_side")
 		player_sprite.flip_h = false
+		
+		player_sprite.current_default = "default_side"
+		if !player_sprite.player_head_sprite.animation.contains("attack"):
+			player_sprite.player_head_sprite.play("default_side")
+			player_sprite.player_head_sprite.flip_h = false
 	
+	
+		
 
 func _start_dashing():
 	is_dashing = true
@@ -159,6 +181,7 @@ func _attack():
 	elif angle > PI/4 and angle <= 3*PI/4:
 		player_sprite.player_head_sprite.play("attack_down")
 	elif angle > -3*PI/4 and angle <= -PI/4:
+		player_sprite.player_head_sprite.play("attack_up")
 		pass
 	elif angle <= -3*PI/4 or angle > 3*PI/4:
 		player_sprite.player_head_sprite.play("attack_side")
