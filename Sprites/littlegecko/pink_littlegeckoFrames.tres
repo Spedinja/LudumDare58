@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://burt7c5xj1vrb"]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://burt7c5xj1vrb"]
 
 [ext_resource type="Texture2D" uid="uid://6bp6gbh6vqru" path="res://Sprites/littlegecko/littlegeckopink.png" id="1_txcsy"]
 
@@ -13,6 +13,30 @@ region = Rect2(192, 0, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjnfo"]
 atlas = ExtResource("1_txcsy")
 region = Rect2(288, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txcsy"]
+atlas = ExtResource("1_txcsy")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pquke"]
+atlas = ExtResource("1_txcsy")
+region = Rect2(224, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdk5s"]
+atlas = ExtResource("1_txcsy")
+region = Rect2(320, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hngx3"]
+atlas = ExtResource("1_txcsy")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h834w"]
+atlas = ExtResource("1_txcsy")
+region = Rect2(256, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oueds"]
+atlas = ExtResource("1_txcsy")
+region = Rect2(352, 0, 32, 48)
 
 [resource]
 animations = [{
@@ -33,12 +57,36 @@ animations = [{
 "name": &"walk_down",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txcsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pquke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txcsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdk5s")
+}],
 "loop": true,
 "name": &"walk_side",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hngx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h834w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hngx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oueds")
+}],
 "loop": true,
 "name": &"walk_up",
 "speed": 5.0

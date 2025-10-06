@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5j5cpnmpt8no"]
+
+[ext_resource type="Texture2D" uid="uid://bmwa311wvvocx" path="res://Sprites/iceparticle.png" id="1_e8524"]
+[ext_resource type="Material" uid="uid://bhn0yag3q48hv" path="res://Sprites/ppms/iceppm.tres" id="2_8arrh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m1uok"]
+blend_mode = 1
+
+[node name="Iceparticle" type="GPUParticles2D"]
+self_modulate = Color(1, 0.972549, 1, 1)
+material = SubResource("CanvasItemMaterial_m1uok")
+amount = 3
+texture = ExtResource("1_e8524")
+lifetime = 1.7
+process_material = ExtResource("2_8arrh")

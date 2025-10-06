@@ -27,7 +27,7 @@ func _move():
 	if not player_in_range:
 		enemy_sprite.pause()
 		return
-	var direction = (follow_object.position - position).normalized()
+	var direction = (follow_object.position - global_position).normalized()
 	
 	var angle = direction.angle()
 	if angle > -PI/4 and angle <= PI/4:
@@ -44,7 +44,8 @@ func _move():
 		enemy_sprite.pause()
 	
 	velocity = direction * speed
-	move_and_slide()
+	if global_position.distance_to(follow_object.position) > 3:
+		move_and_slide()
 
 func _attack():
 	if not player_in_range:
@@ -56,7 +57,7 @@ func take_damage(amount: float):
 		die()
 
 func die():
-	queue_free()
+	call_deferred("queue_free")
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Player"):

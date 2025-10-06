@@ -42,6 +42,7 @@ animations = [{
 }]
 
 [node name="Bullet" type="Node2D"]
+z_index = 15
 script = ExtResource("1_a3dlt")
 speed = 450.0
 

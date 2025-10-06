@@ -60,10 +60,14 @@ func lizard_killed():
 
 func get_current_lizard() -> String:
 	var current_lizard: String
-	current_lizard = lizard_names[lizards_killed % lizard_names.size()]
+	# lizards_killed % lizard_names.size()
+	var lizard_index = randi_range(0, lizard_names.size() - 1)
+	current_lizard = lizard_names[lizard_index]
 	var special: bool = false
 # +1 because the number of the current lizard is always the number of killed lizards +1
 	match lizards_killed+1:
+		1:
+			current_lizard = "Larry"
 		20:
 			current_lizard = "Please don't kill me too-ary"
 		42:

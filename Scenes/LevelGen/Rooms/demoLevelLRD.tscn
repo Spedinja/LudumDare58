@@ -1,25 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://u6muo43cknna"]
+[gd_scene load_steps=6 format=4 uid="uid://u6muo43cknna"]
 
 [ext_resource type="Script" uid="uid://c8b7qjblbfekj" path="res://Scripts/LevelGen/room_Fragment.gd" id="1_cuia6"]
 [ext_resource type="TileSet" uid="uid://3p8llk3kptbx" path="res://TileSets/basetileset.tres" id="1_fwfik"]
-[ext_resource type="Texture2D" uid="uid://sphw27jbq5yl" path="res://icon.svg" id="1_ye2jf"]
-[ext_resource type="Texture2D" uid="uid://u4sjonvcfs7f" path="res://Sprites/Tilemaps/propmap.png" id="2_cuia6"]
-[ext_resource type="Texture2D" uid="uid://b7gtmlbnfhd75" path="res://Sprites/Main_Geko.png" id="3_4d7bw"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n437n"]
-texture = ExtResource("2_cuia6")
-texture_region_size = Vector2i(32, 32)
-5:0/0 = 0
-3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:2/0 = 0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_g7tel"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 121
-sources/0 = SubResource("TileSetAtlasSource_n437n")
+[ext_resource type="TileSet" uid="uid://c56kn3ibt12jx" path="res://TileSets/proptileset.tres" id="3_cuia6"]
+[ext_resource type="PackedScene" uid="uid://c3jg0aqx5qykd" path="res://Scenes/OtherGameObjects/gullilicht.tscn" id="4_4d7bw"]
+[ext_resource type="PackedScene" uid="uid://bosvx4lqdwu7d" path="res://Scenes/OtherGameObjects/caged_gecko_spawner.tscn" id="5_cuia6"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_cuia6")
@@ -32,21 +17,20 @@ tile_map_data = PackedByteArray("AAAmACYAAAACAAYAAAAmACUAAAACAAYAAAAmACQAAAACAAY
 tile_set = ExtResource("1_fwfik")
 
 [node name="PropsMapLayer" type="TileMapLayer" parent="Tilemap"]
-tile_map_data = PackedByteArray("AAAEAAMAAAADAAIAAAAFAAMAAAADAAIAAAAGAAMAAAADAAIAAAAGAAQAAAADAAIAAAAFAAUAAAADAAIAAAAEAAUAAAADAAIAAAAEAAQAAAADAAIAAAAGAAUAAAADAAIAAAAQAAMAAAADAAIAAAAPAAMAAAAEAAIAAAARAAMAAAAEAAIAAAASAAQAAAAEAAIAAAARAAUAAAADAAIAAAAPAAQAAAADAAIAAAAPAAUAAAAEAAIAAAAQAAUAAAADAAIAAAA=")
-tile_set = SubResource("TileSet_g7tel")
+tile_map_data = PackedByteArray("AAAJAB4AAAAFAAAAAQAeAA0AAAAFAAAAAQAcAA0AAAAFAAAAAQAQAA0AAAAFAAAAAQANAA0AAAAFAAAAAQAIABYAAAAHAAIAAQANABUAAAAHAAEAAQAOABkAAAAHAAIAAAAMABoAAAAHAAEAAAAFABMAAAAHAAIAAQABAA4AAAAHAAIAAAANAA4AAAAHAAEAAQAYABUAAAAHAAEAAAAbABQAAAAHAAEAAAAcABcAAAAHAAIAAAAfABoAAAAHAAIAAQAhABsAAAAHAAIAAQAiABUAAAAHAAEAAAAeABAAAAAHAAEAAAAXABoAAAAGAAEAAQAFABwAAAAGAAEAAQAGAA4AAAAGAAEAAQA=")
+tile_set = ExtResource("3_cuia6")
 
-[node name="MainGeko" type="Sprite2D" parent="Tilemap"]
-position = Vector2(1193, 664)
-texture = ExtResource("3_4d7bw")
+[node name="gullilicht" parent="." instance=ExtResource("4_4d7bw")]
+position = Vector2(249, 644)
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(78, 173)
-texture = ExtResource("1_ye2jf")
+[node name="gullilicht2" parent="." instance=ExtResource("4_4d7bw")]
+position = Vector2(958, 646)
 
-[node name="Icon2" type="Sprite2D" parent="."]
-position = Vector2(522, 157)
-texture = ExtResource("1_ye2jf")
+[node name="gullilicht3" parent="." instance=ExtResource("4_4d7bw")]
+position = Vector2(267, 1090)
 
-[node name="Icon3" type="Sprite2D" parent="."]
-position = Vector2(384, 291)
-texture = ExtResource("1_ye2jf")
+[node name="gullilicht4" parent="." instance=ExtResource("4_4d7bw")]
+position = Vector2(966, 1050)
+
+[node name="CagedGecko_Spawner" parent="." instance=ExtResource("5_cuia6")]
+position = Vector2(593, 636)
