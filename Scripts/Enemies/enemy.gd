@@ -12,6 +12,8 @@ var cooldownTimer: Timer
 var player_in_range: bool = false
 var follow_object
 
+var dedge: bool = false
+
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 
 @onready var detection_area: Area2D = $DetectionArea
@@ -19,6 +21,8 @@ var follow_object
 @onready var sfx_damage: AudioStreamPlayer2D = get_node_or_null("sfx_damage")
 @onready var sfx_step: AudioStreamPlayer2D = get_node_or_null("sfx_step")
 @onready var sfx_dying: AudioStreamPlayer2D = get_node_or_null("sfx_dying")
+
+@onready var enemy_health_bar: EnemyHealthBar = $EnemyHealthBar
 
 var vfx_fireScene:PackedScene  = preload("res://Scenes/OtherGameObjects/fire_particles.tscn")
 var vfx_coldScene:PackedScene  = preload("res://Scenes/OtherGameObjects/iceparticle.tscn")
@@ -30,6 +34,8 @@ var burnStacks = 0
 var maxHp = health
 
 func _ready() -> void:
+	enemy_health_bar.init_health(health, maxHp)
+	
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
 	enemy_sprite.frame_changed.connect(on_animation_changed)
@@ -129,11 +135,15 @@ func _attack() -> bool:
 
 	
 func take_damage(amount: float):
+	if dedge:
+		return
 	health -= amount
+	enemy_health_bar._set_health(health)
 	sfx_damage.play()
 	if health <= 0:
-		pass
+		dedge = true
 		sfx_dying.play()
+	
 
 func die():
 	vfx_cold.call_deferred("queue_free")

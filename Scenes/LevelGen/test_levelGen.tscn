@@ -87,6 +87,14 @@ text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LizardNameDied" type="Label" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Why are you killing all dem cute Lizards :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Depth" type="Label" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -94,15 +102,15 @@ text = "Depth: XXX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LizardNameDied" type="Label" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
+[node name="LizardCount" type="Label" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Why are you killing all dem cute Lizards :("
+text = "Lizards Collected: XXX"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Control" type="Control" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 78)
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 
 [node name="BackToMenu" parent="CanvasLayer/Game Over Screen/Panel/VBoxContainer" instance=ExtResource("11_ca08h")]

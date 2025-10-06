@@ -8,8 +8,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dim5xhkpvhtv2" path="res://Sprites/littlegecko/littlegeckobaseFrames.tres" id="6_mwnu7"]
 [ext_resource type="SpriteFrames" uid="uid://c10nofp4s2p84" path="res://Sprites/littlegecko/slamander_littlegeckoFrames.tres" id="7_qg0dx"]
 [ext_resource type="AudioStream" uid="uid://dbaqd7fvqwcrq" path="res://Sounds/collect upgrade.mp3" id="8_8sgmn"]
-[ext_resource type="PackedScene" uid="uid://chgj4j4veyuq1" path="res://Scenes/OtherGameObjects/rarity_glitter_particles.tscn" id="8_c4yp8"]
-[ext_resource type="SpriteFrames" uid="uid://b0k5aqp3jtiq7" path="res://Sprites/littlegecko/red_tophat_littlegeckoFrames.tres" id="8_mwnu7"]
+[ext_resource type="PackedScene" path="res://Scenes/OtherGameObjects/rarity_glitter_particles.tscn" id="8_c4yp8"]
+[ext_resource type="SpriteFrames" uid="uid://bci8ii5s5si4d" path="res://Sprites/littlegecko/red_tophat_littlegeckoFrames.tres" id="8_mwnu7"]
 [ext_resource type="SpriteFrames" uid="uid://cysdf1f1isi1u" path="res://Sprites/littlegecko/blue_littlegeckoFrames.tres" id="9_qg0dx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hk0p6"]

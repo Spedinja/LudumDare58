@@ -4,7 +4,7 @@ class_name EnemyHealthBar
 var catch_up_timer: Timer
 @export var catch_up_delay: float = 0.4
 
-@onready var damage_bar: TextureProgressBar = $DamageBar
+@onready var damage_bar: ProgressBar = $DamageBar
 
 var health = 0: set = _set_health
 

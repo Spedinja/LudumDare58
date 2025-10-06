@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="RoomPool" load_steps=18 format=3 uid="uid://6ud4rciihygp"]
+
+[ext_resource type="Script" uid="uid://cr6u5nyeukod6" path="res://Scripts/LevelGen/RoomData.gd" id="1_bbtdr"]
+[ext_resource type="Resource" uid="uid://crbcjiy2a5ppp" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_L.tres" id="2_lb8l1"]
+[ext_resource type="Resource" uid="uid://c2ctsqh1oc1im" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_R.tres" id="3_swtcc"]
+[ext_resource type="Resource" uid="uid://cg7v6pylpvqak" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_U.tres" id="4_dkc8d"]
+[ext_resource type="Resource" uid="uid://cg7v6pylpvqak" path="res://ressources/LevelGen/LevelGen/Rooms/DeadEnds/room_DeadEnd_D.tres" id="5_satjp"]
+[ext_resource type="Resource" uid="uid://r27nckoaxrtj" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_all.tres" id="6_xtmdw"]
+[ext_resource type="Resource" uid="uid://s14jey8ma00b" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_DLR.tres" id="7_l23jf"]
+[ext_resource type="Resource" uid="uid://dah73yf382s6h" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_LB.tres" id="8_1jvjq"]
+[ext_resource type="Resource" uid="uid://c0lfkvplwkduw" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_LR.tres" id="9_gfy1u"]
+[ext_resource type="Resource" uid="uid://b2ca0ba1fvqye" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_LU.tres" id="10_nrfad"]
+[ext_resource type="Resource" uid="uid://qf8bvn82tvg4" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_RB.tres" id="11_q8w8b"]
+[ext_resource type="Resource" uid="uid://ch7uk6helgxuh" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_RU.tres" id="12_824bm"]
+[ext_resource type="Resource" uid="uid://dv1albjifvvec" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_UB.tres" id="13_4p8s0"]
+[ext_resource type="Resource" uid="uid://ck6t3ecjuhocf" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_ULD.tres" id="14_6wsh2"]
+[ext_resource type="Resource" uid="uid://hq748reubwig" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_ULR.tres" id="15_u3k3w"]
+[ext_resource type="Resource" uid="uid://bocod7uw1vmca" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_URD.tres" id="16_bisou"]
+[ext_resource type="Script" uid="uid://cyerxkt5jvdvu" path="res://Scripts/LevelGen/RoomPool.gd" id="17_wfrqm"]
+
+[resource]
+script = ExtResource("17_wfrqm")
+rooms = Array[ExtResource("1_bbtdr")]([ExtResource("2_lb8l1"), ExtResource("3_swtcc"), ExtResource("4_dkc8d"), ExtResource("5_satjp"), ExtResource("6_xtmdw"), ExtResource("7_l23jf"), ExtResource("8_1jvjq"), ExtResource("9_gfy1u"), ExtResource("10_nrfad"), ExtResource("11_q8w8b"), ExtResource("12_824bm"), ExtResource("13_4p8s0"), ExtResource("14_6wsh2"), ExtResource("15_u3k3w"), ExtResource("16_bisou")])
+metadata/_custom_type_script = "uid://cyerxkt5jvdvu"

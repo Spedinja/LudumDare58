@@ -7,6 +7,8 @@ extends Enemy
 
 
 func _ready() -> void:
+	enemy_health_bar.init_health(health, maxHp)
+	
 	health = 10
 	
 	vfx_fire = vfx_fireScene.instantiate()
@@ -40,6 +42,7 @@ func _move():
 	
 func take_damage(amount: float):
 	health -= amount
+	enemy_health_bar._set_health(health)
 	if health <= 0:
 		baby_lizard.caged = false
 		cage_back.play("broken")

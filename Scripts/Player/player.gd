@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export_category("Movement")
 @export var movement_speed: float = 300.0

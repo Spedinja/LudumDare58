@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqjoyoashahyo"]
+[gd_scene load_steps=10 format=3 uid="uid://bqjoyoashahyo"]
 
 [ext_resource type="Texture2D" uid="uid://it5qagoxabo" path="res://Sprites/Tile.png" id="1_613su"]
 [ext_resource type="Script" uid="uid://sv68sysn3ud8" path="res://Scripts/Enemies/enemy.gd" id="1_jcvw6"]
 [ext_resource type="AudioStream" uid="uid://cavyqj80hp4t0" path="res://Sounds/step1.mp3" id="2_ubio8"]
 [ext_resource type="AudioStream" uid="uid://b2f6ngartmd8r" path="res://Sounds/enemy hit.mp3" id="3_miwey"]
 [ext_resource type="AudioStream" uid="uid://b5twfo7i52k3r" path="res://Sounds/enemy dying.mp3" id="5_miwey"]
+[ext_resource type="PackedScene" uid="uid://dnbpan4533fkv" path="res://Scenes/Enemies/enemy_health_bar.tscn" id="6_l8da7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3pdns"]
 radius = 14.0
@@ -55,5 +56,7 @@ stream = ExtResource("5_miwey")
 volume_db = -10.0
 pitch_scale = 0.8
 panning_strength = 1.5
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("6_l8da7")]
 
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
