@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2mflairgksuc"]
+
+[ext_resource type="Texture2D" uid="uid://bhkhevwg4xhi" path="res://Sprites/hit_particles.png" id="1_e64uq"]
+[ext_resource type="Script" uid="uid://o3il3eg7gx0s" path="res://Scripts/OtherGameObjects/projectile_hit_particles_2d.gd" id="2_1fiut"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1fiut"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ketm2"]
+lifetime_randomness = 0.15
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 71.72
+initial_velocity_max = 106.2
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+anim_offset_max = 1.0
+
+[node name="ProjectileHitParticles2D" type="GPUParticles2D"]
+top_level = true
+material = SubResource("CanvasItemMaterial_1fiut")
+emitting = false
+amount = 16
+texture = ExtResource("1_e64uq")
+lifetime = 0.15000000000000002
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ketm2")
+script = ExtResource("2_1fiut")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
