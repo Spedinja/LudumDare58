@@ -7,6 +7,7 @@ extends Enemy
 
 
 func _ready() -> void:
+	health = 10
 	pass
 func _move():
 	pass

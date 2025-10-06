@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://77dyybbl2koo"]
+[gd_scene load_steps=6 format=3 uid="uid://77dyybbl2koo"]
 
 [ext_resource type="Script" uid="uid://bvy3ljiu3cxvq" path="res://Scripts/Menus/main_menu.gd" id="1_penys"]
 [ext_resource type="PackedScene" uid="uid://3r28gkrulsft" path="res://Scenes/Menus/game_button.tscn" id="2_5wi6m"]
 [ext_resource type="Theme" uid="uid://bfxs2u7huev6o" path="res://Themes/MainMenuTheme.tres" id="2_aur2u"]
+[ext_resource type="Texture2D" uid="uid://ccaypiu20vs07" path="res://Sprites/menubackground.png" id="2_chkef"]
 [ext_resource type="PackedScene" uid="uid://nlrt1p2j5jda" path="res://Scenes/Menus/settings.tscn" id="3_5wi6m"]
 
 [node name="MainMenu" type="Control"]
@@ -13,6 +14,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_penys")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.43529412)
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_chkef")
 
 [node name="LizardText" type="Label" parent="."]
 layout_mode = 1
