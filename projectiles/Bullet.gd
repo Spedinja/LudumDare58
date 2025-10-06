@@ -20,6 +20,8 @@ var onhits: Array[Lizard]
 
 var hitObjects
 
+@export var hit_sfx: AudioStream
+
 func _ready() -> void:
 	$lifetime.wait_time = lifetime
 	$lifetime.start()
@@ -86,6 +88,7 @@ func _physics_process(delta):
 			else:
 				#print("-bounce")
 				bounce -= 1
+			SoundManager.play_attack_sound(hit_sfx, -0.2, 0.4)
 	if result and !alreadyReduced and !(result.collider.is_in_group("Enemy") and pierce != 0):
 		 # 2. Reflect velocity around collision normal
 		var normal = result.normal

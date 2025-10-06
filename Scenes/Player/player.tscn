@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfaxkwh1r2pkb"]
+[gd_scene load_steps=13 format=3 uid="uid://bfaxkwh1r2pkb"]
 
 [ext_resource type="Script" uid="uid://dms32j4b6250c" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="AudioStream" uid="uid://bvvydl66qdlk" path="res://Sounds/dash.mp3" id="2_xpcdj"]
 [ext_resource type="PackedScene" uid="uid://dys1itfd17ep" path="res://projectiles/bullet.tscn" id="3_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://dyaok0kfxc5u" path="res://Sprites/Player/gecko_animated_sprite_2d.tscn" id="3_xpcdj"]
+[ext_resource type="AudioStream" uid="uid://dn335o4gx8l1q" path="res://Sounds/hurt.mp3" id="5_gk6dx"]
+[ext_resource type="AudioStream" uid="uid://cavyqj80hp4t0" path="res://Sounds/step1.mp3" id="6_jhyir"]
+[ext_resource type="AudioStream" uid="uid://ci0ahppftsspx" path="res://Sounds/step2.mp3" id="7_74mp2"]
+[ext_resource type="AudioStream" uid="uid://dkd1rjocnxc8p" path="res://Sounds/game over.mp3" id="8_jhyir"]
+[ext_resource type="AudioStream" uid="uid://hmsj4uty8mnf" path="res://Sounds/spit1.mp3" id="8_oikmp"]
+[ext_resource type="AudioStream" uid="uid://cvrbbxfkg7h1w" path="res://Sounds/spit2.mp3" id="9_06tpx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f60y1"]
 
@@ -16,10 +22,14 @@ collision_layer = 8
 collision_mask = 198
 script = ExtResource("1_a3d8c")
 dash_sfx = ExtResource("2_xpcdj")
+walk_sfx = Array[AudioStream]([ExtResource("6_jhyir"), ExtResource("7_74mp2")])
+attack_sfx = Array[AudioStream]([ExtResource("8_oikmp"), ExtResource("9_06tpx")])
+hurt_sfx = ExtResource("5_gk6dx")
+death_sfx = ExtResource("8_jhyir")
 projectile = ExtResource("3_mtuoh")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("3_xpcdj")]
-animation = &"walk_down"
+animation = &"walk_side"
 offset = Vector2(0, -24)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

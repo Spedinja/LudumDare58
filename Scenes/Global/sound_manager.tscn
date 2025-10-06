@@ -21,6 +21,8 @@ ui_close_sound = ExtResource("5_id070")
 ui_sfx_pool = [NodePath("UI SFX Pool/UI SFX Player 0"), NodePath("UI SFX Pool/UI SFX Player 1"), NodePath("UI SFX Pool/UI SFX Player 2"), NodePath("UI SFX Pool/UI SFX Player 3"), NodePath("UI SFX Pool/UI SFX Player 4")]
 attack_sfx_pool = [NodePath("Attack SFX Pool/Spell SFX Player 0"), NodePath("Attack SFX Pool/Spell SFX Player 1"), NodePath("Attack SFX Pool/Spell SFX Player 2"), NodePath("Attack SFX Pool/Spell SFX Player 3"), NodePath("Attack SFX Pool/Spell SFX Player 4"), NodePath("Attack SFX Pool/Spell SFX Player 5"), NodePath("Attack SFX Pool/Spell SFX Player 6"), NodePath("Attack SFX Pool/Spell SFX Player 7"), NodePath("Attack SFX Pool/Spell SFX Player 8"), NodePath("Attack SFX Pool/Spell SFX Player 9")]
 enemy_sfx_pool = [NodePath("Enemy SFX Pool/Enemy SFX Player 0"), NodePath("Enemy SFX Pool/Enemy SFX Player 1"), NodePath("Enemy SFX Pool/Enemy SFX Player 2"), NodePath("Enemy SFX Pool/Enemy SFX Player 3"), NodePath("Enemy SFX Pool/Enemy SFX Player 4"), NodePath("Enemy SFX Pool/Enemy SFX Player 5"), NodePath("Enemy SFX Pool/Enemy SFX Player 6"), NodePath("Enemy SFX Pool/Enemy SFX Player 7"), NodePath("Enemy SFX Pool/Enemy SFX Player 8"), NodePath("Enemy SFX Pool/Enemy SFX Player 9")]
+enemy_for_intensity1 = 1
+enemy_for_intensity2 = 5
 
 [node name="Music Player" type="AudioStreamPlayer" parent="."]
 process_mode = 3

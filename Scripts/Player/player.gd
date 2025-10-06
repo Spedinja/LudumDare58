@@ -25,11 +25,15 @@ var input: PlayerInput
 
 @export_category("Sounds")
 @export var dash_sfx: AudioStream
-@export var walk_sfx: AudioStream
-@export var attack_sfx: AudioStream
+@export var walk_sfx: Array[AudioStream]
+var walk_sound_index: int = 0
+@export var attack_sfx: Array[AudioStream]
+@export var hurt_sfx: AudioStream
+@export var death_sfx: AudioStream
 
 @export var projectile: PackedScene
 @export var upgradeLizards: Array[Lizard]
+
 
 #var firstProcess = true
 
@@ -114,7 +118,13 @@ func _add_dash_ghost():
 	get_parent().add_child(ghost)
 
 func _attack():
-	print("attack")
+	#print("attack")
+	if upgradeLizards.size() > 5:
+		SoundManager.play_player_sound(attack_sfx[1],SoundManager.player_sound_types.COMBAT, false, -0.2, 0.4)
+	else:
+		SoundManager.play_player_sound(attack_sfx[0],SoundManager.player_sound_types.COMBAT, false, -0.2, 0.4)
+	
+	
 	var newBullet:Bullet = projectile.instantiate()
 	for buff in upgradeLizards:
 		buff.applyUpgrade(newBullet)
@@ -142,6 +152,7 @@ func _attack():
 func take_damage(amount: int):
 	if is_dashing and not iframes_timer.is_stopped():
 		return
+	SoundManager.play_player_sound(hurt_sfx,SoundManager.player_sound_types.COMBAT)
 	amount -= amount
 	iframes_timer.start(iframes_duration)
 	

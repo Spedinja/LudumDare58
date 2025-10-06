@@ -12,6 +12,8 @@ var counter = 0
 var random = Vector2(0,0)
 @onready var rarity_glitter_particles: GPUParticles2D = $RarityGlitterParticles
 
+@export var collect_sfx: AudioStream
+
 func _ready() -> void:
 	dataLizard = LootPoolSelector.select_items(1,Lizard,SignalManager.game_progression)[0]
 	gecko_sprite.sprite_frames = geckoFrames[dataLizard.id]
@@ -76,6 +78,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		#call_deferred("reparent", body, true)
 		#$Area2D/CollisionShape2D.disabled = true
 		#cage.call_deferred("die")
+		SoundManager.play_player_sound(collect_sfx,SoundManager.player_sound_types.COLLECT)
 
 func deferredActions(body: Node2D):
 	self.reparent(body, true)

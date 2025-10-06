@@ -39,6 +39,11 @@ enum player_sound_types {COLLECT,MOVEMENT,COMBAT}
 
 var intensity: int = 0
 
+var enemies_in_range: int
+
+@export var enemy_for_intensity1: int
+@export var enemy_for_intensity2: int
+
 func _ready() -> void:
 	var master_idx: int = AudioServer.get_bus_index("Master")
 	var new_volume_db = linear_to_db(50 / 100.0) # Set to 50% on start
@@ -121,33 +126,37 @@ func _play_ui_sound_in_pool(sound: AudioStream):
 	ui_sfx_pool[forced_last_sfx_index].play()
 	forced_last_sfx_index = (forced_last_sfx_index + 1) % ui_sfx_pool.size()
 
-func play_attack_sound(sound: AudioStream):
+func play_attack_sound(sound: AudioStream, alter_offset: float = 0, alter_range: float = 0):
 	for attack_sfx_player in attack_sfx_pool:
 		if not attack_sfx_player.is_playing():
 			attack_sfx_player.stream = sound
+			attack_sfx_player.pitch_scale = 1 + alter_offset + alter_range * randf()
 			attack_sfx_player.play()
 			return
 	attack_sfx_pool[forced_last_attack_sound_index].stream = sound
 	attack_sfx_pool[forced_last_attack_sound_index].play()
 	forced_last_attack_sound_index = (forced_last_attack_sound_index + 1) % attack_sfx_pool.size()
 
-func play_enemy_sound(sound: AudioStream):
+func play_enemy_sound(sound: AudioStream, alter_offset: float = 0, alter_range: float = 0):
 	for enemy_sfx_player in enemy_sfx_pool:
 		if not enemy_sfx_player.is_playing():
 			enemy_sfx_player.stream = sound
+			enemy_sfx_player.pitch_scale = 1 + alter_offset + alter_range * randf()
 			enemy_sfx_player.play()
 			return
 	enemy_sfx_pool[forced_last_enemy_sound_index].stream = sound
 	enemy_sfx_pool[forced_last_enemy_sound_index].play()
 	forced_last_enemy_sound_index = (forced_last_enemy_sound_index + 1) % enemy_sfx_pool.size()
 
-func play_player_sound(sound: AudioStream, type: player_sound_types, looping: bool = false):
+func play_player_sound(sound: AudioStream, type: player_sound_types, looping: bool = false, alter_offset: float = 0, alter_range: float = 0):
 	match type:
 		player_sound_types.COLLECT:
 			pickup_sfx_player.stream = sound
+			pickup_sfx_player.pitch_scale = 1 + alter_offset + alter_range * randf()
 			pickup_sfx_player.play()
 		player_sound_types.COMBAT:
 			combat_sfx_player.stream = sound
+			combat_sfx_player.pitch_scale = 1 + alter_offset + alter_range * randf()
 			combat_sfx_player.play()
 		player_sound_types.MOVEMENT:
 			if looping:
@@ -155,4 +164,21 @@ func play_player_sound(sound: AudioStream, type: player_sound_types, looping: bo
 			else:
 				movement_sfx_player.finished.disconnect(play_player_sound)
 			movement_sfx_player.stream = sound
+			movement_sfx_player.pitch_scale = 1 + alter_offset + alter_range * randf()
 			movement_sfx_player.play()
+			
+func add_enemy():
+	enemies_in_range += 1
+	check_intensity()
+
+func remove_enemy():
+	enemies_in_range -= 1
+	check_intensity()
+	
+func check_intensity():
+	if enemies_in_range < enemy_for_intensity1:
+		intensity = 0
+	elif enemies_in_range < enemy_for_intensity2:
+		intensity = 1
+	else:
+		intensity = 2

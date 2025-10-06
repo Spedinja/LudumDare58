@@ -3,7 +3,7 @@ extends Enemy
 @onready var cage_back: AnimatedSprite2D = $cageBack
 @onready var cage_fore: AnimatedSprite2D = $EnemySprite
 
-
+@export var break_sfx: AudioStream
 
 
 func _ready() -> void:
@@ -19,3 +19,4 @@ func take_damage(amount: float):
 		cage_back.play("broken")
 		cage_fore.play("broken")
 		$Hitbox.disabled = true
+		SoundManager.play_player_sound(break_sfx,SoundManager.player_sound_types.COLLECT)

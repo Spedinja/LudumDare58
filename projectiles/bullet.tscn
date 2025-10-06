@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dys1itfd17ep"]
+[gd_scene load_steps=10 format=3 uid="uid://dys1itfd17ep"]
 
 [ext_resource type="Script" uid="uid://d00vmbeao08g7" path="res://projectiles/Bullet.gd" id="1_a3dlt"]
 [ext_resource type="Texture2D" uid="uid://gdurjy08wo7b" path="res://Sprites/player_projectile.png" id="2_4ambd"]
+[ext_resource type="AudioStream" uid="uid://bg3aw3tbllfkv" path="res://Sounds/projectile hit.mp3" id="2_cqswp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqswp"]
 
@@ -45,6 +46,7 @@ animations = [{
 z_index = 15
 script = ExtResource("1_a3dlt")
 speed = 450.0
+hit_sfx = ExtResource("2_cqswp")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32

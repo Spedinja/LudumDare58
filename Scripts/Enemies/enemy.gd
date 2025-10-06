@@ -14,6 +14,9 @@ var follow_object
 
 @onready var detection_area: Area2D = $DetectionArea
 
+@export var move_sfx: AudioStream
+@export var hurt_sfx: AudioStream
+
 
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
@@ -53,6 +56,7 @@ func _attack():
 
 func take_damage(amount: float):
 	health -= amount
+	SoundManager.play_enemy_sound(hurt_sfx)
 	if health <= 0:
 		die()
 
@@ -64,8 +68,10 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		return
 	player_in_range = true
 	follow_object = body
+	SoundManager.add_enemy()
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if not body.is_in_group("Player"):
 		return
 	player_in_range = false
+	SoundManager.remove_enemy()
