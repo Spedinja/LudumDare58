@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cp8v4tol0gncu"]
+[gd_scene load_steps=10 format=3 uid="uid://cp8v4tol0gncu"]
 
 [ext_resource type="Script" uid="uid://k7nbmd2p5y1d" path="res://Scripts/LevelGen/LevelGenerator.gd" id="1_7ijpl"]
 [ext_resource type="Resource" uid="uid://ccjrsq5h2ow0g" path="res://ressources/LevelGen/LevelGen/availableRooms.tres" id="2_ws0e6"]
 [ext_resource type="Resource" uid="uid://7asehwp7w7pk" path="res://ressources/LevelGen/LevelGen/Rooms/test/room_outerbounds.tres" id="7_24kn6"]
+[ext_resource type="PackedScene" uid="uid://bt73yx40stqa2" path="res://Scenes/Menus/pause_menu.tscn" id="8_ku73c"]
 [ext_resource type="Script" uid="uid://blvxb2vdaey4e" path="res://Scripts/LevelGen/GridRoom.gd" id="9_firwl"]
 [ext_resource type="Resource" uid="uid://ctu5uk115v14w" path="res://ressources/LevelGen/LevelGen/Rooms/room_Start.tres" id="10_lrltm"]
 [ext_resource type="Script" uid="uid://cw57wdy0dhja6" path="res://Scripts/LevelGen/GridLayout.gd" id="10_opaxf"]
@@ -29,3 +30,10 @@ outerBoundRoom = ExtResource("7_24kn6")
 max_rooms = 5
 num_geckos = 1
 start_exitchance = 1.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("8_ku73c")]
+process_mode = 3
+visible = false

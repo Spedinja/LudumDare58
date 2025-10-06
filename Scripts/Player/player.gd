@@ -56,8 +56,8 @@ func _initiate_timers():
 
 func _process(_delta: float) -> void:
 	_get_input()
-	if Input.is_action_just_pressed("ui_cancel"):
-		$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible
+	#if Input.is_action_just_pressed("ui_cancel"):
+		#$"CanvasLayer/Pause Menu".visible = not $"CanvasLayer/Pause Menu".visible
 	if input.attack_just_pressed:
 		_attack()
 	if input.dash_just_pressed and input.move_directions != Vector2.ZERO and dash_cd_timer.is_stopped():
@@ -90,8 +90,6 @@ func _set_animation():
 		player_sprite.play("walk_side")
 		player_sprite.flip_h = false
 	
-	if input.attack_just_pressed:
-		player_sprite.player_head_sprite.play("attack_down")
 
 func _start_dashing():
 	is_dashing = true
@@ -114,11 +112,25 @@ func _attack():
 	for buff in upgradeLizards:
 		buff.applyUpgrade(newBullet)
 		newBullet.onhits.append(buff)
-	newBullet.position = $Marker2D.global_position #+ Vector2(randi_range(0,150),randi_range(0,150))
-	var direction = (get_global_mouse_position() - newBullet.global_position).normalized()
+	#newBullet.global_position = $Marker2D.global_position #+ Vector2(randi_range(0,150),randi_range(0,150))
+	var direction = (get_global_mouse_position() - $Marker2D.global_position).normalized()
 	newBullet.direction = direction
 	#newBullet.printStats()
 	self.get_parent().add_child(newBullet)
+	newBullet.global_position = $Marker2D.global_position
+	
+	var angle = direction.angle()
+
+	if angle > -PI/4 and angle <= PI/4:
+		player_sprite.player_head_sprite.play("attack_side")
+		player_sprite.player_head_sprite.flip_h = true
+	elif angle > PI/4 and angle <= 3*PI/4:
+		player_sprite.player_head_sprite.play("attack_down")
+	elif angle > -3*PI/4 and angle <= -PI/4:
+		pass
+	elif angle <= -3*PI/4 or angle > 3*PI/4:
+		player_sprite.player_head_sprite.play("attack_side")
+		player_sprite.player_head_sprite.flip_h = false
 
 func take_damage(amount: int):
 	if is_dashing and not iframes_timer.is_stopped():
