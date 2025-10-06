@@ -16,15 +16,20 @@ var follow_object
 
 @onready var sfx_damage: AudioStreamPlayer2D = $sfx_damage
 @onready var sfx_step: AudioStreamPlayer2D = $sfx_step
+@onready var sfx_dying: AudioStreamPlayer2D = $sfx_dying
 
 
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
 	enemy_sprite.frame_changed.connect(on_animation_changed)
+	sfx_dying.finished.connect(die)
 
 
 func _physics_process(_delta: float) -> void:
+	if health <= 0:
+		enemy_sprite.visible = false;
+		return
 	_move()
 	_attack()
 
@@ -60,7 +65,7 @@ func take_damage(amount: float):
 	health -= amount
 	sfx_damage.play()
 	if health <= 0:
-		die()
+		sfx_dying.play()
 
 func die():
 	call_deferred("queue_free")

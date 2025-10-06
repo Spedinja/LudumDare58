@@ -5,7 +5,6 @@ class_name SplitLizard
 var projectile: PackedScene = preload("res://projectiles/bullet.tscn")
 
 func onHit(bullet: Bullet, hitObject):
-	#print("SPLITTING")
 	var vectors = generate_circle_vectors(8, 1, Vector2(randf_range(-1,1),randf_range(-1,1)).normalized())
 	for direction in vectors:
 		var newBullet = projectile.instantiate()
