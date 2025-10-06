@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FireLizard" load_steps=2 format=3 uid="uid://dbfar54t38gro"]
+
+[ext_resource type="Script" uid="uid://bu8pohw7m647i" path="res://LootPoolRandomizer/FireLizard.gd" id="1_gcrdn"]
+
+[resource]
+script = ExtResource("1_gcrdn")
+id = 6
+itemName = "Le hot"
+hasBudget = true
+budgetStats = Dictionary[String, float]({
+"fire": 3.0,
+"stacks": 1.0
+})
+metadata/_custom_type_script = "uid://bu8pohw7m647i"

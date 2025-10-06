@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cou1njafwnpv6"]
+[gd_scene load_steps=8 format=3 uid="uid://c4gosynvsnbsu"]
 
-[ext_resource type="Script" uid="uid://bbdudu40k3cbg" path="res://Scripts/Enemies/shotgun_rat.gd" id="1_rvk2k"]
-[ext_resource type="SpriteFrames" uid="uid://crleowwfeodhq" path="res://Sprites/RatSpriteFrames.tres" id="2_xqqto"]
-[ext_resource type="AudioStream" uid="uid://cavyqj80hp4t0" path="res://Sounds/step1.mp3" id="3_ipuxb"]
-[ext_resource type="AudioStream" uid="uid://b2f6ngartmd8r" path="res://Sounds/enemy hit.mp3" id="4_ffbss"]
+[ext_resource type="Script" uid="uid://bhhnobdqjhglw" path="res://Scenes/Enemies/melee_rat.gd" id="1_syk7k"]
+[ext_resource type="SpriteFrames" uid="uid://crleowwfeodhq" path="res://Sprites/RatSpriteFrames.tres" id="2_op3ri"]
+[ext_resource type="AudioStream" uid="uid://b2f6ngartmd8r" path="res://Sounds/enemy hit.mp3" id="3_p52ei"]
+[ext_resource type="AudioStream" uid="uid://cavyqj80hp4t0" path="res://Sounds/step1.mp3" id="4_7x3ry"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xqqto"]
 radius = 14.0
@@ -18,12 +18,11 @@ radius = 206.061
 z_index = 10
 collision_layer = 16
 collision_mask = 54
-script = ExtResource("1_rvk2k")
-attackRange = 200.0
+script = ExtResource("1_syk7k")
 metadata/_custom_type_script = "uid://sv68sysn3ud8"
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_xqqto")
+sprite_frames = ExtResource("2_op3ri")
 animation = &"walk_down"
 autoplay = "walk_down"
 
@@ -44,8 +43,8 @@ shape = SubResource("CircleShape2D_l6vio")
 [node name="sfx_shoot" type="AudioStreamPlayer2D" parent="."]
 
 [node name="sfx_damage" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_ffbss")
+stream = ExtResource("3_p52ei")
 
 [node name="sfx_step" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_ipuxb")
+stream = ExtResource("4_7x3ry")
 volume_db = -10.0

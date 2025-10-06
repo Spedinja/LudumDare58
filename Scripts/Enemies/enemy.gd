@@ -4,8 +4,10 @@ class_name Enemy
 @export var speed: float = 150
 @export var damage: float = 10
 @export var health: float = 50
-
+@export var attackRange: float = 0
 var is_attacking: bool = false
+var attackCD: float = 2
+var cooldownTimer: Timer
 
 var player_in_range: bool = false
 var follow_object
@@ -18,12 +20,45 @@ var follow_object
 @onready var sfx_step: AudioStreamPlayer2D = $sfx_step
 @onready var sfx_dying: AudioStreamPlayer2D = $sfx_dying
 
+var vfx_fireScene:PackedScene  = preload("res://Scenes/OtherGameObjects/fire_particles.tscn")
+var vfx_coldScene:PackedScene  = preload("res://Scenes/OtherGameObjects/iceparticle.tscn")
+var vfx_fire: GPUParticles2D
+var vfx_cold: GPUParticles2D
+var fireTimer:Timer
+var coldTimer:Timer
+var burnStacks = 0
+var maxHp = health
 
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
 	enemy_sprite.frame_changed.connect(on_animation_changed)
 	sfx_dying.finished.connect(die)
+	
+	vfx_fire = vfx_fireScene.instantiate()
+	vfx_fire.emitting = false
+	add_child(vfx_fire)
+	vfx_cold = vfx_coldScene.instantiate()
+	vfx_cold.emitting = false
+	add_child(vfx_cold)
+	
+	coldTimer = Timer.new()
+	coldTimer.one_shot = true
+	add_child(coldTimer)
+	coldTimer.wait_time = 2
+	coldTimer.timeout.connect(coldTimeout)
+	
+	fireTimer = Timer.new()
+	fireTimer.one_shot = true
+	add_child(fireTimer)
+	fireTimer.wait_time = 0.5
+	fireTimer.timeout.connect(fireTicks)
+	
+	cooldownTimer = Timer.new()
+	cooldownTimer.one_shot = true
+	add_child(cooldownTimer)
+	cooldownTimer.wait_time = attackCD
+
 
 
 func _physics_process(_delta: float) -> void:
@@ -32,6 +67,32 @@ func _physics_process(_delta: float) -> void:
 		return
 	_move()
 	_attack()
+
+func coldTimeout():
+	speed = speed*2.0
+	vfx_cold.emitting = false
+
+func fireTicks():
+	burnStacks = max(burnStacks - 1, 0)
+	take_damage(maxHp * 0.03) 
+	if(burnStacks > 0):
+		fireTimer.start()
+	else:
+		vfx_fire.emitting = false
+		
+func burn(stacks):
+	burnStacks += stacks
+	if(fireTimer.is_stopped()):
+		vfx_fire.emitting = true
+		fireTimer.start()
+	
+func slow():
+	if(coldTimer.is_stopped()):
+		vfx_cold.emitting = true
+		speed = speed/2.0
+		coldTimer.start()
+	else:
+		coldTimer.start()
 
 func _move():
 	if not player_in_range:
@@ -57,17 +118,26 @@ func _move():
 	if global_position.distance_to(follow_object.position) > 3:
 		move_and_slide()
 
-func _attack():
-	if not player_in_range:
-		return
+func _attack() -> bool:
+	if not player_in_range or not cooldownTimer.is_stopped():
+		return false
+	if(self.global_position.distance_to(follow_object.global_position) > attackRange):
+		return false
+	cooldownTimer.start()
+	return true
 
+
+	
 func take_damage(amount: float):
 	health -= amount
 	sfx_damage.play()
 	if health <= 0:
+		pass
 		sfx_dying.play()
 
 func die():
+	vfx_cold.call_deferred("queue_free")
+	vfx_fire.call_deferred("queue_free")
 	call_deferred("queue_free")
 
 func _on_detection_area_body_entered(body: Node2D) -> void:

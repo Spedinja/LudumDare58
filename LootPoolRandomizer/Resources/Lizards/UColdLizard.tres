@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ColdLizard" load_steps=2 format=3 uid="uid://bo8mip88sfpgw"]
+
+[ext_resource type="Script" uid="uid://7otjxg248ery" path="res://LootPoolRandomizer/ColdLizard.gd" id="1_vgmew"]
+
+[resource]
+script = ExtResource("1_vgmew")
+id = 7
+itemName = "B.Lizzard"
+hasBudget = true
+budgetStats = Dictionary[String, float]({
+"cold": 3.0
+})
+metadata/_custom_type_script = "uid://7otjxg248ery"
