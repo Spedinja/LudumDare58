@@ -13,6 +13,7 @@ config_version=5
 config/name="GeckoGame"
 run/main_scene="uid://77dyybbl2koo"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/image="uid://bcf3dy3f65vl6"
 config/icon="res://icon.svg"
 
 [autoload]
