@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://byjbmk6d3jpds"]
+
+[ext_resource type="Texture2D" uid="uid://blapsqaruu406" path="res://Sprites/enemy_bullet.png" id="1_8yw0f"]
+[ext_resource type="Script" uid="uid://bnumcs7g61og8" path="res://projectiles/enemy_bullet.gd" id="1_qb2ki"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qb2ki"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itqdg"]
+atlas = ExtResource("1_8yw0f")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eh832"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itqdg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Area2D"]
+z_index = 15
+collision_layer = 64
+collision_mask = 12
+script = ExtResource("1_qb2ki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qb2ki")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eh832")
