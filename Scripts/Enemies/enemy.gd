@@ -14,8 +14,8 @@ var follow_object
 
 @onready var detection_area: Area2D = $DetectionArea
 
-@export var move_sfx: AudioStream
-@export var hurt_sfx: AudioStream
+@onready var sfx_damage: AudioStreamPlayer2D = $sfx_damage
+@onready var sfx_step: AudioStreamPlayer2D = $sfx_step
 
 
 func _ready() -> void:
@@ -58,7 +58,7 @@ func _attack():
 
 func take_damage(amount: float):
 	health -= amount
-	SoundManager.play_enemy_sound(hurt_sfx)
+	sfx_damage.play()
 	if health <= 0:
 		die()
 
@@ -81,4 +81,4 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 func on_animation_changed():
 	if enemy_sprite.animation.contains("walk"):
 		if enemy_sprite.frame == 0 || enemy_sprite.frame == 2:
-			SoundManager.play_enemy_sound(move_sfx)
+			sfx_step.play()

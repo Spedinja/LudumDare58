@@ -19,8 +19,6 @@ z_index = 10
 collision_layer = 16
 collision_mask = 62
 script = ExtResource("1_jcvw6")
-move_sfx = ExtResource("2_ubio8")
-hurt_sfx = ExtResource("3_miwey")
 
 [node name="TempSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -41,5 +39,12 @@ shape = SubResource("CircleShape2D_613su")
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_jcvw6")
+
+[node name="sfx_damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_miwey")
+
+[node name="sfx_step" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ubio8")
+volume_db = -10.0
 
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

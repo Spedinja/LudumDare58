@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://5v44di1bjjuy"]
+
+[ext_resource type="Theme" uid="uid://blmhpsohrghdx" path="res://Themes/healthbar.tres" id="1_ilck6"]
+[ext_resource type="Texture2D" uid="uid://cej7ou3jv15io" path="res://Sprites/UI/Health_Cutout.png" id="2_pekq3"]
+[ext_resource type="Script" uid="uid://bg5ajbgumubae" path="res://Scripts/healthbar.gd" id="3_2s6nv"]
+[ext_resource type="Texture2D" uid="uid://b3wc2a5naprqk" path="res://Sprites/UI/health_bg1.png" id="4_n4aq1"]
+[ext_resource type="Texture2D" uid="uid://ditmup8rh8mdm" path="res://Sprites/UI/health_mask2.png" id="5_8yj5m"]
+
+[node name="HealthBar" type="TextureProgressBar"]
+offset_right = 48.0
+offset_bottom = 48.0
+theme = ExtResource("1_ilck6")
+value = 77.0
+fill_mode = 3
+stretch_margin_left = 48
+stretch_margin_right = 48
+texture_progress = ExtResource("2_pekq3")
+texture_progress_offset = Vector2(2, 2)
+script = ExtResource("3_2s6nv")
+
+[node name="DamageBar" type="TextureProgressBar" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 92.0
+fill_mode = 3
+texture_under = ExtResource("4_n4aq1")
+texture_progress = ExtResource("5_8yj5m")
+texture_progress_offset = Vector2(2, 2)
+tint_progress = Color(1, 1, 1, 0.7529412)

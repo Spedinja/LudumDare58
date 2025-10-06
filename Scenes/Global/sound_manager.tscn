@@ -99,31 +99,41 @@ bus = &"Sound"
 [node name="Enemy SFX Pool" type="Node" parent="."]
 
 [node name="Enemy SFX Player 0" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 1" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 2" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 3" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 4" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 5" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 6" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 7" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 8" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"
 
 [node name="Enemy SFX Player 9" type="AudioStreamPlayer" parent="Enemy SFX Pool"]
+process_mode = 3
 bus = &"Sound"

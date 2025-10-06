@@ -137,12 +137,15 @@ func play_attack_sound(sound: AudioStream, alter_offset: float = 0, alter_range:
 	attack_sfx_pool[forced_last_attack_sound_index].play()
 	forced_last_attack_sound_index = (forced_last_attack_sound_index + 1) % attack_sfx_pool.size()
 
-func play_enemy_sound(sound: AudioStream, alter_offset: float = 0, alter_range: float = 0):
+func play_enemy_sound(sound: AudioStream, enemy_pos: Vector2, volume: float = 0, alter_offset: float = 0, alter_range: float = 0,):
 	for enemy_sfx_player in enemy_sfx_pool:
 		if not enemy_sfx_player.is_playing():
 			enemy_sfx_player.stream = sound
 			enemy_sfx_player.pitch_scale = 1 + alter_offset + alter_range * randf()
+			enemy_sfx_player.volume_db = volume
+			#enemy_sfx_player.set_global_position(Vector3(enemy_pos.x, enemy_pos.y, 0))
 			enemy_sfx_player.play()
+			print_debug(enemy_sfx_player.stream)
 			return
 	enemy_sfx_pool[forced_last_enemy_sound_index].stream = sound
 	enemy_sfx_pool[forced_last_enemy_sound_index].play()
