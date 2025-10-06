@@ -80,17 +80,48 @@ size_flags_horizontal = 4
 theme = ExtResource("2_aur2u")
 text = "Programming:"
 
+[node name="Label" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_aur2u")
+theme_override_font_sizes/font_size = 16
+text = "Deathtroke
+Eos034
+UmbraLux
+Spedinja"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Art" type="Label" parent="Credits/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_aur2u")
 text = "Art:"
 
+[node name="Label2" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_aur2u")
+theme_override_font_sizes/font_size = 16
+text = "Duckistopheles
+Emilia_heide"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Music & Sound" type="Label" parent="Credits/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_aur2u")
 text = "Music & Sound:"
+
+[node name="Label3" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_aur2u")
+theme_override_font_sizes/font_size = 16
+text = "Deathtroke"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Back" parent="Credits" instance=ExtResource("2_5wi6m")]
 layout_mode = 1
