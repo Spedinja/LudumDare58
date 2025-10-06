@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cou1njafwnpv6"]
+[gd_scene load_steps=8 format=3 uid="uid://cou1njafwnpv6"]
 
 [ext_resource type="Script" uid="uid://bbdudu40k3cbg" path="res://Scripts/Enemies/shotgun_rat.gd" id="1_rvk2k"]
-[ext_resource type="AudioStream" uid="uid://cyjpflsiip7xq" path="res://Sounds/gun shot.mp3" id="2_4bwry"]
 [ext_resource type="SpriteFrames" uid="uid://crleowwfeodhq" path="res://Sprites/RatSpriteFrames.tres" id="2_xqqto"]
+[ext_resource type="AudioStream" uid="uid://cavyqj80hp4t0" path="res://Sounds/step1.mp3" id="3_ipuxb"]
+[ext_resource type="AudioStream" uid="uid://b2f6ngartmd8r" path="res://Sounds/enemy hit.mp3" id="4_ffbss"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xqqto"]
 radius = 14.0
@@ -18,12 +19,11 @@ z_index = 10
 collision_layer = 16
 collision_mask = 54
 script = ExtResource("1_rvk2k")
-shot_sfx = ExtResource("2_4bwry")
 metadata/_custom_type_script = "uid://sv68sysn3ud8"
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_xqqto")
-animation = &"attack_side"
+animation = &"walk_down"
 autoplay = "walk_down"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
@@ -39,3 +39,12 @@ collision_mask = 9
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_l6vio")
+
+[node name="sfx_shoot" type="AudioStreamPlayer2D" parent="."]
+
+[node name="sfx_damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ffbss")
+
+[node name="sfx_step" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ipuxb")
+volume_db = -10.0

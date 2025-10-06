@@ -1,8 +1,8 @@
 extends Enemy
 class_name ShotgunRat
 
-@export var shot_sfx: AudioStream
+@onready var sfx_shoot: AudioStreamPlayer2D = $sfx_shoot
 
 func _attack():
 	pass
-	#SoundManager.play_enemy_sound(shot_sfx)
+	#sfx_shoot.play()
